@@ -9,7 +9,7 @@
 /// 2022-2023 Capstone Project, University of Utah
 /// 
 ///*copyright note* This code is the property of Team Executive Assistants any 
-///                 unauthoized use of the code will be persecute to the fullest 
+///                 unauthoized use of the code will be persecuted to the fullest 
 ///                 extent of the law. 
 /// </summary>
 namespace OutlookADDON
