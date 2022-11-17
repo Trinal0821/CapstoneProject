@@ -3,7 +3,8 @@
 /// After the email is scrapped it's run through the NLP class were it will be checked for keywords,
 /// then will be sent to the classifier to label it and save it to the hard drive. 
 /// 
-/// Authors: Team Executive Assistants
+/// Authors: Team Executive Assistants:
+///           Zachary Gundersen, Trina loung, Andrew Gill, Sephora Batmean 
 /// 
 /// 2022-2023 Capstone Project, University of Utah
 /// 
