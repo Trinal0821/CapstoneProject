@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlookAddLibray", "OutlookExecutable\OutlookAddLibray.csproj", "{CF65C68C-89B8-456F-A360-9848BDEA3ACF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Executable", "Executable\Executable.csproj", "{6E97D236-CA46-4501-B55D-67F63085755D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF65C68C-89B8-456F-A360-9848BDEA3ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF65C68C-89B8-456F-A360-9848BDEA3ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF65C68C-89B8-456F-A360-9848BDEA3ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF65C68C-89B8-456F-A360-9848BDEA3ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E97D236-CA46-4501-B55D-67F63085755D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E97D236-CA46-4501-B55D-67F63085755D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E97D236-CA46-4501-B55D-67F63085755D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E97D236-CA46-4501-B55D-67F63085755D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {71991172-7EE8-484A-BEE3-D679C5A5F064}
+	EndGlobalSection
+EndGlobal
