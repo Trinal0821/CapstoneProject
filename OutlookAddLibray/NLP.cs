@@ -30,8 +30,10 @@ namespace OutlookExecutable
         public NLP()
         {
             wordWeights = new Dictionary<string, int>();
-            wordWeights.Add("Important", 20);
-            wordWeights.Add("Good", 2);
+            wordWeights.Add("important", 30);
+            wordWeights.Add("good", 2);
+            wordWeights.Add("asap", 100);
+            wordWeights.Add("demo", 5);
             classifier = new Classifier(wordWeights);
         }
         /// <summary>
@@ -62,21 +64,46 @@ namespace OutlookExecutable
             emails.Add(trail2);
             emails.Add(trail3);
 
-            // get email. 
-            string currentEmail = GrabInformationFromEmail(emails,0);
-            // Scan through for important words. 
-            ScanInformationForDetails(currentEmail);
-            // Send Coloration and Email to the outlook.
-            ReportFindingsToOutlook();
+            for(int emailIndex = 0; emailIndex < emails.Count; emailIndex++)
+            {
+                // get email. 
+                string currentEmail = GrabInformationFromEmail(emails, emailIndex);
+
+                Console.WriteLine("Email scanned: " + currentEmail);
+                
+                // Scan through for important words. 
+                string result = ScanInformationForDetails(currentEmail);
+                // Send Coloration and Email to the outlook.
+                ReportFindingsToOutlook(result);
+            }
         }
         /// <summary>
         /// This takes the results from scanning the infomration and 
         /// sends the correct color to tag the email in outlook. 
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        private void ReportFindingsToOutlook()
+        private void ReportFindingsToOutlook(string result)
         {
-            throw new NotImplementedException();
+
+            if (result.Equals("Important"))
+            {
+                /* Return the email as red to outlook and send a notification.*/
+                Console.WriteLine("Importance level: " + result);
+                Console.WriteLine("Color tagged as: RED");
+            }
+            else if (result.Equals("Not Important"))
+            {
+                /* Return the email as green to outlook and send a notification.*/
+                Console.WriteLine("Importance level: " + result);
+                Console.WriteLine("Color tagged as: GREEN");
+            }
+            else
+            {
+                /* Return the email as yellow to outlook and send a notification.*/
+                Console.WriteLine("Importance level: " + result);
+                Console.WriteLine("Color tagged as: YELLOW");
+            }
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -89,10 +116,10 @@ namespace OutlookExecutable
         ///     Important Key words. 
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        private void ScanInformationForDetails(string currentEmail)
+        private string ScanInformationForDetails(string currentEmail)
         {
             string importance = classifier.scan(currentEmail, wordWeights);
-            Console.WriteLine(importance); 
+            return importance;
         }
 
         /// <summary>

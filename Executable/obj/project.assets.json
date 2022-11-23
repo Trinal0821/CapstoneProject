@@ -17,8 +17,8 @@
   "libraries": {
     "OutlookAddLibray/1.0.0": {
       "type": "project",
-      "path": "../OutlookExecutable/OutlookAddLibray.csproj",
-      "msbuildProject": "../OutlookExecutable/OutlookAddLibray.csproj"
+      "path": "../OutlookAddLibray/OutlookAddLibray.csproj",
+      "msbuildProject": "../OutlookAddLibray/OutlookAddLibray.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -58,6 +58,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "C:\\Users\\skate\\source\\repos\\OutlookExecutable\\OutlookAddLibray\\OutlookAddLibray.csproj": {
+              "projectPath": "C:\\Users\\skate\\source\\repos\\OutlookExecutable\\OutlookAddLibray\\OutlookAddLibray.csproj"
+            },
             "C:\\Users\\skate\\source\\repos\\OutlookExecutable\\OutlookExecutable\\OutlookAddLibray.csproj": {
               "projectPath": "C:\\Users\\skate\\source\\repos\\OutlookExecutable\\OutlookExecutable\\OutlookAddLibray.csproj"
             }

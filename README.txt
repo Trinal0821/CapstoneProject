@@ -26,6 +26,7 @@ Tasks:
 
 Current Questions:
 	Where should we store the client information?
+	Should we switch over to javacsript to connect smoother to the add on?
 
 References:
 

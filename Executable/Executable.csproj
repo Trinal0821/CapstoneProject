@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OutlookAddLibray\OutlookAddLibray.csproj" />
     <ProjectReference Include="..\OutlookExecutable\OutlookAddLibray.csproj" />
   </ItemGroup>
 

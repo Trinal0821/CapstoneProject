@@ -21,9 +21,9 @@ namespace OutlookExecutable
     {
         // Global Variables
         private Dictionary<string, int> localDict;
-        private int importantLimit = 20;
-        private int notImportantLimit = -20;
-
+        private int importantLimit = 50;
+        private int notImportantLimit = 10;
+        
         /// <summary>
         /// Classifier initializer
         /// </summary>
@@ -48,8 +48,12 @@ namespace OutlookExecutable
             
             foreach(string word in wordsInEmail)
             {
-                if (wordWeights.ContainsKey(word))
-                    score += wordWeights[word];
+                string trimmedWord = word.Trim().ToLower();
+                if (trimmedWord.Contains("."))
+                    trimmedWord = trimmedWord.Replace(".", "");
+
+                if (wordWeights.ContainsKey(trimmedWord))
+                    score += wordWeights[trimmedWord];
             }
 
             if (score > importantLimit)
