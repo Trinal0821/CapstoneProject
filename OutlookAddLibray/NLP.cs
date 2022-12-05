@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿using System.Text.Json;
+/// <summary>
 /// 
 /// This namespace contains the insides of our outlook add-on. 
 /// 
@@ -84,24 +85,32 @@ namespace OutlookExecutable
         /// <exception cref="NotImplementedException"></exception>
         private void ReportFindingsToOutlook(string result)
         {
+            EmailTagger tag = new EmailTagger();
 
+            string jsonString = "";
             if (result.Equals("Important"))
             {
                 /* Return the email as red to outlook and send a notification.*/
                 Console.WriteLine("Importance level: " + result);
                 Console.WriteLine("Color tagged as: RED");
+                tag.colortagged = "RED";
+                jsonString = JsonSerializer.Serialize(tag);
             }
             else if (result.Equals("Not Important"))
             {
                 /* Return the email as green to outlook and send a notification.*/
                 Console.WriteLine("Importance level: " + result);
                 Console.WriteLine("Color tagged as: GREEN");
+                tag.colortagged = "GREEN";
+                jsonString = JsonSerializer.Serialize(tag);
             }
             else
             {
                 /* Return the email as yellow to outlook and send a notification.*/
                 Console.WriteLine("Importance level: " + result);
                 Console.WriteLine("Color tagged as: YELLOW");
+                tag.colortagged = "YELLOW";
+                jsonString = JsonSerializer.Serialize(tag);
             }
             Console.WriteLine();
         }
@@ -132,5 +141,13 @@ namespace OutlookExecutable
             // Then grabs all the information off of the scraper.
             return emails[trail];
         }
+    }
+    /// <summary>
+    /// A sub-class of NLP that will allow us to send the information grabbed from the
+    /// email as a json string. 
+    /// </summary>
+    public class EmailTagger
+    {
+        public string colortagged { get; set; }
     }
 }

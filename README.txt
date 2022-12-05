@@ -23,11 +23,15 @@ Bugs:
 Tasks: 
 	1. Using the NLP be able to extract times of dates. 
 	  - spacy!!
-
+	2. Show that the emails are scored differently according to different clients. 
+	  - How it take in a client.
+	  
 Current Questions:
 	Where should we store the client information?
 	Should we switch over to javacsript to connect smoother to the add on?
+	
 
+		
 References:
 
 
