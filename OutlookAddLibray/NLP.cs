@@ -22,59 +22,62 @@ namespace OutlookExecutable
     public class NLP
 
     {
-        private Dictionary<string, int> wordWeights;
-        private Classifier classifier;
+        private Settings settings;
 
         /// <summary>
         /// NLP Initalizer
         /// </summary>
         public NLP()
         {
-            wordWeights = new Dictionary<string, int>();
-            wordWeights.Add("important", 30);
-            wordWeights.Add("good", 2);
-            wordWeights.Add("asap", 100);
-            wordWeights.Add("demo", 5);
-            classifier = new Classifier(wordWeights);
+            settings = new Settings();
         }
         /// <summary>
         /// Executes the NLP 
         /// </summary>
         public void execute()
         {
-            List<string> emails = new List<string>();
-            string trail = "SUBJECT: 15-Minute Demo –  When you have a minute, Microsoft Office for Legal was hoping you" +
-                           " could suggest a good time to set up a 15 - minute phone call and demo with" +
-                           " you or one of the people in your firm that is responsible for docketing litigation" +
-                           " deadlines. Microsoft recently introduced me to LawToolBox365, a matter - based deadline" +
-                           " management system inside Outlook(case studies, brochure).LawToolBox, who has been automating" +
-                           " court rules calendaring for state and federal courts around the country since the late 90s is" +
-                           " offering LawToolBox365 as a bundle with Office 365 for a monthly per user fee.If you have a minute," +
-                           " please check out this 2 - min video.If you are interested, can you suggest a good person in your firm" +
-                           " to schedule a 15 - minute phone call and demo this week ? Or next week ? We look forward" +
-                           " to getting your feedback on how or if you think this Office 365 deadline management system" +
-                           " will save time generating deadlines, getting them into Outlook, tracking rule changes, and" +
-                           " supporting malpractice insurance requirements for multiple reminder systems.Thank you!";
-            
-            string trail2 = "SUBJECT: Important Buiness Meeting –  I need you to give me a call, ASAP." +
-                            " We are getting sued.NOW!";
 
-            string trail3 = "SUBJECT:Thank you!";
-
-            emails.Add(trail);
-            emails.Add(trail2);
-            emails.Add(trail3);
-
-            for(int emailIndex = 0; emailIndex < emails.Count; emailIndex++)
+            string text = File.ReadAllText("C:\\Users\\skate\\source\\repos\\OutlookExecutable\\OutlookAddLibray\\Emails.txt");
+            string[] emails = text.Split("--");
+            Dictionary<string,int> emailList = new Dictionary<string, int>();
+            foreach(string email in emails)
             {
-                // get email. 
-                string currentEmail = GrabInformationFromEmail(emails, emailIndex);
+                string[] emailSpilt = email.Split(";");
+                string clientName = emailSpilt[0].Split("FROM:")[1].Trim();
+                if (emailList.ContainsKey(clientName))
+                {
+                    int newCount = emailList[clientName] + 1;       
+                    emailList[clientName]= newCount;
+                }
+                else
+                {
+                    emailList.Add(clientName, 1);
+                }
+            }
+            Console.WriteLine("----------------");
+            Console.WriteLine("!!WELCOME BACK!!");
+            Console.WriteLine("----------------");
+            Console.WriteLine("");
+            Console.WriteLine("While you were gone we scanned " + emails.Length + " emails");
+            Console.WriteLine("");
+            Console.WriteLine("These are the following emails I have tagged");
+            Console.WriteLine("..............");
+            System.Threading.Thread.Sleep(3000);
 
-                Console.WriteLine("Email scanned: " + currentEmail);
-                
-                // Scan through for important words. 
-                string result = ScanInformationForDetails(currentEmail);
-                // Send Coloration and Email to the outlook.
+            foreach (KeyValuePair<String,int> value in emailList)
+            {
+                Console.WriteLine("We got " + value.Value + " emails from your client: " + value.Key);
+            }
+            Console.WriteLine("");
+            Console.WriteLine("Here is how the emails scored.");
+            foreach (string email in emails)
+            {
+                String result = ScanInformationForDetails(email);
+                Console.WriteLine(email);
+                Console.WriteLine("-----");
+                Console.WriteLine("TAGGED AS");
+                Console.WriteLine("-----");
+
                 ReportFindingsToOutlook(result);
             }
         }
@@ -127,19 +130,14 @@ namespace OutlookExecutable
         /// <exception cref="NotImplementedException"></exception>
         private string ScanInformationForDetails(string currentEmail)
         {
-            string importance = classifier.scan(currentEmail, wordWeights);
-            return importance;
-        }
+            string[] emailSpilt = currentEmail.Split(";");
+            string clientName = emailSpilt[0].Split("FROM:")[1];
+            Dictionary<string, int> wordWeights =  settings.GetCleintDictionary(clientName.Trim());
 
-        /// <summary>
-        /// Grabs all the information from the email.  
-        /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
-        private string GrabInformationFromEmail(List<string> emails, int trail)
-        {
-            // Gets an email from the email scrapper
-            // Then grabs all the information off of the scraper.
-            return emails[trail];
+            Classifier classifier = new Classifier(wordWeights);
+            string importance = classifier.scan(emailSpilt[2], wordWeights);
+            
+            return importance;
         }
     }
     /// <summary>

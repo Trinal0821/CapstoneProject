@@ -21,11 +21,34 @@ namespace OutlookExecutable
 {
     public class Settings
     {
-        public Settings(string name, string settingFile)
+        public Dictionary<string,Dictionary<string, int>> clientSettings { get;}
+        public Settings()
         {
-            //Could handel readin from a file. 
-            
-            //Saving to a file.
+            clientSettings = new Dictionary<string, Dictionary<string, int>>();
+            Dictionary<string, int> clientOne = new Dictionary<string, int>();
+            clientOne.Add("important", 5);
+            clientOne.Add("call", 200);
+            clientOne.Add("asap", 10);
+            clientOne.Add("talk", 5);
+            clientSettings.Add("Balthazar", clientOne);
+            Dictionary<string, int> clientTwo = new Dictionary<string, int>();
+            clientTwo.Add("important", 5);
+            clientTwo.Add("call", 2);
+            clientTwo.Add("cat", -5);
+            clientTwo.Add("talk", 5);
+            clientSettings.Add("Mortdecai", clientTwo);
+            Dictionary<string, int> clientThree = new Dictionary<string, int>();
+            clientThree.Add("important", 5);
+            clientThree.Add("meeting", 200);
+            clientThree.Add("ASAP", 100);
+            clientThree.Add("talk", 5);
+            clientSettings.Add("Harnassus", clientThree);
+
+        }
+        public Dictionary<string,int> GetCleintDictionary(string clientName)
+        {
+            clientSettings.TryGetValue(clientName, out Dictionary<string,int> result);
+            return result;
         }
     }
 }

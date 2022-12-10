@@ -1,0 +1,42 @@
+﻿FROM: Balthazar;
+SUBJECT: 15-Minute Demo;
+When you have a minute, Microsoft Office for Legal was hoping you
+could suggest a good time to set up a 15 - minute phone call and demo with
+you or one of the people in your firm that is responsible for docketing litigation
+deadlines. Microsoft recently introduced me to LawToolBox365, a matter - based deadline
+management system inside Outlook(case studies, brochure).LawToolBox, who has been automating
+court rules calendaring for state and federal courts around the country since the late 90s is
+offering LawToolBox365 as a bundle with Office 365 for a monthly per user fee.If you have a minute
+please check out this 2 - min video.If you are interested, can you suggest a good person in your firm
+to schedule a 15 - minute phone call and demo this week ? Or next week ? We look forward
+to getting your feedback on how or if you think this Office 365 deadline management system
+will save time generating deadlines, getting them into Outlook, tracking rule changes, and
+supporting malpractice insurance requirements for multiple reminder systems.Thank you
+--  
+FROM: Mortdecai;
+Subject: Important Buiness Meeting –  I need you to give me a call, ASAP;
+We are getting sued!!
+--
+FROM: Harnassus;                  
+Subject: Thank you;
+--
+FROM: Balthazar;
+Subject: Patent for new invention;
+Hey, hosway I had a great idea of an invention. Can we meet up soon.
+--
+FROM: Mortdecai;
+Subject: I want a new lawyer;
+I just can't trust you. All you want is my money 
+--
+FROM: Harnassus;
+Subject: IT responding to your question;
+I am not sure what is wrong. 
+--
+FROM: Balthazar;
+Subject: When can you meet up; 
+--
+FROM: Mortdecai;
+Subject: When can you meet up; 
+--
+FROM: Harnassus;
+Subject: When can you meet up; 
