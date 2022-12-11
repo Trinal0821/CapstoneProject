@@ -1,0 +1,2 @@
+C:\Users\trina\source\repos\EA\obj\Debug\EA.csproj.AssemblyReference.cache
+C:\Users\trina\source\repos\EA\obj\Debug\EA.csproj.CoreCompileInputs.cache
