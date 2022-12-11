@@ -1,4 +1,47 @@
 ﻿(function () {
+    "use strict";
+
+    // The Office initialize function must be run each time a new page is loaded
+    Office.initialize = function (reason) {
+        $(document).ready(function () {
+        
+            $("#get-from").click(getFrom);
+        });
+    };
+
+    function getFrom() {
+
+        var jsonstring = "";
+
+        //Get the from and append the client's name
+        const msgFrom = Office.context.mailbox.item.from;
+        jsonstring += "FROM: " + msgFrom.displayName + ";";
+
+        //Get the subject and append it
+        jsonstring += "SUBJECT: " + Office.context.mailbox.item.subject + ";";
+
+        let body = '';
+        Office.context.mailbox.item.body.getAsync(
+            "text",
+            function (result) {
+                if (result.status === Office.AsyncResultStatus.Succeeded) {
+                    body = result.value;
+                    jsonstring += body + ";"
+
+                    jsonstring = JSON.stringify(jsonstring);
+                    console.log(jsonstring);
+
+                    var split = jsonstring.split(";");
+                    console.log(split);
+                }
+            }
+        )
+       
+    }
+})();
+
+
+/*(function () {
   "use strict";
 
   var messageBanner;
@@ -87,4 +130,4 @@
     messageBanner.showBanner();
     messageBanner.toggleExpansion();
   }
-})();
+})();*/
