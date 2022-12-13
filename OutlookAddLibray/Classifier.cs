@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿
+/// <summary>
 /// 
 /// This namespace contains the insides of our outlook add-on. 
 /// 
@@ -36,8 +37,8 @@ namespace OutlookExecutable
         /// Scans through the email to see what words are part of the wordWeight and adds
         /// that words weight to the score. 
         /// </summary>
-        /// <param name="email"></param>
-        /// <param name="wordWeights"></param>
+        /// <param name="email">The email that was sent. </param>
+        /// <param name="wordWeights">The dictionary begin passed in</param>
         /// <returns></returns>
         public string scan(string email, Dictionary<string, int> wordWeights)
         {
@@ -49,8 +50,8 @@ namespace OutlookExecutable
             foreach(string word in wordsInEmail)
             {
                 string trimmedWord = word.Trim().ToLower();
-                if (trimmedWord.Contains("."))
-                    trimmedWord = trimmedWord.Replace(".", "");
+                    
+                trimmedWord = CheckForUnwantedChar(word);
 
                 if (wordWeights.ContainsKey(trimmedWord))
                     score += wordWeights[trimmedWord];
@@ -64,6 +65,22 @@ namespace OutlookExecutable
                 classifiedEmail = "Standard";
 
             return classifiedEmail;
+        }
+        /// <summary>
+        /// Checks to see if a word has an unwanted char.
+        /// </summary>
+        /// <param name="word">The word that is being scored.</param>
+        /// <returns></returns>
+        private string CheckForUnwantedChar(string word)
+        {
+            if (word.Contains("."))
+                return word.Replace(".","");
+            else if (word.Contains(";"))
+                return word.Replace(";", "");
+            else if (word.Contains("\r\n"))
+                return word.Replace("\r\n", "");
+
+            return word;
         }
     }
 }

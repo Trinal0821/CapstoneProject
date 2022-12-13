@@ -1,4 +1,6 @@
-Project Summary:
+Project Summary: The backend of our Executive Email Assistance Outlook Add on. This project handle parsing client emails.
+and scoring them on importance. The backend will also handle saving the emails to the folder system.
+
 
 This namespace contains the insides of our outlook add-on. 
 
@@ -17,23 +19,12 @@ Zachary Gunderson
 
 
 Bugs:
-	Known:
-	UnKnown:
+	None know. 
 
 Tasks: 
-	1. Using the NLP be able to extract times of dates. 
-	  - spacy!!
-	2. Show that the emails are scored differently according to different clients. 
-	  - How it take in a client.
-	  
-Current Questions:
-	Where should we store the client information?
-	Should we switch over to javacsript to connect smoother to the add on?
-	
-
-		
+	None 
 References:
-
+    N/A
 
 
 

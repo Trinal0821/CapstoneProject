@@ -26,25 +26,30 @@ namespace OutlookExecutable
         {
             clientSettings = new Dictionary<string, Dictionary<string, int>>();
             Dictionary<string, int> clientOne = new Dictionary<string, int>();
-            clientOne.Add("important", 5);
-            clientOne.Add("call", 200);
-            clientOne.Add("asap", 10);
+            clientOne.Add("important", 500);
+            clientOne.Add("call", 20);
+            clientOne.Add("meet", 50);
             clientOne.Add("talk", 5);
             clientSettings.Add("Balthazar", clientOne);
             Dictionary<string, int> clientTwo = new Dictionary<string, int>();
-            clientTwo.Add("important", 5);
+            clientTwo.Add("meet", 500);
             clientTwo.Add("call", 2);
             clientTwo.Add("cat", -5);
-            clientTwo.Add("talk", 5);
+            clientTwo.Add("ASAP", 200);
             clientSettings.Add("Mortdecai", clientTwo);
             Dictionary<string, int> clientThree = new Dictionary<string, int>();
             clientThree.Add("important", 5);
-            clientThree.Add("meeting", 200);
-            clientThree.Add("ASAP", 100);
+            clientThree.Add("up", 1);
+            clientThree.Add("meet", 1);
             clientThree.Add("talk", 5);
             clientSettings.Add("Harnassus", clientThree);
 
         }
+        /// <summary>
+        /// Returns the "dictionary" attached to the client name. 
+        /// </summary>
+        /// <param name="clientName">The client that sent the email</param>
+        /// <returns></returns>
         public Dictionary<string,int> GetCleintDictionary(string clientName)
         {
             clientSettings.TryGetValue(clientName, out Dictionary<string,int> result);

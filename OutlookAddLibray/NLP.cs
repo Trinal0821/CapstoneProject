@@ -23,13 +23,19 @@ namespace OutlookExecutable
 
     {
         private Settings settings;
-
+        private Dictionary<string,string>  importantDic;
+        private Dictionary<string, string> normalDic;
+        private Dictionary<string, string> yellowDic;
+        List<string> jsonMessage = new List<string>();
         /// <summary>
         /// NLP Initalizer
         /// </summary>
         public NLP()
         {
             settings = new Settings();
+            importantDic = new Dictionary<string, string>();
+            normalDic = new Dictionary<string, string>();
+            yellowDic = new Dictionary<string, string>();
         }
         /// <summary>
         /// Executes the NLP 
@@ -60,62 +66,98 @@ namespace OutlookExecutable
             Console.WriteLine("");
             Console.WriteLine("While you were gone we scanned " + emails.Length + " emails");
             Console.WriteLine("");
-            Console.WriteLine("These are the following emails I have tagged");
+            Console.WriteLine("These are the following emails that have been scanned");
             Console.WriteLine("..............");
-            System.Threading.Thread.Sleep(3000);
+
 
             foreach (KeyValuePair<String,int> value in emailList)
             {
                 Console.WriteLine("We got " + value.Value + " emails from your client: " + value.Key);
             }
             Console.WriteLine("");
-            Console.WriteLine("Here is how the emails scored.");
+
+
             foreach (string email in emails)
             {
                 String result = ScanInformationForDetails(email);
-                Console.WriteLine(email);
-                Console.WriteLine("-----");
-                Console.WriteLine("TAGGED AS");
-                Console.WriteLine("-----");
-
-                ReportFindingsToOutlook(result);
+                ReportFindingsToOutlook(result,email);
             }
+
+            Console.WriteLine("Would you like to see the emails we scanned?");
+            Console.WriteLine("Please type 'yes' for yes and 'no' for no");
+            Console.WriteLine();
+
+
+            string answer = Console.ReadLine();
+            if (answer.Equals("yes"))
+            {
+                Console.WriteLine("The emails are organized based on importance");
+                Console.WriteLine();
+
+                PrintDicTionary(importantDic);
+
+                PrintDicTionary(normalDic);
+
+                PrintDicTionary(yellowDic);
+            }
+            else
+            {
+                foreach (string jsonMes in jsonMessage)
+                { Console.WriteLine("Sending Json object to add-on: " + jsonMes); }
+            }
+            Console.WriteLine("We will continue Scanning now...........");
         }
         /// <summary>
-        /// This takes the results from scanning the infomration and 
-        /// sends the correct color to tag the email in outlook. 
+        /// Prints the emails and tagging that was saved while scanning emails.
         /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
-        private void ReportFindingsToOutlook(string result)
+        /// <param name="importantDic">The dictionary that contains the tagging and email</param>
+        private void PrintDicTionary(Dictionary<string, string> importantDic)
+        {
+            foreach(KeyValuePair<string,string> email in importantDic)
+            {
+                Console.WriteLine(email.Key);
+                Console.WriteLine("Was Tagged as: " +email.Value);
+            }
+            Console.WriteLine();
+        }
+
+
+        /// <summary>
+        /// Takes the results of the classifier and reports it to the outlook add-on using a json object 
+        /// </summary>
+        /// <param name="result">The tagging result</param>
+        /// <param name="email">The email passed in</param>
+        private void ReportFindingsToOutlook(string result, string email)
         {
             EmailTagger tag = new EmailTagger();
 
             string jsonString = "";
             if (result.Equals("Important"))
             {
-                /* Return the email as red to outlook and send a notification.*/
-                Console.WriteLine("Importance level: " + result);
-                Console.WriteLine("Color tagged as: RED");
-                tag.colortagged = "RED";
-                jsonString = JsonSerializer.Serialize(tag);
+          
+                    importantDic.Add(email, result);
+                    tag.colortagged = "RED";
+                    jsonString = JsonSerializer.Serialize(tag);
+                    jsonMessage.Add(jsonString);
             }
             else if (result.Equals("Not Important"))
             {
+
                 /* Return the email as green to outlook and send a notification.*/
-                Console.WriteLine("Importance level: " + result);
-                Console.WriteLine("Color tagged as: GREEN");
-                tag.colortagged = "GREEN";
-                jsonString = JsonSerializer.Serialize(tag);
+           
+                    normalDic.Add(email, result);
+                    tag.colortagged = "GREEN";
+                    jsonString = JsonSerializer.Serialize(tag);
+                    jsonMessage.Add(jsonString);
             }
             else
             {
                 /* Return the email as yellow to outlook and send a notification.*/
-                Console.WriteLine("Importance level: " + result);
-                Console.WriteLine("Color tagged as: YELLOW");
-                tag.colortagged = "YELLOW";
-                jsonString = JsonSerializer.Serialize(tag);
+                    yellowDic.Add(email, result);
+                    tag.colortagged = "YELLOW";
+                    jsonString = JsonSerializer.Serialize(tag);
+                    jsonMessage.Add(jsonString);
             }
-            Console.WriteLine();
         }
 
         /// <summary>
@@ -133,9 +175,11 @@ namespace OutlookExecutable
             string[] emailSpilt = currentEmail.Split(";");
             string clientName = emailSpilt[0].Split("FROM:")[1];
             Dictionary<string, int> wordWeights =  settings.GetCleintDictionary(clientName.Trim());
+            string completeEmail = emailSpilt[1] + " " + emailSpilt[2];
+
 
             Classifier classifier = new Classifier(wordWeights);
-            string importance = classifier.scan(emailSpilt[2], wordWeights);
+            string importance = classifier.scan(completeEmail, wordWeights);
             
             return importance;
         }
