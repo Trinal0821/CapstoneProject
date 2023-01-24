@@ -1,5 +1,4 @@
 ﻿
-
 using OutlookExecutable;
 /// <summary>
 /// 
@@ -27,6 +26,6 @@ namespace Executable
         {
             NLP nlp = new NLP();
             nlp.execute();
-        }
+        }d
     }
 }

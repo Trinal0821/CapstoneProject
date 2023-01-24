@@ -21,28 +21,9 @@ namespace OutlookExecutable
 {
     public class Settings
     {
-        public Dictionary<string,Dictionary<string, int>> clientSettings { get;}
+       
         public Settings()
         {
-            clientSettings = new Dictionary<string, Dictionary<string, int>>();
-            Dictionary<string, int> clientOne = new Dictionary<string, int>();
-            clientOne.Add("important", 500);
-            clientOne.Add("call", 20);
-            clientOne.Add("meet", 50);
-            clientOne.Add("talk", 5);
-            clientSettings.Add("Balthazar", clientOne);
-            Dictionary<string, int> clientTwo = new Dictionary<string, int>();
-            clientTwo.Add("meet", 500);
-            clientTwo.Add("call", 2);
-            clientTwo.Add("cat", -5);
-            clientTwo.Add("ASAP", 200);
-            clientSettings.Add("Mortdecai", clientTwo);
-            Dictionary<string, int> clientThree = new Dictionary<string, int>();
-            clientThree.Add("important", 5);
-            clientThree.Add("up", 1);
-            clientThree.Add("meet", 1);
-            clientThree.Add("talk", 5);
-            clientSettings.Add("Harnassus", clientThree);
 
         }
         /// <summary>
@@ -52,8 +33,16 @@ namespace OutlookExecutable
         /// <returns></returns>
         public Dictionary<string,int> GetCleintDictionary(string clientName)
         {
-            clientSettings.TryGetValue(clientName, out Dictionary<string,int> result);
-            return result;
+            Dictionary<string,int> dict = new Dictionary<string, int>();
+            string  filePath = @"C:\Client_Information\Client_Dictionary\" + clientName + ".txt";
+            
+            string[] lines = System.IO.File.ReadAllLines(filePath);
+            foreach (string line in lines)
+            {
+                string[] value = line.Split(" ");
+                dict.Add(value[0], Int32.Parse(value[1]));
+            }
+            return dict;
         }
     }
 }

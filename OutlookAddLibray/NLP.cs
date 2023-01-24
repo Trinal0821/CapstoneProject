@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using OutlookAddLibray;
+using System.Text.Json;
 /// <summary>
 /// 
 /// This namespace contains the insides of our outlook add-on. 
@@ -22,17 +23,26 @@ namespace OutlookExecutable
     public class NLP
 
     {
+        // inner class varaibles. 
         private Settings settings;
+        private FolderSystem file;
+
+        // Stores emails that were marked a certain way. 
         private Dictionary<string,string>  importantDic;
         private Dictionary<string, string> normalDic;
         private Dictionary<string, string> yellowDic;
+
+        //Message that is sent back to the outlook add on. 
         List<string> jsonMessage = new List<string>();
+        
         /// <summary>
         /// NLP Initalizer
         /// </summary>
         public NLP()
         {
             settings = new Settings();
+            file = new FolderSystem();
+
             importantDic = new Dictionary<string, string>();
             normalDic = new Dictionary<string, string>();
             yellowDic = new Dictionary<string, string>();
@@ -42,10 +52,12 @@ namespace OutlookExecutable
         /// </summary>
         public void execute()
         {
-
+            //change this to run on json objects beging sent from add-on. 
             string text = File.ReadAllText("C:\\Users\\skate\\source\\repos\\OutlookExecutable\\OutlookAddLibray\\Emails.txt");
             string[] emails = text.Split("--");
             Dictionary<string,int> emailList = new Dictionary<string, int>();
+            // 
+
             foreach(string email in emails)
             {
                 string[] emailSpilt = email.Split(";");
@@ -58,17 +70,15 @@ namespace OutlookExecutable
                 else
                 {
                     emailList.Add(clientName, 1);
-                }
+                    // ask if they want to create a floder and dictionary. 
+                }             
+                String result = ScanInformationForDetails(email);
+                file.SaveToFolder(clientName, email);
+                ReportFindingsToOutlook(result, email);       
             }
-            Console.WriteLine("----------------");
-            Console.WriteLine("!!WELCOME BACK!!");
-            Console.WriteLine("----------------");
-            Console.WriteLine("");
-            Console.WriteLine("While you were gone we scanned " + emails.Length + " emails");
-            Console.WriteLine("");
-            Console.WriteLine("These are the following emails that have been scanned");
-            Console.WriteLine("..............");
 
+            PrintWelcomeMessage(emails);
+            
 
             foreach (KeyValuePair<String,int> value in emailList)
             {
@@ -77,12 +87,7 @@ namespace OutlookExecutable
             Console.WriteLine("");
 
 
-            foreach (string email in emails)
-            {
-                String result = ScanInformationForDetails(email);
-                ReportFindingsToOutlook(result,email);
-            }
-
+            //pop-up message
             Console.WriteLine("Would you like to see the emails we scanned?");
             Console.WriteLine("Please type 'yes' for yes and 'no' for no");
             Console.WriteLine();
@@ -100,13 +105,25 @@ namespace OutlookExecutable
 
                 PrintDicTionary(yellowDic);
             }
-            else
-            {
-                foreach (string jsonMes in jsonMessage)
-                { Console.WriteLine("Sending Json object to add-on: " + jsonMes); }
-            }
+
             Console.WriteLine("We will continue Scanning now...........");
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        private void PrintWelcomeMessage(string[] emails)
+        {
+            Console.WriteLine("----------------");
+            Console.WriteLine("!!WELCOME BACK!!");
+            Console.WriteLine("----------------");
+            Console.WriteLine("");
+            Console.WriteLine("While you were gone we scanned " + emails.Length + " emails");
+            Console.WriteLine("");
+            Console.WriteLine("These are the following emails that have been scanned");
+            Console.WriteLine("..............");
+
+        }
+
         /// <summary>
         /// Prints the emails and tagging that was saved while scanning emails.
         /// </summary>
