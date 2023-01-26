@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "cf65c68c-89b8-456f-a360-9848bdea3acf": {
+      "ProjectGuid": "cf65c68c-89b8-456f-a360-9848bdea3acf",
+      "DisplayName": "OutlookAddLibray",
+      "ColorIndex": 0
+    },
+    "0b4ca333-969a-4303-9282-74dc6dcbfb89": {
+      "ProjectGuid": "0b4ca333-969a-4303-9282-74dc6dcbfb89",
+      "DisplayName": "OutlookTester",
+      "ColorIndex": 1
+    },
+    "6e97d236-ca46-4501-b55d-67f63085755d": {
+      "ProjectGuid": "6e97d236-ca46-4501-b55d-67f63085755d",
+      "DisplayName": "Executable",
+      "ColorIndex": 2
+    },
+    "93ab290a-da10-4c4d-9a71-baa945681e50": {
+      "ProjectGuid": "93ab290a-da10-4c4d-9a71-baa945681e50",
+      "DisplayName": "Solution Items",
+      "ColorIndex": 3
+    },
+    "8b8934fa-d931-48a6-8185-5778c6d6664e": {
+      "ProjectGuid": "8b8934fa-d931-48a6-8185-5778c6d6664e",
+      "DisplayName": "OutlookAddLibray",
+      "ColorIndex": 4
+    }
+  },
+  "NextColorIndex": 5
+}

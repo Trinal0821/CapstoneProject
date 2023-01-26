@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "icchGYcQw8HERFtY3BZBdsZG7Cz79EdIIPNDCQGndAv3UrjDY/ktyruf9IN8bFmccP0pQWbPIx71CywMF7Q+RQ==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\Executable\\Executable.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookExecutable\\OutlookAddLibray.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookExecutable\\OutlookAddLibray.csproj",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}

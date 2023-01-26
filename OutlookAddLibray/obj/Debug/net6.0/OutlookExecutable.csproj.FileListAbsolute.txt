@@ -1,0 +1,12 @@
+C:\Users\skate\source\repos\OutlookExecutable\OutlookExecutable\bin\Debug\net6.0\OutlookExecutable.deps.json
+C:\Users\skate\source\repos\OutlookExecutable\OutlookExecutable\bin\Debug\net6.0\OutlookExecutable.dll
+C:\Users\skate\source\repos\OutlookExecutable\OutlookExecutable\bin\Debug\net6.0\ref\OutlookExecutable.dll
+C:\Users\skate\source\repos\OutlookExecutable\OutlookExecutable\bin\Debug\net6.0\OutlookExecutable.pdb
+C:\Users\skate\source\repos\OutlookExecutable\OutlookExecutable\obj\Debug\net6.0\OutlookExecutable.csproj.AssemblyReference.cache
+C:\Users\skate\source\repos\OutlookExecutable\OutlookExecutable\obj\Debug\net6.0\OutlookExecutable.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\skate\source\repos\OutlookExecutable\OutlookExecutable\obj\Debug\net6.0\OutlookExecutable.AssemblyInfoInputs.cache
+C:\Users\skate\source\repos\OutlookExecutable\OutlookExecutable\obj\Debug\net6.0\OutlookExecutable.AssemblyInfo.cs
+C:\Users\skate\source\repos\OutlookExecutable\OutlookExecutable\obj\Debug\net6.0\OutlookExecutable.csproj.CoreCompileInputs.cache
+C:\Users\skate\source\repos\OutlookExecutable\OutlookExecutable\obj\Debug\net6.0\OutlookExecutable.dll
+C:\Users\skate\source\repos\OutlookExecutable\OutlookExecutable\obj\Debug\net6.0\ref\OutlookExecutable.dll
+C:\Users\skate\source\repos\OutlookExecutable\OutlookExecutable\obj\Debug\net6.0\OutlookExecutable.pdb
