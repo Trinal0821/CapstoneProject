@@ -17,15 +17,14 @@ using System.Threading.Tasks;
 ///                 unauthoized use of the code will be persecuted to the fullest 
 ///                 extent of the law. 
 /// </summary>
+/// 
 namespace OutlookExecutable
 {
     public class Settings
     {
        
         public Settings()
-        {
-
-        }
+        { }
         /// <summary>
         /// Returns the "dictionary" attached to the client name. 
         /// </summary>
@@ -39,7 +38,7 @@ namespace OutlookExecutable
             string[] lines = System.IO.File.ReadAllLines(filePath);
             foreach (string line in lines)
             {
-                string[] value = line.Split(" ");
+                string[] value = line.Split("\t");
                 dict.Add(value[0], Int32.Parse(value[1]));
             }
             return dict;

@@ -23,7 +23,7 @@ namespace OutlookAddLibray
         }
 
         /// <summary>
-        /// 
+        /// this saves the email in the cilents folder. 
         /// </summary>
         /// <param name="clientName"></param>
         /// <param name="email"></param>
@@ -42,7 +42,7 @@ namespace OutlookAddLibray
             }
             // save the file 
             filePath = filePath + @"\" + emailName;
-            File.WriteAllText(emailName, email);    
+              File.WriteAllText(filePath, email);    
             //currently not saving the file correctly. 
         }
 

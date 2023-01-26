@@ -8,7 +8,8 @@ Classes:
 Executable: Is the wraper class for the executable.
 NLP: Runs through the email and calls classifier
 Classifier: Anayzles email and labels it's importance
-Settings: Keeps the settings for a client. 
+Settings: Keeps the settings for a client. // Interacts with the AI model. 
+AiModel: 
 
 
 Authors:
@@ -23,6 +24,7 @@ Bugs:
 
 Tasks: 
 	None 
+
 References:
     N/A
 
