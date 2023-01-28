@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Abstractions;
-/*using OutlookExecutable;*/
 using System.Diagnostics;
 using EAServer.Models;
 using Newtonsoft;
 using Newtonsoft.Json;
-using EAServer.Models;
+using OutlookExecutable;
 
 namespace EAServer.Controllers
 {
@@ -20,6 +19,12 @@ namespace EAServer.Controllers
         }
 
         public IActionResult TaskPane()
+        {
+
+            return View();
+        }
+
+        public IActionResult Settings()
         {
 
             return View();
@@ -40,22 +45,16 @@ namespace EAServer.Controllers
             return View();
         }
 
-        public IActionResult Run()
+        /*        public IActionResult testing()
+                {
+                    changetitle
+                }*/
+
+        [HttpGet]
+        public IActionResult testing(string from, string subject, string body)
         {
-
-            List<string> names = new List<string>();
-            names.Add("Trina");
-            names.Add("Allyanna");
-
-            string json = JsonConvert.SerializeObject(names);
-            return Content(json);
-
-            /*  if (1 == 1)
-              {
-                  Console.WriteLine("hELLO");
-              }*/
-
-            //return RedirectToAction("Index");
+            NLP nlp = new NLP();
+            return Content(nlp.execute(from, subject, body));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

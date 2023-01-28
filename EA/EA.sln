@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EA", "EA.csproj", "{BA62263
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAWeb", "..\EAWeb\EAWeb.csproj", "{247BC0CB-34FB-4550-9947-4BB3FEE67AAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EAServer", "..\EAServer\EAServer.csproj", "{35DE9F1D-105B-4E2A-9E1D-1D741C352587}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EAServer", "..\EAServer\EAServer.csproj", "{35DE9F1D-105B-4E2A-9E1D-1D741C352587}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutlookAddLibray", "..\OutlookAddLibray\OutlookAddLibray.csproj", "{06670BD8-D719-4A66-969D-CA9737EFC150}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{35DE9F1D-105B-4E2A-9E1D-1D741C352587}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35DE9F1D-105B-4E2A-9E1D-1D741C352587}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35DE9F1D-105B-4E2A-9E1D-1D741C352587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06670BD8-D719-4A66-969D-CA9737EFC150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06670BD8-D719-4A66-969D-CA9737EFC150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06670BD8-D719-4A66-969D-CA9737EFC150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06670BD8-D719-4A66-969D-CA9737EFC150}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,34 +1,34 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--Created:ce44715c-8c4e-446b-879c-ea9ebe0f09c8-->
-<OfficeApp 
-          xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" 
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-          xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" 
-          xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" 
+<OfficeApp
+          xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+          xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
           xsi:type="MailApp">
 
-  <!-- Begin Basic Settings: Add-in metadata, used for all versions of Office unless override provided. -->
+	<!-- Begin Basic Settings: Add-in metadata, used for all versions of Office unless override provided. -->
 
-  <!-- IMPORTANT! Id must be unique for your add-in, if you reuse this manifest ensure that you change this id to a new GUID. -->
-  <Id>78a9c9b7-6677-46e0-97c8-044bd74a7356</Id>
+	<!-- IMPORTANT! Id must be unique for your add-in, if you reuse this manifest ensure that you change this id to a new GUID. -->
+	<Id>78a9c9b7-6677-46e0-97c8-044bd74a7356</Id>
 
-  <!--Version. Updates from the store only get triggered if there is a version change. -->
-  <Version>1.0.0.0</Version>
-  <ProviderName>[Provider name]</ProviderName>
-  <DefaultLocale>en-US</DefaultLocale>
-  <!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
-  <DisplayName DefaultValue="EA" />
-  <Description DefaultValue="EA"/>
-  <IconUrl DefaultValue="https://localhost:7150/Images/Icon64.png"/>
+	<!--Version. Updates from the store only get triggered if there is a version change. -->
+	<Version>1.0.0.0</Version>
+	<ProviderName>Team Executive Assistant</ProviderName>
+	<DefaultLocale>en-US</DefaultLocale>
+	<!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
+	<DisplayName DefaultValue="Executive Assistant" />
+	<Description DefaultValue="Executive Assistant"/>
+	<IconUrl DefaultValue="https://localhost:7150/Images/Icon64.png"/>
 
-  <SupportUrl DefaultValue="http://www.contoso.com" />
-  <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
-  <AppDomains>
-    <AppDomain>AppDomain1</AppDomain>
-    <AppDomain>AppDomain2</AppDomain>
-    <AppDomain>AppDomain3</AppDomain>
-  </AppDomains>
-  <!--End Basic Settings. -->
+	<SupportUrl DefaultValue="http://www.contoso.com" />
+	<!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
+	<AppDomains>
+		<AppDomain>AppDomain1</AppDomain>
+		<AppDomain>AppDomain2</AppDomain>
+		<AppDomain>AppDomain3</AppDomain>
+	</AppDomains>
+	<!--End Basic Settings. -->
 
 	<Hosts>
 		<Host Name="Mailbox" />
@@ -47,7 +47,7 @@
 		</Form>
 	</FormSettings>
 
-	<Permissions>ReadWriteItem</Permissions>
+	<Permissions>ReadWriteMailbox</Permissions>
 	<Rule xsi:type="RuleCollection" Mode="Or">
 		<Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
 	</Rule>
@@ -73,6 +73,7 @@
 							<!-- Up to 6 Groups added per Tab -->
 							<Group id="msgReadGroup">
 								<Label resid="groupLabel" />
+
 								<!-- Launch the add-in : task pane button -->
 								<Control xsi:type="Button" id="msgReadOpenPaneButton">
 									<Label resid="paneReadButtonLabel" />
@@ -89,6 +90,24 @@
 										<SourceLocation resid="messageReadTaskPaneUrl" />
 									</Action>
 								</Control>
+
+								<!-- Launch the add-in : task pane button -->
+								<Control xsi:type="Button" id="SettingOpenTaskPane">
+									<Label resid="settingTitle" />
+									<Supertip>
+										<Title resid="paneReadSuperTipTitle" />
+										<Description resid="paneReadSuperTipDescription" />
+									</Supertip>
+									<Icon>
+										<bt:Image size="16" resid="icon16" />
+										<bt:Image size="32" resid="icon32" />
+										<bt:Image size="80" resid="icon80" />
+									</Icon>
+									<Action xsi:type="ShowTaskpane">
+										<SourceLocation resid="SettingTaskPaneUrl" />
+									</Action>
+								</Control>
+
 								<!-- Go to http://aka.ms/ButtonCommands to learn how to add more Controls: ExecuteFunction and Menu -->
 							</Group>
 						</OfficeTab>
@@ -107,12 +126,14 @@
 			<bt:Urls>
 				<bt:Url id="functionFile" DefaultValue="https://localhost:7150/FunctionFile"/>
 				<bt:Url id="messageReadTaskPaneUrl" DefaultValue="https://localhost:7150/Home/TaskPane"/>
+				<bt:Url id="SettingTaskPaneUrl" DefaultValue="https://localhost:7150/Home/Settings"/>
 			</bt:Urls>
 			<bt:ShortStrings>
-				<bt:String id="groupLabel" DefaultValue="My Add-in Group"/>
+				<bt:String id="groupLabel" DefaultValue="Executive Assistant Add-In"/>
 				<bt:String id="customTabLabel"  DefaultValue="My Add-in Tab"/>
 				<bt:String id="paneReadButtonLabel" DefaultValue="Display all properties"/>
 				<bt:String id="paneReadSuperTipTitle" DefaultValue="Get all properties"/>
+				<bt:String id="settingTitle" DefaultValue="Settings"/>
 			</bt:ShortStrings>
 			<bt:LongStrings>
 				<bt:String id="paneReadSuperTipDescription" DefaultValue="Opens a pane displaying all available properties. This is an example of a button that opens a task pane."/>

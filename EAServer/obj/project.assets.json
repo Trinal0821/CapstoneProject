@@ -14,6 +14,16 @@
             "related": ".xml"
           }
         }
+      },
+      "OutlookAddLibray/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/OutlookAddLibray.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/OutlookAddLibray.dll": {}
+        }
       }
     }
   },
@@ -47,11 +57,17 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
+    },
+    "OutlookAddLibray/1.0.0": {
+      "type": "project",
+      "path": "../OutlookAddLibray/OutlookAddLibray.csproj",
+      "msbuildProject": "../OutlookAddLibray/OutlookAddLibray.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Newtonsoft.Json >= 13.0.2"
+      "Newtonsoft.Json >= 13.0.2",
+      "OutlookAddLibray >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -60,11 +76,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\trina\\source\\repos\\EAServer\\EAServer.csproj",
+      "projectUniqueName": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\EAServer.csproj",
       "projectName": "EAServer",
-      "projectPath": "C:\\Users\\trina\\source\\repos\\EAServer\\EAServer.csproj",
+      "projectPath": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\EAServer.csproj",
       "packagesPath": "C:\\Users\\trina\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\trina\\source\\repos\\EAServer\\obj\\",
+      "outputPath": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\trina\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -80,7 +96,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj": {
+              "projectPath": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
