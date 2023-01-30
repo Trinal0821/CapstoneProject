@@ -42,14 +42,7 @@ namespace OutlookExecutable
         /// </summary>
         public string execute(string from, string subject, string body)
         {
-
-            //string text = File.ReadAllText("C:\\Users\\skate\\source\\repos\\OutlookExecutable\\OutlookAddLibray\\Emails.txt");
-            //string[] emails = text.Split("--");*/
             Dictionary<string, int> emailList = new Dictionary<string, int>();
-            // foreach(string email in emails)
-            //{
-            /* string[] emailSpilt = email.Split(";");
-             string clientName = emailSpilt[0].Split("FROM:")[1].Trim();*/
 
             string clientName = from.Trim();
             if (emailList.ContainsKey(clientName))
@@ -100,7 +93,6 @@ namespace OutlookExecutable
             }
             else if (result.Equals("Not Important"))
             {
-
                 /* Return the email as green to outlook and send a notification.*/
 
                 normalDic.Add(email, result);
@@ -128,8 +120,6 @@ namespace OutlookExecutable
         /// <exception cref="NotImplementedException"></exception>
         private string ScanInformationForDetails(string from, string subject, string body)
         {
-            //  string[] emailSpilt = currentEmail.Split(";");
-            // string clientName = emailSpilt[0].Split("FROM:")[1];
             string clientName = from.Trim();
             Dictionary<string, int> wordWeights = settings.GetCleintDictionary(clientName.Trim());
             string completeEmail = subject + " " + body;

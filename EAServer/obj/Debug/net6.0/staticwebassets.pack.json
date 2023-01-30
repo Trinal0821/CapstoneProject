@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\css\\Button.css"
     },
     {
+      "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\css\\DirectorySelector.css",
+      "PackagePath": "staticwebassets\\css\\DirectorySelector.css"
+    },
+    {
       "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\css\\MessageBanner.css",
       "PackagePath": "staticwebassets\\css\\MessageBanner.css"
     },
@@ -47,6 +51,10 @@
     {
       "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\js\\DirectorySelector.js",
+      "PackagePath": "staticwebassets\\js\\DirectorySelector.js"
     },
     {
       "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\js\\EmailContent.js",

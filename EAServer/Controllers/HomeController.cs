@@ -18,6 +18,11 @@ namespace EAServer.Controllers
 
         }
 
+        public IActionResult DirectorySelector()
+        {
+            return View();
+        }
+
         public IActionResult TaskPane()
         {
 
@@ -44,11 +49,6 @@ namespace EAServer.Controllers
         {
             return View();
         }
-
-        /*        public IActionResult testing()
-                {
-                    changetitle
-                }*/
 
         [HttpGet]
         public IActionResult testing(string from, string subject, string body)

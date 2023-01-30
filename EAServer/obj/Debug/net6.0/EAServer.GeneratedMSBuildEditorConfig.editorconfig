@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\trina\OneDrive\Documents\ExecutiveAssistant\executive-assistants\EAServer
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/trina/OneDrive/Documents/ExecutiveAssistant/executive-assistants/EAServer/Views/Home/DirectorySelector.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEaXJlY3RvcnlTZWxlY3Rvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/trina/OneDrive/Documents/ExecutiveAssistant/executive-assistants/EAServer/Views/Home/FunctionFile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxGdW5jdGlvbkZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

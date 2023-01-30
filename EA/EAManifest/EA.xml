@@ -95,8 +95,8 @@
 								<Control xsi:type="Button" id="SettingOpenTaskPane">
 									<Label resid="settingTitle" />
 									<Supertip>
-										<Title resid="paneReadSuperTipTitle" />
-										<Description resid="paneReadSuperTipDescription" />
+										<Title resid="settingTitle" />
+										<Description resid="settingsDescription" />
 									</Supertip>
 									<Icon>
 										<bt:Image size="16" resid="icon16" />
@@ -105,6 +105,23 @@
 									</Icon>
 									<Action xsi:type="ShowTaskpane">
 										<SourceLocation resid="SettingTaskPaneUrl" />
+									</Action>
+								</Control>
+
+								<!-- Launch the add-in : task pane button -->
+								<Control xsi:type="Button" id="DirectorySelectorTaskPane">
+									<Label resid="directorySelectorTitle" />
+									<Supertip>
+										<Title resid="directorySelectorTitle" />
+										<Description resid="directorySelectorDescription" />
+									</Supertip>
+									<Icon>
+										<bt:Image size="16" resid="icon16" />
+										<bt:Image size="32" resid="icon32" />
+										<bt:Image size="80" resid="icon80" />
+									</Icon>
+									<Action xsi:type="ShowTaskpane">
+										<SourceLocation resid="DirectorySelectorUrl" />
 									</Action>
 								</Control>
 
@@ -127,6 +144,7 @@
 				<bt:Url id="functionFile" DefaultValue="https://localhost:7150/FunctionFile"/>
 				<bt:Url id="messageReadTaskPaneUrl" DefaultValue="https://localhost:7150/Home/TaskPane"/>
 				<bt:Url id="SettingTaskPaneUrl" DefaultValue="https://localhost:7150/Home/Settings"/>
+				<bt:Url id="DirectorySelectorUrl" DefaultValue="https://localhost:7150/Home/DirectorySelector"/>
 			</bt:Urls>
 			<bt:ShortStrings>
 				<bt:String id="groupLabel" DefaultValue="Executive Assistant Add-In"/>
@@ -134,9 +152,12 @@
 				<bt:String id="paneReadButtonLabel" DefaultValue="Display all properties"/>
 				<bt:String id="paneReadSuperTipTitle" DefaultValue="Get all properties"/>
 				<bt:String id="settingTitle" DefaultValue="Settings"/>
+				<bt:String id="directorySelectorTitle" DefaultValue="Download Emails"/>
 			</bt:ShortStrings>
 			<bt:LongStrings>
 				<bt:String id="paneReadSuperTipDescription" DefaultValue="Opens a pane displaying all available properties. This is an example of a button that opens a task pane."/>
+				<bt:String id="settingsDescription" DefaultValue="Opens a pane and allows the user to modify the important words and weights for each client."/>
+				<bt:String id="directorySelectorDescription" DefaultValue="Opens a pane and allows the user to download emails to their computer."/>
 			</bt:LongStrings>
 		</Resources>
 	</VersionOverrides>
