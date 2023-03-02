@@ -29,21 +29,35 @@ namespace OutlookAddLibray
         /// <param name="email"></param>
         public void SaveToFolder(String clientName, string email)
         {
-            string[] spiltEmail = email.Split("\r\n");
-            string[] subject = spiltEmail[1].Split(";");
-
-            string emailName = subject[0] + ".txt";
-
             string filePath = @"C:\Client_Information\Client_Email\" + clientName;
 
             if (!Directory.Exists(filePath))
             {
                 Directory.CreateDirectory(filePath);
             }
-            // save the file 
-            filePath = filePath + @"\" + emailName;
-              File.WriteAllText(filePath, email);    
-            //currently not saving the file correctly. 
+
+
+            string[] spiltEmail = email.Split("\r\n");
+            string subject = "";
+            foreach (string spilt in spiltEmail)
+            {
+                string spiltLower = spilt.ToLower();
+                if (spiltLower.Contains("subject"))
+                {
+                    string[] subjectSpilt = spiltLower.Split(":");
+                    subject = subjectSpilt[1].Trim();
+
+                    if (subject[subject.Length - 1].Equals(';'))
+                        subject = subject.Remove(subject.Length - 1, 1);
+
+                    break;
+                }
+
+            }
+            filePath = filePath + @"\" + subject + ".txt";
+            File.WriteAllText(filePath, email); 
+            
+            // Check if it's a exisiting matter create a folder. 
         }
 
     }

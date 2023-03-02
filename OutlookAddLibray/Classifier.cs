@@ -13,6 +13,11 @@
 ///                 unauthoized use of the code will be persecuted to the fullest 
 ///                 extent of the law. 
 /// </summary>
+/// 
+
+
+/// Should we move classifer. 
+
 namespace OutlookExecutable
 {
     /// <summary>
@@ -24,15 +29,16 @@ namespace OutlookExecutable
         private Dictionary<string, int> localDict;
         private int importantLimit = 50;
         private int notImportantLimit = 10;
-        
+        NLP nlp = new NLP();
+
         /// <summary>
         /// Classifier initializer
         /// </summary>
         public Classifier(Dictionary<string, int> temp)
         {
-           localDict = temp;
-           
+           localDict = temp;   
         }
+
         /// <summary>
         /// Scans through the email to see what words are part of the wordWeight and adds
         /// that words weight to the score. 
@@ -42,19 +48,19 @@ namespace OutlookExecutable
         /// <returns></returns>
         public string scan(string email, Dictionary<string, int> wordWeights)
         {
-            int score = 0;
+            double score = 0;
             string classifiedEmail = "";
             // done stuff
-            string[] wordsInEmail = email.Split(" ");
-            
-            foreach(string word in wordsInEmail)
-            {
-                string trimmedWord = word.Trim().ToLower();
-                    
-                trimmedWord = CheckForUnwantedChar(word);
 
-                if (wordWeights.ContainsKey(trimmedWord))
-                    score += wordWeights[trimmedWord];
+            email = email.Replace("\r\n", " ");
+            email = email.Trim().ToLowerInvariant();
+
+            foreach(string word in wordWeights.Keys)
+            {
+                if(email.Contains(word))
+                {
+                    score += nlp.AdjustWeight(email, wordWeights[word], word);
+                }
             }
 
             if (score > importantLimit)
@@ -66,6 +72,7 @@ namespace OutlookExecutable
 
             return classifiedEmail;
         }
+
         /// <summary>
         /// Checks to see if a word has an unwanted char.
         /// </summary>
