@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using OutlookAddLibray;
+using System.Text.Json;
+
 /// <summary>
 /// 
 /// This namespace contains the insides of our outlook add-on. 
@@ -13,6 +15,7 @@
 ///                 unauthoized use of the code will be persecuted to the fullest 
 ///                 extent of the law. 
 /// </summary>
+/// 
 namespace OutlookExecutable
 {
     /// <summary>
@@ -20,123 +23,177 @@ namespace OutlookExecutable
     /// to determine email importance. 
     /// </summary>
     public class NLP
-
     {
-        private Settings settings;
-        private Dictionary<string, string> importantDic;
-        private Dictionary<string, string> normalDic;
-        private Dictionary<string, string> yellowDic;
-      //  List<string> jsonMessage = new List<string>();
+        //The size to check for word adjustments. 
+        private int k = 3;
+
+        // WORD LISTS
+        List<string> negation = new List<string>();
+        List<string> Inflation = new List<string>();
+        List<string> deflation = new List<string>();
+        public List<string> StopWords = new List<string>();
+        List<string> ImportantClients = new List<string>();
+
         /// <summary>
-        /// NLP Initalizer
+        /// NLP Constuctor
         /// </summary>
         public NLP()
         {
-            settings = new Settings();
-            importantDic = new Dictionary<string, string>();
-            normalDic = new Dictionary<string, string>();
-            yellowDic = new Dictionary<string, string>();
+            LoadWordLists();
         }
         /// <summary>
-        /// Executes the NLP 
-        /// </summary>
-        public string execute(string from, string subject, string body)
-        {
-            Dictionary<string, int> emailList = new Dictionary<string, int>();
-
-            string clientName = from.Trim();
-            if (emailList.ContainsKey(clientName))
-            {
-                int newCount = emailList[clientName] + 1;
-                emailList[clientName] = newCount;
-            }
-            else
-            {
-                emailList.Add(clientName, 1);
-            }
-
-            String result = ScanInformationForDetails(from, subject, body);
-            String combinedEmail = from + ";" + subject + ";" + body;
-           return ReportFindingsToOutlook(result, combinedEmail);
-
-
-        }
-        /// <summary>
-        /// Prints the emails and tagging that was saved while scanning emails.
-        /// </summary>
-        /// <param name="importantDic">The dictionary that contains the tagging and email</param>
-        private void PrintDicTionary(Dictionary<string, string> importantDic)
-        {
-            foreach (KeyValuePair<string, string> email in importantDic)
-            {
-                Console.WriteLine(email.Key);
-                Console.WriteLine("Was Tagged as: " + email.Value);
-            }
-            Console.WriteLine();
-        }
-
-
-        /// <summary>
-        /// Takes the results of the classifier and reports it to the outlook add-on using a json object 
-        /// </summary>
-        /// <param name="result">The tagging result</param>
-        /// <param name="email">The email passed in</param>
-        private string ReportFindingsToOutlook(string result, string email)
-        {
-            EmailTagger tag = new EmailTagger();
-
-            if (result.Equals("Important"))
-            {
-
-                importantDic.Add(email, result);
-                tag.colortagged = "High Priority";
-            }
-            else if (result.Equals("Not Important"))
-            {
-                /* Return the email as green to outlook and send a notification.*/
-
-                normalDic.Add(email, result);
-                tag.colortagged = "Low Priority";
-            }
-            else
-            {
-                /* Return the email as yellow to outlook and send a notification.*/
-                yellowDic.Add(email, result);
-                tag.colortagged = "Medium Priority";
-            }
-
-            return tag.colortagged;
-        }
-
-        /// <summary>
-        /// Sorts through the information from the email looking for certain 
-        /// inforamtion. 
+        /// Loads the words from the Word List. 
         /// 
-        /// Examples: 
-        ///     Client name
-        ///     Matter number
-        ///     Important Key words. 
+        /// Look into a better way to 
         /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
-        private string ScanInformationForDetails(string from, string subject, string body)
+        private void LoadWordLists()
         {
-            string clientName = from.Trim();
-            Dictionary<string, int> wordWeights = settings.GetCleintDictionary(clientName.Trim());
-            string completeEmail = subject + " " + body;
+            bool inflame = false;
+            bool deflame = false;
+            bool nagation = false;
+            bool stopWords = false;
+            //fix folder system 
+            using (StreamReader reader = new StreamReader("C:..\\..\\..\\..\\OutlookAddLibray\\WordList.txt"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    string word = reader.ReadLine().Trim().ToLowerInvariant();
+                    if (word.Equals(""))
+                    {
+                        continue;
+                    }
+                    if (word.Contains("inflation"))
+                    {
+                        inflame = true;
+                        deflame = false;
+                    }
+                    if (word.Contains("negation"))
+                    {
+                        nagation = true;
+                        inflame = false;
+                    }
+                    if (word.Contains("deflamation"))
+                    {
+                        deflame = true;
+                    }
+                    if (word.Contains("stop words"))
+                    {
+                        nagation = false;
+                        stopWords = true;
+                    }
+                    if (inflame)
+                    {
+                        Inflation.Add(word);
+                    }
+                    if (nagation)
+                    {
+                        negation.Add(word);
+                    }
+                    if (deflame)
+                    {
+                        deflation.Add(word);
+                    }
+                    if (stopWords)
+                    {
+                        StopWords.Add(word);
+                    }
+
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Adjusts a words weight depending on weather there is a negation, inflation, deflation.
+        /// </summary>
+        /// <param name="email">The current email being scanned</param>
+        /// <param name="trimmedWord">The word that is trimmed</param>
+        /// <param name="currentWeight">The current weight of the word</param>
+        /// <param name="location">The location of the word in the email</param>
+        /// <returns></returns>
+        internal double AdjustWeight(string email, double currentWeight, string word)
+        {
+            // To prevent double negation  
+            bool negate = false;
+            bool inflate = false;
+            bool deflate = false;
+
+            List<string> checkKArea = new List<string>();
+            string[] scanThrough = email.Split(" ");
+            int location = Array.IndexOf(scanThrough, word);
+
+            if (location - k > 0 && location + k < email.Length)
+            {
+                checkKArea = GetWordAroundLocation(scanThrough, location);
+            }
+
+            // Grab a section of the email to check for adjustments. 
+            for (int index = 0; index < checkKArea.Count; index++)
+            {
+                if (checkKArea.Count == 0)
+                {
+                    continue;
+                }
+                if (negation.Contains(checkKArea[index]) && !negate)
+                {
+                    negate = true;
+                    inflate = false;
+                    deflate = false;
+                }
+                if (negation.Any(checkKArea[index].Contains))
+                {
+                    negate = true;
+
+                }
+                if (Inflation.Contains(checkKArea[index]) && !inflate)
+                {
+                    inflate = true;
+                    negate = false;
+                    deflate = false;
+                }
+                if (deflation.Contains(checkKArea[index]) && !deflate)
+                {
+                    deflate = true;
+                    negate = false;
+                    inflate = false;
+                }
+            }
+
+            if (negate && !deflate && !inflate)
+            {
+                currentWeight *= -1;
+            }
+            if ((deflate && !negate && !inflate) || (negate && inflate && !deflate))
+            {
+                currentWeight *= 0.5;
+            }
+            if (inflate && !negate && !deflate)
+            {
+                currentWeight *= 2;
+            }
 
 
-            Classifier classifier = new Classifier(wordWeights);
-            string importance = classifier.scan(completeEmail, wordWeights);
+            return currentWeight;
+        }
 
-            return importance;
+        /// <summary>
+        ///  Finds all the words in a k radius of the given word.  
+        /// </summary>
+        /// <param name="scanThrough">The email spilt up into parts</param>
+        /// <param name="location">The known location of the looked up word</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        private List<string> GetWordAroundLocation(string[] scanThrough, int location)
+        {
+
+            List<string> KArea = new List<string>();
+            for (int i = -k; i <= k; i++)
+            {
+                KArea.Add(scanThrough[location + i]);
+            }
+
+            return KArea;
         }
     }
-    /// <summary>
-    /// A sub-class of NLP that will allow us to send the information grabbed from the
-    /// email as a json string. 
-    /// </summary>
-    public class EmailTagger
-    {
-        public string colortagged { get; set; }
-    }
+
 }
