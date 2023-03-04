@@ -1,3 +1,7 @@
+#back, #selectedClientName, #selectedCompanyName, #addBtn{
+    display: none;
+}
+
 #icon {
     width: 35px;
     height: 35px;
@@ -7,4 +11,27 @@
 
 h1 {
     position: relative;
+}
+
+.heading {
+    font-family: Calibri;
+    
+}
+
+.question {
+    font-family: Calibri;
+}
+
+.submit-btn {
+    background-color: white;
+    border-color: cornflowerblue;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: Calibri;
+    color: cornflowerblue;
+    border-radius: 4px;
+}
+
+div {
+    padding-bottom: 10px;
 }

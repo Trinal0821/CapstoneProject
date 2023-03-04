@@ -76,11 +76,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\EAServer.csproj",
+      "projectUniqueName": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\EAServer\\EAServer.csproj",
       "projectName": "EAServer",
-      "projectPath": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\EAServer.csproj",
+      "projectPath": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\EAServer\\EAServer.csproj",
       "packagesPath": "C:\\Users\\trina\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\obj\\",
+      "outputPath": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\EAServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\trina\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -97,8 +97,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj": {
-              "projectPath": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj"
+            "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj": {
+              "projectPath": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj"
             }
           }
         }

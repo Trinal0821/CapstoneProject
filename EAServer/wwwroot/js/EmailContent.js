@@ -6,7 +6,9 @@
         $(document).ready(function () {
 
             sendData();
-
+            ImportantWordType();
+            BackButtonClick();
+            AddButtonClick();
         });
     };
 
@@ -64,6 +66,7 @@
                     Office.context.mailbox.item.categories.addAsync(categoryToAdd, function (asyncResult) {
                         if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
                             console.log(`Successfully assigned category '${categoryToAdd}' to item.`);
+                            alert("We've scanned through thousands of emails");
                         } else {
                             console.log("categories.addAsync call failed with error: " + asyncResult.error.message);
                         }
@@ -190,6 +193,89 @@
                 console.error(asyncResult.error);
             }
         });
+    }
+
+    function addWordWeightsIntial() {
+        //Get the div
+        var container = document.getElementById("addMore");
+
+        container.innerHTML = ` <div>
+            <p> Important words </p>
+            <textarea class="importantwords" rows="1" cols="10"> </textarea>
+            <p> Weight </p>
+            </div>`
+
+        //Create the dropdown and add elements to it
+        var select = document.createElement("select");
+        for (var i = 1; i <= 100; i++) {
+            var option = document.createElement("option");
+            option.value = i;
+            option.text = i;
+            select.appendChild(option);
+        }
+
+        container.appendChild(select);
+    }
+
+    function AddButtonClick() {
+        document.getElementById("addBtn").onclick = async () => {
+            //Get the div
+            var container = document.getElementById("addMore");
+
+            container.innerHTML += ` <div>
+            <p> Important words </p>
+            <textarea class="importantwords" rows="1" cols="10"> </textarea>
+            <p> Weight </p>
+            </div>`
+
+            //Create the dropdown and add elements to it
+            var select = document.createElement("select");
+            for (var i = 1; i <= 100; i++) {
+                var option = document.createElement("option");
+                option.value = i;
+                option.text = i;
+                select.appendChild(option);
+            }
+
+            container.appendChild(select);
+        }
+    }
+
+    function ImportantWordType() {
+        document.getElementById("submitBtn").onclick = async () => {
+
+            const companyNameSelected = document.getElementById('companyName').checked;
+
+            if (companyNameSelected) {
+                document.getElementById("selectedCompanyName").style.display = "block";
+            }
+            else {
+                document.getElementById("selectedClientName").style.display = "block";
+            }
+
+            //Add the word weight dropdown
+            addWordWeightsIntial();
+            document.getElementById("addBtn").style.display = "block"
+            document.getElementById("question").style.display = "none"
+            document.getElementById("back").style.display = "block"
+            document.getElementById("addMore").style.display = "block";
+
+        }
+    }
+
+    function BackButtonClick() {
+        document.getElementById("back").onclick = async () => {
+
+            //Hide the buttons and the divs
+            document.getElementById("back").style.display = "none"
+            document.getElementById("selectedCompanyName").style.display = "none";
+            document.getElementById("selectedClientName").style.display = "none";
+            document.getElementById("addMore").style.display = "none";
+            document.getElementById("addBtn").style.display = "none";
+
+            //document.getElementById("backClick").style.display = "none";
+            document.getElementById("question").style.display = "block"
+        }
     }
 
 })();

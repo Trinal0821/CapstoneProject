@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    @*<script src="scripts/jquery-3.6.0.js" type="text/javascript"></script>*@
+
+    <!-- For the JavaScript APIs for Office, go to https://aka.ms/officejs-overview to learn more. -->
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+
+    <!-- To enable offline debugging using a local reference to Office.js, use: -->
+    <!-- <script src="Scripts/Office/MicrosoftAjax.js" type="text/javascript"></script>  -->
+    <!-- <script src="Scripts/Office/1/office.js" type="text/javascript"></script>  -->
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="~/js/MessageBanner.js" type="text/javascript"></script>
+    <script src="~/js/EmailContent.js?v1.0" type="text/javascript"></script>
+    <link href="~/css/Button.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/css/MessageBanner.css" rel="stylesheet" type="text/css" />*@
+
+
+    <!-- For the Office UI Fabric Core, go to https://aka.ms/office-ui-fabric to learn more. -->
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.6.0/css/fabric.min.css">
+
+    <!-- To enable the offline use of Office UI Fabric Core, use: -->
+    <!-- link rel="stylesheet" href="Content/fabric.min.css" -->
+    <!-- Office UI Fabric JS and it's components are no longer actively supported. Please see https://aka.ms/PnP-OfficeFabricReact for recommended Patterns and Practices -->
+    <!-- <link rel="stylesheet" href="https://appsforoffice.microsoft.com/fabric/2.1.0/fabric.components.min.css" /> -->
+
+</head>
+<body>
+    <h1>Welcome to Executive Assistant!</h1>
+    <p>Thank you for downloading Executive Assistant! We believe that we can make law secretaries life easier with our add in by saving hundres of hours sorting through emails.
+      With our add in we will automatically sort through your emails, tag them and download them at a click of a button.
+        Welp without futher adieu, here's how you can use our add in
+    </p>
+
+    <h3>Important Words Settings</h3>
+    <p>Have a client or company you'd like to add? Well, click on the settings buttons. From here, you can choose to set the important words and their weight by either company name
+        or client name. If you'd like it by company name then select company and fill in the required fields. Otherwise choose client name and fill in the fields.
+    </p>
+
+    <h3>Downloading Emails</h3>
+    <p>Need to download emails? Just click on the Download Emails button and we will download everything in inbox to the destination that you specified. </p>
+
+    <h3>Retagging Emails</h3>
+    <p>Did we tag the email incorrectly? If so, please click on the Retag Email button and select the right tag. Our AI system will learn from this mistake and will try to tag the other
+        emails correctly next time.
+    </p>
+
+    <h3>Questions? Concerns? Feedback?</h3>
+    <p>We love to hear about what you think of our add in and how we can improve. Feel free to email use at <b>ExecutiveAssistant2023@OutlookAddLibray.com</b>. Thank you 
+        again for download our add in!</p>
+    
+</body>
+</html>

@@ -23,7 +23,13 @@ namespace EAServer.Controllers
             return View();
         }
 
-        public IActionResult TaskPane()
+        public IActionResult Info()
+        {
+
+            return View();
+        }
+
+        public IActionResult RetagEmail()
         {
 
             return View();
