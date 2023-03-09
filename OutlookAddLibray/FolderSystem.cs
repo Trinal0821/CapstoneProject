@@ -8,18 +8,21 @@ namespace OutlookAddLibray
 {
     class FolderSystem
     {
+        string documentFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public FolderSystem()
         {
-            string ClientEmail = @"C:\Client_Information\Client_Email";
-            if (!Directory.Exists(ClientEmail))
+           // string ClientEmail = @"C:\Client_Information\Client_Email";
+         
+            string clientEmailDirectory = Path.Combine(documentFolder, "Client_Emails");
+            if (!Directory.Exists(clientEmailDirectory))
             { 
-                Directory.CreateDirectory(ClientEmail);
+                Directory.CreateDirectory(clientEmailDirectory);
             }
-            //
-            string ClientDictionary = @"C:\Client_Information\Client_Dictionary";
-            if (!Directory.Exists(ClientDictionary))
+           
+            string clientDictionaryDirectory = Path.Combine(documentFolder, "Client_Dictionary");
+            if (!Directory.Exists(clientDictionaryDirectory))
             {
-                Directory.CreateDirectory(ClientDictionary);
+                Directory.CreateDirectory(clientDictionaryDirectory);
             }
         }
 
@@ -28,9 +31,10 @@ namespace OutlookAddLibray
         /// </summary>
         /// <param name="clientName"></param>
         /// <param name="email"></param>
-        public void SaveToFolder(String clientName, string email)
+        public void SaveToFolder(string clientName, string email, string emailSubject)
         {
-            string filePath = @"C:\Client_Information\Client_Email\" + clientName;
+            // string filePath = @"C:\Client_Information\Client_Email\" + clientName;
+            string filePath = Path.Combine(Path.Combine(documentFolder, "Client_Emails"), clientName);
 
             if (!Directory.Exists(filePath))
             {
@@ -39,22 +43,22 @@ namespace OutlookAddLibray
 
 
             string[] spiltEmail = email.Split("\r\n");
-            string subject = "";
-            foreach (string spilt in spiltEmail)
-            {
-                string spiltLower = spilt.ToLower();
-                if (spiltLower.Contains("subject"))
-                {
-                    string[] subjectSpilt = spiltLower.Split(":");
-                    subject = subjectSpilt[1].Trim();
+            string subject = emailSubject.Trim();
+          //  foreach (string spilt in spiltEmail)
+           // {
+               // string spiltLower = spilt.ToLower();
+               // if (spiltLower.Contains("subject"))
+               // {
+                 //   string[] subjectSpilt = spiltLower.Split(":");
+                    //subject = .Trim();
 
                     if (subject[subject.Length - 1].Equals(';'))
                         subject = subject.Remove(subject.Length - 1, 1);
 
-                    break;
-                }
+                   // break;
+              //  }
 
-            }
+            //}
             filePath = filePath + @"\" + subject + ".txt";
             File.WriteAllText(filePath, email); 
             
