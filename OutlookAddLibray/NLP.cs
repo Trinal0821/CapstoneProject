@@ -53,7 +53,12 @@ namespace OutlookExecutable
             bool nagation = false;
             bool stopWords = false;
             //fix folder system 
-            using (StreamReader reader = new StreamReader("C:..\\..\\..\\..\\OutlookAddLibray\\WordList.txt"))
+            //  using (StreamReader reader = new StreamReader("C:..\\..\\..\\..\\OutlookAddLibray\\WordList.txt"))
+            string eaServerDirectory = System.IO.Path.GetFullPath("Settings.js");
+            string parentDirectory = Path.GetFullPath(Path.Combine(eaServerDirectory, @"..\..\"));
+            string filepath = Path.Combine(Path.Combine(parentDirectory, "OutlookAddLibray"), "WordList.txt");
+
+            using (StreamReader reader = new StreamReader(filepath))
             {
                 while (!reader.EndOfStream)
                 {
@@ -189,7 +194,10 @@ namespace OutlookExecutable
             List<string> KArea = new List<string>();
             for (int i = -k; i <= k; i++)
             {
-                KArea.Add(scanThrough[location + i]);
+                if (location + 1 < scanThrough.Length && location + 1 >= 0)
+                {
+                    KArea.Add(scanThrough[location + i]);
+                }
             }
 
             return KArea;

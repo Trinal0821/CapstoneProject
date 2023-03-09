@@ -59,8 +59,8 @@ namespace EAServer.Controllers
         [HttpGet]
         public IActionResult testing(string from, string subject, string body)
         {
-            NLP nlp = new NLP();
-            return Content(nlp.execute(from, subject, body));
+            Classifier classifier = new Classifier();
+            return Content(classifier.execute(from, subject, body));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

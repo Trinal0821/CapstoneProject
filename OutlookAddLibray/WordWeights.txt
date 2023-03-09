@@ -70,7 +70,6 @@ non-disclosure	15
 Lawsuit	40
 Legal action	30	
 Legal counsel	20
-Liability	30
 Litigation	40
 Low-priority	-20
 Minor issue	-5

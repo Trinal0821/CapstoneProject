@@ -8,18 +8,21 @@ namespace OutlookAddLibray
 {
     class FolderSystem
     {
+        string documentFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public FolderSystem()
         {
-            string ClientEmail = @"C:\Client_Information\Client_Email";
-            if (!Directory.Exists(ClientEmail))
+           // string ClientEmail = @"C:\Client_Information\Client_Email";
+         
+            string clientEmailDirectory = Path.Combine(documentFolder, "Client_Emails");
+            if (!Directory.Exists(clientEmailDirectory))
             { 
-                Directory.CreateDirectory(ClientEmail);
+                Directory.CreateDirectory(clientEmailDirectory);
             }
-            //
-            string ClientDictionary = @"C:\Client_Information\Client_Dictionary";
-            if (!Directory.Exists(ClientDictionary))
+           
+            string clientDictionaryDirectory = Path.Combine(documentFolder, "Client_Dictionary");
+            if (!Directory.Exists(clientDictionaryDirectory))
             {
-                Directory.CreateDirectory(ClientDictionary);
+                Directory.CreateDirectory(clientDictionaryDirectory);
             }
         }
 
@@ -30,7 +33,8 @@ namespace OutlookAddLibray
         /// <param name="email"></param>
         public void SaveToFolder(String clientName, string email)
         {
-            string filePath = @"C:\Client_Information\Client_Email\" + clientName;
+            // string filePath = @"C:\Client_Information\Client_Email\" + clientName;
+            string filePath = Path.Combine(Path.Combine(documentFolder, "Client_Emails"), clientName);
 
             if (!Directory.Exists(filePath))
             {

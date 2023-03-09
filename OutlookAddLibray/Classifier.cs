@@ -80,11 +80,11 @@ namespace OutlookExecutable
             }
 
             if (score > importantLimit)
-                classifiedEmail = "Important";
+                classifiedEmail = "High Priority";
             else if (score < notImportantLimit)
-                classifiedEmail = "Not Important";
+                classifiedEmail = "Low Priority";
             else
-                classifiedEmail = "Standard";
+                classifiedEmail = "Medium Priority";
 
             return classifiedEmail;
         }
@@ -109,33 +109,35 @@ namespace OutlookExecutable
         /// <summary>
         /// Executes the NLP 
         /// </summary>
-        public void execute()
+        public string execute(string from, string subject, string body)
         {
             //change this to run on json objects beging sent from add-on. 
-            string text = File.ReadAllText("C:\\Users\\skate\\source\\repos\\OutlookExecutable\\OutlookAddLibray\\Emails.txt");
-            string[] emails = text.Split("--");
+          //  string text = File.ReadAllText("C:\\Users\\skate\\source\\repos\\OutlookExecutable\\OutlookAddLibray\\Emails.txt");
+           // string[] emails = text.Split("--");
             Dictionary<string,int> emailList = new Dictionary<string, int>();
             // 
             string emailAddress = ""; 
-            foreach(string email in emails)
-            {
-                string[] emailSpilt = email.Split(";");
-                string clientName = emailSpilt[0].Split("FROM:")[1].Trim();
-                if (emailList.ContainsKey(clientName))
+          //  foreach(string email in emails)
+          //  {
+               /* string[] emailSpilt = email.Split(";");
+                string clientName = emailSpilt[0].Split("FROM:")[1].Trim();*/
+                if (emailList.ContainsKey(from))
                 {
-                    int newCount = emailList[clientName] + 1;       
-                    emailList[clientName]= newCount;
+                    int newCount = emailList[from] + 1;       
+                    emailList[from]= newCount;
                 }
                 else
                 {
-                    emailList.Add(clientName, 1);
+                    emailList.Add(from, 1);
                     // ask if they want to create a floder and dictionary. 
                 }
-                
-                string result = ScanInformationForDetails(email);
-                file.SaveToFolder(clientName, email);
-                ReportFindingsToOutlook(result, email);
-            }
+
+             string result = ScanInformationForDetails(from, subject, body);
+             file.SaveToFolder(from, "");
+            string combinedEmail = from + ";" + subject + ";" + body;
+            return ReportFindingsToOutlook(result, combinedEmail);
+            // }
+
         }
         
         /// <summary>
@@ -143,37 +145,32 @@ namespace OutlookExecutable
         /// </summary>
         /// <param name="result">The tagging result</param>
         /// <param name="email">The email passed in</param>
-        private void ReportFindingsToOutlook(string result, string email)
+        private string ReportFindingsToOutlook(string result, string email)
         {
             EmailTagger tag = new EmailTagger();
 
-            string jsonString = "";
-            if (result.Equals("Important"))
-            {
-          
-                    importantDic.Add(email, result);
-                    tag.colortagged = "RED";
-                    jsonString = JsonSerializer.Serialize(tag);
-                    jsonMessage.Add(jsonString);
-            }
-            else if (result.Equals("Not Important"))
+            if (result.Equals("High Priority"))
             {
 
+                importantDic.Add(email, result);
+                tag.colortagged = "High Priority";
+            }
+            else if (result.Equals("Low Priority"))
+            {
                 /* Return the email as green to outlook and send a notification.*/
-           
-                    normalDic.Add(email, result);
-                    tag.colortagged = "GREEN";
-                    jsonString = JsonSerializer.Serialize(tag);
-                    jsonMessage.Add(jsonString);
+
+                normalDic.Add(email, result);
+                tag.colortagged = "Low Priority";
             }
             else
             {
                 /* Return the email as yellow to outlook and send a notification.*/
-                    yellowDic.Add(email, result);
-                    tag.colortagged = "YELLOW";
-                    jsonString = JsonSerializer.Serialize(tag);
-                    jsonMessage.Add(jsonString);
+                yellowDic.Add(email, result);
+                tag.colortagged = "Medium Priority";
             }
+
+            return tag.colortagged;
+
         }
 
         /// <summary>
@@ -182,12 +179,12 @@ namespace OutlookExecutable
         /// </summary>
         /// <param name="currentEmail"> The current email being scanned</param>
         /// <returns></returns>
-        private string ScanInformationForDetails(string currentEmail)
+        private string ScanInformationForDetails(string from, string subject, string body)
         {
-            string[] emailSpilt = currentEmail.Split(";");
-            string clientName = emailSpilt[0].Split("FROM:")[1];
-            Dictionary<string, int> wordWeights =  settings.GetCleintDictionary(clientName.Trim());
-            string completeEmail = emailSpilt[1] + " " + emailSpilt[2];
+/*            string[] emailSpilt = currentEmail.Split(";");
+            string clientName = emailSpilt[0].Split("FROM:")[1];*/
+            Dictionary<string, int> wordWeights =  settings.GetCleintDictionary(from.Trim());
+            string completeEmail = subject + " " + body;
 
             string importance = scan(completeEmail, wordWeights);
             

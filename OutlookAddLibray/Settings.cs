@@ -33,12 +33,13 @@ namespace OutlookExecutable
         public Dictionary<string,int> GetCleintDictionary(string clientName)
         {
             Dictionary<string,int> dict = new Dictionary<string, int>();
-
-            using (StreamReader reader = new StreamReader("C:..\\..\\..\\..\\OutlookAddLibray\\WordWeights.txt"))
+            string eaServerDirectory = System.IO.Path.GetFullPath("Settings.js");
+            string parentDirectory = Path.GetFullPath(Path.Combine(eaServerDirectory, @"..\..\"));
+            string filepath = Path.Combine(Path.Combine(parentDirectory, "OutlookAddLibray"), "WordWeights.txt");
+             using (StreamReader reader = new StreamReader(filepath))
             {
                 while (!reader.EndOfStream)
                 {
-
                     string[] value = reader.ReadLine().Split("\t");
                     if (value.Length > 1)
                     {
