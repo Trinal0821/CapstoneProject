@@ -133,8 +133,8 @@ namespace OutlookExecutable
                 }
 
              string result = ScanInformationForDetails(from, subject, body);
-             file.SaveToFolder(from, "");
             string combinedEmail = from + ";" + subject + ";" + body;
+            file.SaveToFolder(from, combinedEmail, subject);
             return ReportFindingsToOutlook(result, combinedEmail);
             // }
 

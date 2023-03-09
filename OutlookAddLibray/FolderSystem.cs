@@ -31,7 +31,7 @@ namespace OutlookAddLibray
         /// </summary>
         /// <param name="clientName"></param>
         /// <param name="email"></param>
-        public void SaveToFolder(String clientName, string email)
+        public void SaveToFolder(string clientName, string email, string emailSubject)
         {
             // string filePath = @"C:\Client_Information\Client_Email\" + clientName;
             string filePath = Path.Combine(Path.Combine(documentFolder, "Client_Emails"), clientName);
@@ -43,22 +43,22 @@ namespace OutlookAddLibray
 
 
             string[] spiltEmail = email.Split("\r\n");
-            string subject = "";
-            foreach (string spilt in spiltEmail)
-            {
-                string spiltLower = spilt.ToLower();
-                if (spiltLower.Contains("subject"))
-                {
-                    string[] subjectSpilt = spiltLower.Split(":");
-                    subject = subjectSpilt[1].Trim();
+            string subject = emailSubject.Trim();
+          //  foreach (string spilt in spiltEmail)
+           // {
+               // string spiltLower = spilt.ToLower();
+               // if (spiltLower.Contains("subject"))
+               // {
+                 //   string[] subjectSpilt = spiltLower.Split(":");
+                    //subject = .Trim();
 
                     if (subject[subject.Length - 1].Equals(';'))
                         subject = subject.Remove(subject.Length - 1, 1);
 
-                    break;
-                }
+                   // break;
+              //  }
 
-            }
+            //}
             filePath = filePath + @"\" + subject + ".txt";
             File.WriteAllText(filePath, email); 
             
