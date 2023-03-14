@@ -34,3 +34,15 @@ C:\Users\trina\OneDrive\Desktop\executive-assistants\OutlookAddLibray\obj\Debug\
 C:\Users\trina\OneDrive\Desktop\executive-assistants\OutlookAddLibray\obj\Debug\net6.0\refint\OutlookAddLibray.dll
 C:\Users\trina\OneDrive\Desktop\executive-assistants\OutlookAddLibray\obj\Debug\net6.0\OutlookAddLibray.pdb
 C:\Users\trina\OneDrive\Desktop\executive-assistants\OutlookAddLibray\obj\Debug\net6.0\ref\OutlookAddLibray.dll
+C:\Users\skate\source\repos\OutllookAddOn\OutlookAddLibray\bin\Debug\net6.0\OutlookAddLibray.deps.json
+C:\Users\skate\source\repos\OutllookAddOn\OutlookAddLibray\bin\Debug\net6.0\OutlookAddLibray.dll
+C:\Users\skate\source\repos\OutllookAddOn\OutlookAddLibray\bin\Debug\net6.0\ref\OutlookAddLibray.dll
+C:\Users\skate\source\repos\OutllookAddOn\OutlookAddLibray\bin\Debug\net6.0\OutlookAddLibray.pdb
+C:\Users\skate\source\repos\OutllookAddOn\OutlookAddLibray\obj\Debug\net6.0\OutlookAddLibray.csproj.AssemblyReference.cache
+C:\Users\skate\source\repos\OutllookAddOn\OutlookAddLibray\obj\Debug\net6.0\OutlookAddLibray.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\skate\source\repos\OutllookAddOn\OutlookAddLibray\obj\Debug\net6.0\OutlookAddLibray.AssemblyInfoInputs.cache
+C:\Users\skate\source\repos\OutllookAddOn\OutlookAddLibray\obj\Debug\net6.0\OutlookAddLibray.AssemblyInfo.cs
+C:\Users\skate\source\repos\OutllookAddOn\OutlookAddLibray\obj\Debug\net6.0\OutlookAddLibray.csproj.CoreCompileInputs.cache
+C:\Users\skate\source\repos\OutllookAddOn\OutlookAddLibray\obj\Debug\net6.0\OutlookAddLibray.dll
+C:\Users\skate\source\repos\OutllookAddOn\OutlookAddLibray\obj\Debug\net6.0\ref\OutlookAddLibray.dll
+C:\Users\skate\source\repos\OutllookAddOn\OutlookAddLibray\obj\Debug\net6.0\OutlookAddLibray.pdb

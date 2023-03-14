@@ -13,16 +13,10 @@ namespace OutlookAddLibray
         {
            // string ClientEmail = @"C:\Client_Information\Client_Email";
          
-            string clientEmailDirectory = Path.Combine(documentFolder, "Client_Emails");
+            string clientEmailDirectory = Path.Combine(documentFolder, "FirmsClients_Correspondence");
             if (!Directory.Exists(clientEmailDirectory))
             { 
                 Directory.CreateDirectory(clientEmailDirectory);
-            }
-           
-            string clientDictionaryDirectory = Path.Combine(documentFolder, "Client_Dictionary");
-            if (!Directory.Exists(clientDictionaryDirectory))
-            {
-                Directory.CreateDirectory(clientDictionaryDirectory);
             }
         }
 
@@ -61,6 +55,7 @@ namespace OutlookAddLibray
             //}
             filePath = filePath + @"\" + subject + ".txt";
             File.WriteAllText(filePath, email); 
+            // Goal: download actual emails to this spot. 
             
             // Check if it's a exisiting matter create a folder. 
         }
