@@ -35,6 +35,8 @@ namespace OutlookExecutable
             if (!Directory.Exists(filePath))
             {
                 Directory.CreateDirectory(filePath);
+                string tempPath = filePath + @"\" + "WordWeightsAdditions.txt";
+                File.WriteAllText(tempPath, "");
             }
 
 
@@ -49,14 +51,6 @@ namespace OutlookExecutable
             File.WriteAllText(filePath, email); 
             // Goal: download actual emails to this spot. 
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        public void SaveClientWordWeights()
-        {
-
-        }
-
     }
 
 }

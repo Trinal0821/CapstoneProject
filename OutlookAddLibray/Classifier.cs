@@ -138,10 +138,9 @@ namespace OutlookExecutable
                     emailList.Add(from, 1);
                     // ask if they want to create a floder and dictionary. 
                 }
-
-            string result = ScanInformationForDetails(from, subject, body);
             string combinedEmail = from + ";" + subject + ";" + body;
             folderSystem.SaveToFolder(from, combinedEmail, subject);
+            string result = ScanInformationForDetails(from, subject, body);
             return ReportFindingsToOutlook(result, combinedEmail);
             // }
 
@@ -158,6 +157,7 @@ namespace OutlookExecutable
 
             if (result.Equals("High Priority"))
             {
+                /* Return the email as red to outlook and send a notification.*/
 
                 importantDic.Add(email, result);
                 tag.colortagged = "High Priority";

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.ML;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ namespace OutlookAddLibray
         private string company;
         private string person;
         private const double standardWeight = 20; 
+        //private var ctr = new MLContext();
 
         /// <summary>
         /// This is an consturctor for the AiModel that creates
