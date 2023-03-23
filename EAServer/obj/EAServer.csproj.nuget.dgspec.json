@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\skate\\source\\repos\\OutllookAddOn\\EAServer\\EAServer.csproj": {}
+    "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\EAServer\\EAServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\skate\\source\\repos\\OutllookAddOn\\EAServer\\EAServer.csproj": {
+    "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\EAServer\\EAServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\skate\\source\\repos\\OutllookAddOn\\EAServer\\EAServer.csproj",
+        "projectUniqueName": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\EAServer\\EAServer.csproj",
         "projectName": "EAServer",
-        "projectPath": "C:\\Users\\skate\\source\\repos\\OutllookAddOn\\EAServer\\EAServer.csproj",
+        "projectPath": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\EAServer\\EAServer.csproj",
         "packagesPath": "C:\\Users\\skate\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\skate\\source\\repos\\OutllookAddOn\\EAServer\\obj\\",
+        "outputPath": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\EAServer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\skate\\source\\repos\\OutllookAddOn\\OutlookAddLibray\\OutlookAddLibray.csproj": {
-                "projectPath": "C:\\Users\\skate\\source\\repos\\OutllookAddOn\\OutlookAddLibray\\OutlookAddLibray.csproj"
+              "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj": {
+                "projectPath": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj"
               }
             }
           }
@@ -75,14 +75,14 @@
         }
       }
     },
-    "C:\\Users\\skate\\source\\repos\\OutllookAddOn\\OutlookAddLibray\\OutlookAddLibray.csproj": {
+    "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\skate\\source\\repos\\OutllookAddOn\\OutlookAddLibray\\OutlookAddLibray.csproj",
+        "projectUniqueName": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj",
         "projectName": "OutlookAddLibray",
-        "projectPath": "C:\\Users\\skate\\source\\repos\\OutllookAddOn\\OutlookAddLibray\\OutlookAddLibray.csproj",
+        "projectPath": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj",
         "packagesPath": "C:\\Users\\skate\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\skate\\source\\repos\\OutllookAddOn\\OutlookAddLibray\\obj\\",
+        "outputPath": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

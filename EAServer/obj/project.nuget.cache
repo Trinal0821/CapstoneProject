@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nATz6ksCoOnLRl2IFWDCkoU6zpgG6fH9Cr70/t/EXBioWdTkhWOwUSgUjE61BBXL8TR2j9LAaQRH0KtRKOLFMQ==",
+  "dgSpecHash": "YlW4wyIsQdqoxASSRqhMxttxEJNys9UpC2zCF9Bs79TS2dV7Xf1dE8vpwF4kAPERKQGAPHHximtHcuXlbOrM9w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\skate\\source\\repos\\OutllookAddOn\\EAServer\\EAServer.csproj",
+  "projectFilePath": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\EAServer\\EAServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\skate\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
   ],

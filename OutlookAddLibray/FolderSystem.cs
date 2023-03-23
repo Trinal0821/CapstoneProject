@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace OutlookAddLibray
+/// <summary>
+/// 
+/// </summary>
+namespace OutlookExecutable
 {
     class FolderSystem
     {
@@ -13,7 +15,7 @@ namespace OutlookAddLibray
         {
            // string ClientEmail = @"C:\Client_Information\Client_Email";
          
-            string clientEmailDirectory = Path.Combine(documentFolder, "FirmsClients_Correspondence");
+            string clientEmailDirectory = Path.Combine(documentFolder, "Client_Correspondence");
             if (!Directory.Exists(clientEmailDirectory))
             { 
                 Directory.CreateDirectory(clientEmailDirectory);
@@ -28,7 +30,7 @@ namespace OutlookAddLibray
         public void SaveToFolder(string clientName, string email, string emailSubject)
         {
             // string filePath = @"C:\Client_Information\Client_Email\" + clientName;
-            string filePath = Path.Combine(Path.Combine(documentFolder, "Client_Emails"), clientName);
+            string filePath = Path.Combine(Path.Combine(documentFolder, "Client_Correspondence"), clientName);
 
             if (!Directory.Exists(filePath))
             {
@@ -38,26 +40,21 @@ namespace OutlookAddLibray
 
             string[] spiltEmail = email.Split("\r\n");
             string subject = emailSubject.Trim();
-          //  foreach (string spilt in spiltEmail)
-           // {
-               // string spiltLower = spilt.ToLower();
-               // if (spiltLower.Contains("subject"))
-               // {
-                 //   string[] subjectSpilt = spiltLower.Split(":");
-                    //subject = .Trim();
+            if (subject[subject.Length - 1].Equals(';'))
+                 subject = subject.Remove(subject.Length - 1, 1);
 
-                    if (subject[subject.Length - 1].Equals(';'))
-                        subject = subject.Remove(subject.Length - 1, 1);
+            // GOAL: Check if it's a exisiting matter create a folder. 
 
-                   // break;
-              //  }
-
-            //}
             filePath = filePath + @"\" + subject + ".txt";
             File.WriteAllText(filePath, email); 
             // Goal: download actual emails to this spot. 
-            
-            // Check if it's a exisiting matter create a folder. 
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SaveClientWordWeights()
+        {
+
         }
 
     }

@@ -1,5 +1,4 @@
 ﻿
-using OutlookAddLibray;
 using System.Text.Json;
 /// <summary>
 /// 
@@ -26,13 +25,16 @@ namespace OutlookExecutable
     {
         // Global Variables
         private Dictionary<string, int> localDict;
-        private int importantLimit = 150;
-        private int notImportantLimit = 50;
+        private double averageEmailLegnth = 350;
+        private double averageImportantScore = 500;
+        private double averageNotImportantScore = 250;
+        private double weightedimportantLimit = 0;
+        private double weightednotImportantLimit = 0;
         NLP nlp = new NLP();
 
         // Inner class varaibles. 
         private Settings settings;
-        private FolderSystem file;
+        private FolderSystem folderSystem;
 
 
         // Stores emails that were marked a certain way. 
@@ -48,7 +50,8 @@ namespace OutlookExecutable
         public Classifier()
         {        
             settings = new Settings();
-            file = new FolderSystem();
+            folderSystem = new FolderSystem();
+
 
             importantDic = new Dictionary<string, string>();
             normalDic = new Dictionary<string, string>();
@@ -70,6 +73,7 @@ namespace OutlookExecutable
 
             email = email.Replace("\r\n", " ");
             email = email.Trim().ToLowerInvariant();
+            int emailsize = email.Split(" ").Length;
 
             foreach(string word in wordWeights.Keys)
             {
@@ -78,10 +82,13 @@ namespace OutlookExecutable
                     score += nlp.AdjustWeight(email, wordWeights[word], word);
                 }
             }
+            // calculate limits based on the current email. 
+            weightedimportantLimit = (emailsize/averageEmailLegnth)* averageImportantScore;
+            weightednotImportantLimit = (emailsize/ averageEmailLegnth) * averageNotImportantScore;
 
-            if (score > importantLimit)
+            if (score > weightedimportantLimit)
                 classifiedEmail = "High Priority";
-            else if (score < notImportantLimit)
+            else if (score < weightednotImportantLimit)
                 classifiedEmail = "Low Priority";
             else
                 classifiedEmail = "Medium Priority";
@@ -132,9 +139,9 @@ namespace OutlookExecutable
                     // ask if they want to create a floder and dictionary. 
                 }
 
-             string result = ScanInformationForDetails(from, subject, body);
+            string result = ScanInformationForDetails(from, subject, body);
             string combinedEmail = from + ";" + subject + ";" + body;
-            file.SaveToFolder(from, combinedEmail, subject);
+            folderSystem.SaveToFolder(from, combinedEmail, subject);
             return ReportFindingsToOutlook(result, combinedEmail);
             // }
 
