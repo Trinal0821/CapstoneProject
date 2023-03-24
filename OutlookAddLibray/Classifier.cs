@@ -1,5 +1,5 @@
 ﻿
-using System.Text.Json;
+
 /// <summary>
 /// 
 /// This namespace contains the insides of our outlook add-on. 
@@ -24,10 +24,10 @@ namespace OutlookExecutable
     public class Classifier
     {
         // Global Variables
-        private Dictionary<string, int> localDict;
+
         private double averageEmailLegnth = 350;
-        private double averageImportantScore = 500;
-        private double averageNotImportantScore = 250;
+        private double averageImportantScore = 1200;
+        private double averageNotImportantScore = 400; // might need my research into the average scores. 
         private double weightedimportantLimit = 0;
         private double weightednotImportantLimit = 0;
         NLP nlp = new NLP();

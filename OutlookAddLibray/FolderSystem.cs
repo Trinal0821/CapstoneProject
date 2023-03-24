@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-/// <summary>
+﻿/// <summary>
 /// 
 /// </summary>
 namespace OutlookExecutable
@@ -35,21 +30,40 @@ namespace OutlookExecutable
             if (!Directory.Exists(filePath))
             {
                 Directory.CreateDirectory(filePath);
+                Directory.CreateDirectory(Path.Combine(filePath, "Miscellaneous "));
                 string tempPath = filePath + @"\" + "WordWeightsAdditions.txt";
                 File.WriteAllText(tempPath, "");
             }
 
-
-            string[] spiltEmail = email.Split("\r\n");
             string subject = emailSubject.Trim();
-            if (subject[subject.Length - 1].Equals(';'))
-                 subject = subject.Remove(subject.Length - 1, 1);
 
-            // GOAL: Check if it's a exisiting matter create a folder. 
+            string[] spiltsubject = subject.Split(" ");
 
+            string[] fileList = System.IO.Directory.GetDirectories(filePath);
+            bool filefound = false;
+            if (Int32.TryParse(spiltsubject[1], out int value))
+            {
+                string sub = spiltsubject[0] + " " + spiltsubject[1];
+                foreach (string file in fileList)
+                {
+                    if (file.Contains(sub))
+                    {
+                        filefound = true;
+                        break;
+                    }
+                }
+                filePath = Path.Combine(filePath, sub);
+                if (!filefound)
+                {
+                    Directory.CreateDirectory(filePath);
+                }
+            }
+            else
+            {
+                filePath = Path.Combine(filePath, "Miscellaneous");
+            }
             filePath = filePath + @"\" + subject + ".txt";
-            File.WriteAllText(filePath, email); 
-            // Goal: download actual emails to this spot. 
+            File.WriteAllText(filePath, email);
         }
     }
 

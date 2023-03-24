@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
+
 /// <summary>
 /// 
 /// This namespace contains the insides of our outlook add-on. 
@@ -59,14 +56,18 @@ namespace OutlookExecutable
             {
                 while (!reader.EndOfStream)
                 {
-                    string[] value = reader.ReadLine().Split("\t");
-                    if (value.Length > 1)
-                    {
-                        if (!dict.ContainsKey(value[0]))
-                        {
-                            dict.Add(value[0].ToLowerInvariant(), Int32.Parse(value[1])); // find bug
-                        }
-                    }
+                    string line = reader.ReadLine();
+                    line = line.Replace("\t", " ");
+
+                    string phrase = Regex.Match(line, @"[a-zA-Z\s]+").Value;
+                    phrase = phrase.ToLowerInvariant().Trim();
+
+                    string number = Regex.Match(line, @"\d+").Value;
+
+                    if (!dict.ContainsKey(phrase))
+                      {
+                        dict.Add(phrase, Int32.Parse(number));
+                      }
                 }
             }
             return dict;

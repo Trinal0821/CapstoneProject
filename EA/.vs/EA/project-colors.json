@@ -5,7 +5,12 @@
       "ProjectGuid": "06670bd8-d719-4a66-969d-ca9737efc150",
       "DisplayName": "OutlookAddLibray",
       "ColorIndex": 0
+    },
+    "35de9f1d-105b-4e2a-9e1d-1d741c352587": {
+      "ProjectGuid": "35de9f1d-105b-4e2a-9e1d-1d741c352587",
+      "DisplayName": "EAServer",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }

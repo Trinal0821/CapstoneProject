@@ -148,7 +148,8 @@ namespace OutlookExecutable
                 if (negation.Any(checkKArea[index].Contains))
                 {
                     negate = true;
-
+                    inflate = false;
+                    deflate = false;
                 }
                 if (Inflation.Contains(checkKArea[index]) && !inflate)
                 {
