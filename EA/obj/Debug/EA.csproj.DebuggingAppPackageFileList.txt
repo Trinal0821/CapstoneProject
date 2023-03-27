@@ -1,0 +1,2 @@
+bin\Debug\OfficeAppManifests\EAManifest.xml
+C:\Users\trina\OneDrive\Documents\ExecutiveAssistant\executive-assistants\EA\bin\Debug\EA.debugapp

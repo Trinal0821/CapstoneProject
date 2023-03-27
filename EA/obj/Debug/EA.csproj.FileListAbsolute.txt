@@ -1,2 +1,4 @@
 C:\Users\trina\source\repos\EA\obj\Debug\EA.csproj.AssemblyReference.cache
 C:\Users\trina\source\repos\EA\obj\Debug\EA.csproj.CoreCompileInputs.cache
+C:\Users\trina\OneDrive\Documents\ExecutiveAssistant\executive-assistants\EA\obj\Debug\EA.csproj.AssemblyReference.cache
+C:\Users\trina\OneDrive\Documents\ExecutiveAssistant\executive-assistants\EA\obj\Debug\EA.csproj.CoreCompileInputs.cache

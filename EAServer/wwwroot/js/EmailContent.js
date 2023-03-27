@@ -5,14 +5,14 @@
     Office.initialize = function (reason) {
         $(document).ready(function () {
 
-            sendData();
+          ///  sendData();
             ImportantWordType();
             BackButtonClick();
             AddButtonClick();
         });
     };
 
-    async function sendData() {
+    /*async function sendData() {
         getFrom();
     }
 
@@ -80,7 +80,7 @@
                 console.error(asyncResult.error);
             }
         });
-    }
+    }*/
 
     //Get the list of available tag colors and check if it's already in the master category list. If not add it.
     function getMasterCategories() {

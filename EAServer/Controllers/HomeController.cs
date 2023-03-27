@@ -41,7 +41,7 @@ namespace EAServer.Controllers
             return View();
         }
 
-        public IActionResult FunctionFile()
+       public IActionResult FunctionFile()
         {
             return View();
         }
@@ -57,7 +57,7 @@ namespace EAServer.Controllers
         }
 
         [HttpGet]
-        public IActionResult testing(string from, string subject, string body)
+        public IActionResult getTag(string from, string subject, string body)
         {
             Classifier classifier = new Classifier();
             return Content(classifier.execute(from, subject, body));

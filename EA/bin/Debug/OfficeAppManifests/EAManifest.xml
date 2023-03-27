@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Created:ce44715c-8c4e-446b-879c-ea9ebe0f09c8-->
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xsi:type="MailApp">
+
+	<!-- Begin Basic Settings: Add-in metadata, used for all versions of Office unless override provided. -->
+
+	<!-- IMPORTANT! Id must be unique for your add-in, if you reuse this manifest ensure that you change this id to a new GUID. -->
+	<Id>78a9c9b7-6677-46e0-97c8-044bd74a7356</Id>
+
+	<!--Version. Updates from the store only get triggered if there is a version change. -->
+	<Version>1.0.0.0</Version>
+	<ProviderName>Team Executive Assistant</ProviderName>
+	<DefaultLocale>en-US</DefaultLocale>
+	<!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
+	<DisplayName DefaultValue="Executive Assistant" />
+	<Description DefaultValue="Executive Assistant"/>
+	<IconUrl DefaultValue="https://localhost:7150/Images/Icon64.png"/>
+
+	<SupportUrl DefaultValue="http://www.contoso.com" />
+	<!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
+	<AppDomains>
+		<AppDomain>AppDomain1</AppDomain>
+		<AppDomain>AppDomain2</AppDomain>
+		<AppDomain>AppDomain3</AppDomain>
+	</AppDomains>
+	<!--End Basic Settings. -->
+
+	<Hosts>
+		<Host Name="Mailbox" />
+	</Hosts>
+	<Requirements>
+		<Sets>
+			<Set Name="Mailbox" MinVersion="1.1" />
+		</Sets>
+	</Requirements>
+	<FormSettings>
+		<Form xsi:type="ItemRead">
+			<DesktopSettings>
+				<SourceLocation DefaultValue="https://localhost:7150/Home/TaskPane"/>
+				<RequestedHeight>250</RequestedHeight>
+			</DesktopSettings>
+		</Form>
+	</FormSettings>
+
+	<Permissions>ReadWriteMailbox</Permissions>
+	<Rule xsi:type="RuleCollection" Mode="Or">
+		<Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+	</Rule>
+	<DisableEntityHighlighting>false</DisableEntityHighlighting>
+
+	<VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+		<Requirements>
+			<bt:Sets DefaultMinVersion="1.3">
+				<bt:Set Name="Mailbox" />
+			</bt:Sets>
+		</Requirements>
+		<Hosts>
+			<Host xsi:type="MailHost">
+
+				<DesktopFormFactor>
+					<!-- Location of the Functions that UI-less buttons can trigger (ExecuteFunction Actions). -->
+					<FunctionFile resid="functionFile" />
+
+					<!-- Message Read -->
+					<ExtensionPoint xsi:type="MessageReadCommandSurface">
+						<!-- Use the default tab of the ExtensionPoint or create your own with <CustomTab id="myTab"> -->
+						<OfficeTab id="TabDefault">
+							<!-- Up to 6 Groups added per Tab -->
+							<Group id="msgReadGroup">
+								<Label resid="groupLabel" />
+
+								<!-- Launch the add-in : task pane button -->
+								<Control xsi:type="Button" id="InfoOpenTaskPane">
+									<Label resid="infoTitle" />
+									<Supertip>
+										<Title resid="infoTitle" />
+										<Description resid="infoDescription" />
+									</Supertip>
+									<Icon>
+										<bt:Image size="16" resid="icon16" />
+										<bt:Image size="32" resid="icon32" />
+										<bt:Image size="80" resid="icon80" />
+									</Icon>
+									<Action xsi:type="ShowTaskpane">
+										<SourceLocation resid="infoTaskPaneUrl" />
+									</Action>
+								</Control>
+
+								<!-- Launch the add-in : without a taskpane-->
+								<Control xsi:type="Button" id="tagEmailButton">
+									<Label resid="tagEmailTitle" />
+									<Supertip>
+										<Title resid="tagEmailTitle" />
+										<Description resid="tagEmailDescription" />
+									</Supertip>
+									<Icon>
+										<bt:Image size="16" resid="icon16" />
+										<bt:Image size="32" resid="icon32" />
+										<bt:Image size="80" resid="icon80" />
+									</Icon>
+									<Action xsi:type="ExecuteFunction">
+										<FunctionName>getFrom</FunctionName>
+									</Action>
+								</Control>
+
+								<!-- Launch the add-in : task pane button -->
+								<Control xsi:type="Button" id="SettingOpenTaskPane">
+									<Label resid="settingTitle" />
+									<Supertip>
+										<Title resid="settingTitle" />
+										<Description resid="settingsDescription" />
+									</Supertip>
+									<Icon>
+										<bt:Image size="16" resid="icon16" />
+										<bt:Image size="32" resid="icon32" />
+										<bt:Image size="80" resid="icon80" />
+									</Icon>
+									<Action xsi:type="ShowTaskpane">
+										<SourceLocation resid="SettingTaskPaneUrl" />
+									</Action>
+								</Control>
+
+								<!-- Launch the add-in : task pane button -->
+								<Control xsi:type="Button" id="RetagEmailOpenTaskPane">
+									<Label resid="retagEmailTitle" />
+									<Supertip>
+										<Title resid="retagEmailTitle" />
+										<Description resid="retagEmailDescription" />
+									</Supertip>
+									<Icon>
+										<bt:Image size="16" resid="icon16" />
+										<bt:Image size="32" resid="icon32" />
+										<bt:Image size="80" resid="icon80" />
+									</Icon>
+									<Action xsi:type="ShowTaskpane">
+										<SourceLocation resid="RetagEmailTaskPaneUrl" />
+									</Action>
+								</Control>
+
+								<!-- Go to http://aka.ms/ButtonCommands to learn how to add more Controls: ExecuteFunction and Menu -->
+							</Group>
+						</OfficeTab>
+					</ExtensionPoint>
+					<!-- Go to http://aka.ms/ExtensionPointsCommands to learn how to add more Extension Points: MessageRead, AppointmentOrganizer, AppointmentAttendee -->
+				</DesktopFormFactor>
+			</Host>
+		</Hosts>
+
+		<Resources>
+			<bt:Images>
+				<bt:Image id="icon16" DefaultValue="https://localhost:7150/Images/Icon16.png"/>
+				<bt:Image id="icon32" DefaultValue="https://localhost:7150/Images/Icon32.png"/>
+				<bt:Image id="icon80" DefaultValue="https://localhost:7150/Images/Icon80.png"/>
+			</bt:Images>
+			<bt:Urls>
+				<bt:Url id="functionFile" DefaultValue="https://localhost:7150/Home/FunctionFile"/>
+				<bt:Url id="infoTaskPaneUrl" DefaultValue="https://localhost:7150/Home/Info"/>
+				<bt:Url id="SettingTaskPaneUrl" DefaultValue="https://localhost:7150/Home/Settings"/>
+				<bt:Url id="DirectorySelectorUrl" DefaultValue="https://localhost:7150/Home/DirectorySelector"/>
+				<bt:Url id="RetagEmailTaskPaneUrl" DefaultValue="https://localhost:7150/Home/RetagEmail"/>
+			</bt:Urls>
+			<bt:ShortStrings>
+				<bt:String id="groupLabel" DefaultValue="Executive Assistant Add-In"/>
+				<bt:String id="infoTitle" DefaultValue="How to Use EA"/>
+				<bt:String id="tagEmailTitle" DefaultValue="Tag Email"/>
+				<bt:String id="retagEmailTitle" DefaultValue="Retag Emails"/>
+				<bt:String id="settingTitle" DefaultValue="Settings"/>
+				<bt:String id="directorySelectorTitle" DefaultValue="Download Emails"/>
+			</bt:ShortStrings>
+			<bt:LongStrings>
+				<bt:String id="paneReadSuperTipDescription" DefaultValue="Opens a pane displaying all available properties. This is an example of a button that opens a task pane."/>
+				<bt:String id="settingsDescription" DefaultValue="Opens a pane and allows the user to modify the important words and weights for each client."/>
+				<bt:String id="directorySelectorDescription" DefaultValue="Opens a pane and allows the user to download emails to their computer."/>
+				<bt:String id="infoDescription" DefaultValue="Instructions on how to use our add in."/>
+				<bt:String id="retagEmailDescription" DefaultValue="Opens a pane that allows the user to retag the emails"/>
+				<bt:String id="tagEmailDescription" DefaultValue="A button that allows the sets the priority of the email based on the important words"/>
+			</bt:LongStrings>
+		</Resources>
+	</VersionOverrides>
+</OfficeApp>
+
