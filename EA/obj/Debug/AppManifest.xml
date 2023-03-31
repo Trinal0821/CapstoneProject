@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest"
      Name="EA"
-     ProductID="{13b3f3c2-b30f-4614-ba6c-bf918d330bb0}"
+     ProductID="{0a524ce6-e610-4798-a31e-cc3ad4e4e60e}"
      Version="1.0.0.0"
      SharePointMinVersion="15.0.0.0"
 >
