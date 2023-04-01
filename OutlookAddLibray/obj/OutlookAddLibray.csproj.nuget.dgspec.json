@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj": {}
+    "C:\\Users\\andre\\OneDrive\\Desktop\\mergr conflic\\OutlookAddLibray\\OutlookAddLibray.csproj": {}
   },
   "projects": {
-    "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj": {
+    "C:\\Users\\andre\\OneDrive\\Desktop\\mergr conflic\\OutlookAddLibray\\OutlookAddLibray.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj",
+        "projectUniqueName": "C:\\Users\\andre\\OneDrive\\Desktop\\mergr conflic\\OutlookAddLibray\\OutlookAddLibray.csproj",
         "projectName": "OutlookAddLibray",
-        "projectPath": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj",
-        "packagesPath": "C:\\Users\\trina\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\OutlookAddLibray\\obj\\",
+        "projectPath": "C:\\Users\\andre\\OneDrive\\Desktop\\mergr conflic\\OutlookAddLibray\\OutlookAddLibray.csproj",
+        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\andre\\OneDrive\\Desktop\\mergr conflic\\OutlookAddLibray\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\trina\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -61,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
