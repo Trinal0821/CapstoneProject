@@ -1147,24 +1147,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\andre\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\trina\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\andre\\OneDrive\\Desktop\\mergr conflic\\EAServer\\EAServer.csproj",
+      "projectUniqueName": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\EAServer\\EAServer.csproj",
       "projectName": "EAServer",
-      "projectPath": "C:\\Users\\andre\\OneDrive\\Desktop\\mergr conflic\\EAServer\\EAServer.csproj",
-      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\andre\\OneDrive\\Desktop\\mergr conflic\\EAServer\\obj\\",
+      "projectPath": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\EAServer\\EAServer.csproj",
+      "packagesPath": "C:\\Users\\trina\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\EAServer\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\trina\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1178,8 +1173,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\andre\\OneDrive\\Desktop\\mergr conflic\\OutlookAddLibray\\OutlookAddLibray.csproj": {
-              "projectPath": "C:\\Users\\andre\\OneDrive\\Desktop\\mergr conflic\\OutlookAddLibray\\OutlookAddLibray.csproj"
+            "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj": {
+              "projectPath": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj"
             }
           }
         }
@@ -1218,7 +1213,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

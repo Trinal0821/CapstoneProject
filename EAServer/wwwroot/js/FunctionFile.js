@@ -1,18 +1,4 @@
-﻿/*Office.initialize = function () {
-}
-*/
-
-/*Office.initialize = function () {
-    $(document).ready(function () {
-
-       console.log("HELLO THERE")
-    });
-};*/
-Office.initialize = function () {
-    console.log("HELLO THERE")
-    /*    // Register event handler for the button click
-        var button = document.getElementById("myButton");
-        button.onclick = onButtonClick;*/
+﻿Office.initialize = function () {
 };
 
 function addInformational() {
@@ -144,11 +130,13 @@ async function tagEmail() {
             });
         });
     };
-
-
 }
 
-async function getFrom() {
+
+function downloadEmails() {
+    console.log("HHHELLO THERE FROM THE OHTER SIDE")
+}
+/*async function getFrom() {
     //Get the from and append the client's name
     const msgFrom = Office.context.mailbox.item.from;
     var fromField = msgFrom.displayName;
@@ -199,7 +187,7 @@ async function getFrom() {
             }
         })
 
-
+*/
     /*
     // Register an event handler that displays the notification message
     Office.context.mailbox.addHandlerAsync(Office.EventType.ItemChanged, function (event) {
@@ -218,7 +206,7 @@ console.log(result.status);
 }
 }
 )*/
-}
+//}
 
 function displayNotification() {
     // Create a new progressIndicator notification message

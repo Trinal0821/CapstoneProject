@@ -103,7 +103,24 @@
 										<bt:Image size="80" resid="icon80" />
 									</Icon>
 									<Action xsi:type="ExecuteFunction">
-										<FunctionName>getFrom</FunctionName>
+										<FunctionName>tagEmail</FunctionName>
+									</Action>
+								</Control>
+
+								<!-- Launch the add-in : without a taskpane-->
+								<Control xsi:type="Button" id="downloadEmailButton">
+									<Label resid="downloadEmailTitle" />
+									<Supertip>
+										<Title resid="downloadEmailTitle" />
+										<Description resid="downloadEmailDescription" />
+									</Supertip>
+									<Icon>
+										<bt:Image size="16" resid="icon16" />
+										<bt:Image size="32" resid="icon32" />
+										<bt:Image size="80" resid="icon80" />
+									</Icon>
+									<Action xsi:type="ExecuteFunction">
+										<FunctionName>downloadEmails</FunctionName>
 									</Action>
 								</Control>
 
@@ -167,6 +184,7 @@
 				<bt:String id="groupLabel" DefaultValue="Executive Assistant Add-In"/>
 				<bt:String id="infoTitle" DefaultValue="How to Use EA"/>
 				<bt:String id="tagEmailTitle" DefaultValue="Tag Email"/>
+				<bt:String id="downloadEmailTitle" DefaultValue="Download Email"/>
 				<bt:String id="retagEmailTitle" DefaultValue="Retag Emails"/>
 				<bt:String id="settingTitle" DefaultValue="Settings"/>
 				<bt:String id="directorySelectorTitle" DefaultValue="Download Emails"/>
@@ -177,7 +195,8 @@
 				<bt:String id="directorySelectorDescription" DefaultValue="Opens a pane and allows the user to download emails to their computer."/>
 				<bt:String id="infoDescription" DefaultValue="Instructions on how to use our add in."/>
 				<bt:String id="retagEmailDescription" DefaultValue="Opens a pane that allows the user to retag the emails"/>
-				<bt:String id="tagEmailDescription" DefaultValue="A button that allows the sets the priority of the email based on the important words"/>
+				<bt:String id="tagEmailDescription" DefaultValue="A button that tags all of the emails at once"/>
+				<bt:String id="downloadEmailDescription" DefaultValue="A button that downloads all of the email at once"/>
 			</bt:LongStrings>
 		</Resources>
 	</VersionOverrides>
