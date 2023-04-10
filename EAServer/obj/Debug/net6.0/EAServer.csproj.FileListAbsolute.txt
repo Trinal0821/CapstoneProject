@@ -247,3 +247,8 @@ C:\Users\trina\OneDrive\Desktop\executive-assistants\executive-assistants\EAServ
 C:\Users\trina\OneDrive\Desktop\executive-assistants\executive-assistants\EAServer\obj\Debug\net6.0\EAServer.pdb
 C:\Users\trina\OneDrive\Desktop\executive-assistants\executive-assistants\EAServer\obj\Debug\net6.0\EAServer.genruntimeconfig.cache
 C:\Users\trina\OneDrive\Desktop\executive-assistants\executive-assistants\EAServer\obj\Debug\net6.0\ref\EAServer.dll
+C:\Users\trina\OneDrive\Desktop\executive-assistants\executive-assistants\EAServer\bin\Debug\net6.0\Microsoft.ML.FastTree.dll
+C:\Users\trina\OneDrive\Desktop\executive-assistants\executive-assistants\EAServer\bin\Debug\net6.0\runtimes\linux-x64\native\libFastTreeNative.so
+C:\Users\trina\OneDrive\Desktop\executive-assistants\executive-assistants\EAServer\bin\Debug\net6.0\runtimes\osx-x64\native\libFastTreeNative.dylib
+C:\Users\trina\OneDrive\Desktop\executive-assistants\executive-assistants\EAServer\bin\Debug\net6.0\runtimes\win-x64\native\FastTreeNative.dll
+C:\Users\trina\OneDrive\Desktop\executive-assistants\executive-assistants\EAServer\bin\Debug\net6.0\runtimes\win-x86\native\FastTreeNative.dll

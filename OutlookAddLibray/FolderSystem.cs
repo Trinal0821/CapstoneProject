@@ -3,16 +3,16 @@
 /// </summary>
 namespace OutlookExecutable
 {
-    public class FolderSystem
+    class FolderSystem
     {
         string documentFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public FolderSystem()
         {
-           // string ClientEmail = @"C:\Client_Information\Client_Email";
-         
+            // string ClientEmail = @"C:\Client_Information\Client_Email";
+
             string clientEmailDirectory = Path.Combine(documentFolder, "Client_Correspondence");
             if (!Directory.Exists(clientEmailDirectory))
-            { 
+            {
                 Directory.CreateDirectory(clientEmailDirectory);
             }
         }

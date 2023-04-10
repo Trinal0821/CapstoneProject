@@ -49,8 +49,9 @@ namespace OutlookExecutable
         /// </summary>
         private void FillDictionary()
         {
-            string inputfilePath = @"C:\Users\skate\Source\Repos\executive-assistants\OutlookAddLibray\OverrideList.txt";
+            // string inputfilePath = @"C:\Users\skate\Source\Repos\executive-assistants\OutlookAddLibray\OverrideList.txt";
 
+            string inputfilePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\\OutlookAddLibray\\OverrideList.txt"));
             // Open the file in append mode
             lock (this)
             {
@@ -120,7 +121,7 @@ namespace OutlookExecutable
         /// <param name="Tag"></param>
         public void changeOverideDictionary(string sender, string Tag)
         {
-            string inputfilePath = @"C:\Users\skate\Source\Repos\executive-assistants\OutlookAddLibray\OverrideList.txt";
+            string inputfilePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\\OutlookAddLibray\\OverrideList.txt"));
 
             /*if (Tag.Equals("remove"))
             {
@@ -151,8 +152,8 @@ namespace OutlookExecutable
         /// <param name="tag"></param>
         public void retrainData(string emailBody, string tag)
         {
-            string inputfilePath = @"C:\Users\skate\Source\Repos\executive-assistants\OutlookAddLibray\testing-INFOtext.txt";
-            string outputfilePath = @"C:\Users\skate\Source\Repos\executive-assistants\OutlookAddLibray\MLModel1.mlnet";
+            string inputfilePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\\OutlookAddLibray\\testing-INFOtext.txt"));
+            string outputfilePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\\OutlookAddLibray\\MLModel1.mlnet")); ;
             emailBody = emailBody.Replace("\r", "");
             emailBody = emailBody.Replace("\n", "");
 

@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "UDo0drFCh5XmQ6g98XmgowmueFagV0JnVV7VUl8xGyjmf75qoNTN5n1iFDkO0i8QenJBJtEwujTPpqO09nzgwg==",
+  "dgSpecHash": "YKTk837LQNrmUo00mcyWZInTCNOeyV9uFrve58F8pxfRGjLZyU/nGBp4wuYrCIoICGxDZdNw9ZQdbdC+kP6xyQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\EAServer\\EAServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\trina\\.nuget\\packages\\microsoft.ml\\2.0.1\\microsoft.ml.2.0.1.nupkg.sha512",
     "C:\\Users\\trina\\.nuget\\packages\\microsoft.ml.cpumath\\2.0.1\\microsoft.ml.cpumath.2.0.1.nupkg.sha512",
     "C:\\Users\\trina\\.nuget\\packages\\microsoft.ml.dataview\\2.0.1\\microsoft.ml.dataview.2.0.1.nupkg.sha512",
+    "C:\\Users\\trina\\.nuget\\packages\\microsoft.ml.fasttree\\2.0.1\\microsoft.ml.fasttree.2.0.1.nupkg.sha512",
     "C:\\Users\\trina\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\trina\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\trina\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",

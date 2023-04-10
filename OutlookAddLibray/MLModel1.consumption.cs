@@ -52,7 +52,7 @@ namespace OutlookAddLibray
 
         #endregion
 
-        private static string MLNetModelPath = "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\MLModel1.mlnet";
+        private static string MLNetModelPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\\OutlookAddLibray\\MLModel1.mlnet"));
 
         public static readonly Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(() => CreatePredictEngine(), true);
 
