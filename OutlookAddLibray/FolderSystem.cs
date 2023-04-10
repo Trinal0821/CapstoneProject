@@ -34,7 +34,7 @@ namespace OutlookExecutable
             string[] fileList = System.IO.Directory.GetDirectories(filePath);
 
             bool filefound = false;
-            if (Int32.TryParse(spiltsubject[1], out int value))
+            if (Int32.TryParse(spiltsubject[1], out int value) && spiltsubject.Length > 1)
             {
                 string sub = spiltsubject[0] + " " + spiltsubject[1];
                 foreach (string file in fileList)
