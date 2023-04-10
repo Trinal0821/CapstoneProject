@@ -1,5 +1,11 @@
 ﻿
 
+using Microsoft.ML;
+using OutlookAddLibray;
+using System;
+using System.Reflection.PortableExecutable;
+using System.Text.RegularExpressions;
+using static System.Formats.Asn1.AsnWriter;
 /// <summary>
 /// 
 /// This namespace contains the insides of our outlook add-on. 
@@ -23,179 +29,147 @@ namespace OutlookExecutable
     /// </summary>
     public class Classifier
     {
-        // Global Variables
-
-        private double averageEmailLegnth = 350;
-        private double averageImportantScore = 1200;
-        private double averageNotImportantScore = 400; // might need my research into the average scores. 
-        private double weightedimportantLimit = 0;
-        private double weightednotImportantLimit = 0;
-        NLP nlp = new NLP();
-
         // Inner class varaibles. 
-        private Settings settings;
         private FolderSystem folderSystem;
 
-
-        // Stores emails that were marked a certain way. 
-        private Dictionary<string, string> importantDic;
-        private Dictionary<string, string> normalDic;
-        private Dictionary<string, string> yellowDic;
+        // 
+        private Dictionary<string, string> exceptions;
 
         //Message that is sent back to the outlook add on. 
         List<string> jsonMessage = new List<string>();
 
-
-
         public Classifier()
-        {        
-            settings = new Settings();
-            folderSystem = new FolderSystem();
-
-
-            importantDic = new Dictionary<string, string>();
-            normalDic = new Dictionary<string, string>();
-            yellowDic = new Dictionary<string, string>();
-        }
-
-        /// <summary>
-        /// Scans through the email to see what words are part of the wordWeight and adds
-        /// that words weight to the score. 
-        /// </summary>
-        /// <param name="email">The email that was sent. </param>
-        /// <param name="wordWeights">The dictionary begin passed in</param>
-        /// <returns></returns>
-        public string scan(string email, Dictionary<string, int> wordWeights)
         {
-            double score = 0;
-            string classifiedEmail = "";
-            // done stuff
+            folderSystem = new FolderSystem();
+            exceptions = new Dictionary<string, string>();
+            FillDictionary();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        private void FillDictionary()
+        {
+            string inputfilePath = @"C:\Users\skate\Source\Repos\executive-assistants\OutlookAddLibray\OverrideList.txt";
 
-            email = email.Replace("\r\n", " ");
-            email = email.Trim().ToLowerInvariant();
-            int emailsize = email.Split(" ").Length;
-
-            foreach(string word in wordWeights.Keys)
+            // Open the file in append mode
+            lock (this)
             {
-                if(email.Contains(word))
+                using (
+                    StreamReader reader = new StreamReader(inputfilePath))
                 {
-                    score += nlp.AdjustWeight(email, wordWeights[word], word);
+                    while (!reader.EndOfStream)
+                    {
+                        string line = reader.ReadLine();
+                        string[] spilt = line.Split("\t");
+                        if (spilt.Length == 2)
+                        {
+                            if (spilt[1].Equals("remove"))
+                            {
+                                exceptions.Remove(spilt[0]);
+                            }
+                            else if (!exceptions.ContainsKey(spilt[0]))
+                            {
+                                exceptions.Add(spilt[0], spilt[1]);
+                            }
+                            else
+                            {
+                                exceptions[spilt[0]] = spilt[1];
+                            }
+                        }
+                    }
                 }
             }
-            // calculate limits based on the current email. 
-            weightedimportantLimit = (emailsize/averageEmailLegnth)* averageImportantScore;
-            weightednotImportantLimit = (emailsize/ averageEmailLegnth) * averageNotImportantScore;
-
-            if (score > weightedimportantLimit)
-                classifiedEmail = "High Priority";
-            else if (score < weightednotImportantLimit)
-                classifiedEmail = "Low Priority";
-            else
-                classifiedEmail = "Medium Priority";
-
-            return classifiedEmail;
         }
-
-        /// <summary>
-        /// Checks to see if a word has an unwanted char.
-        /// </summary>
-        /// <param name="word">The word that is being scored.</param>
-        /// <returns></returns>
-        private string CheckForUnwantedChar(string word)
-        {
-            if (word.Contains("."))
-                return word.Replace(".","");
-            else if (word.Contains(";"))
-                return word.Replace(";", "");
-            else if (word.Contains("\r\n"))
-                return word.Replace("\r\n", "");
-
-            return word;
-        }
-        
         /// <summary>
         /// Executes the NLP 
         /// </summary>
         public string execute(string from, string subject, string body)
         {
-            //change this to run on json objects beging sent from add-on. 
-          //  string text = File.ReadAllText("C:\\Users\\skate\\source\\repos\\OutlookExecutable\\OutlookAddLibray\\Emails.txt");
-           // string[] emails = text.Split("--");
-            Dictionary<string,int> emailList = new Dictionary<string, int>();
-            // 
-            string emailAddress = ""; 
-          //  foreach(string email in emails)
-          //  {
-               /* string[] emailSpilt = email.Split(";");
-                string clientName = emailSpilt[0].Split("FROM:")[1].Trim();*/
-                if (emailList.ContainsKey(from))
-                {
-                    int newCount = emailList[from] + 1;       
-                    emailList[from]= newCount;
-                }
-                else
-                {
-                    emailList.Add(from, 1);
-                    // ask if they want to create a floder and dictionary. 
-                }
-            string combinedEmail = from + ";" + subject + ";" + body;
-            folderSystem.SaveToFolder(from, combinedEmail, subject);
-            string result = ScanInformationForDetails(from, subject, body);
-            return ReportFindingsToOutlook(result, combinedEmail);
+
+            folderSystem.SaveToFolder(from, body, subject);
+            if (exceptions.Keys.Contains(from))
+            {
+                return exceptions[from];
+            }
+
+            string classifiedEmail = "";
+            var sampleData = new MLModel1.ModelInput()
+            {
+                Col1 = "@" + body
+            };
+
+            //Load model and predict output
+            var result = MLModel1.Predict(sampleData);
+            string tagg = result.PredictedLabel.ToLowerInvariant();
+
+            if (tagg.Equals("important"))
+                classifiedEmail = "High Priority";
+            else if (tagg.Equals("unimportant"))
+                classifiedEmail = "Low Priority";
+            else
+                classifiedEmail = "Medium Priority";
+
+            return classifiedEmail;
             // }
 
         }
-        
         /// <summary>
-        /// Takes the results of the classifier and reports it to the outlook add-on using a json object 
+        /// Send to trina 
         /// </summary>
-        /// <param name="result">The tagging result</param>
-        /// <param name="email">The email passed in</param>
-        private string ReportFindingsToOutlook(string result, string email)
+        /// <param name="sender"></param>
+        /// <param name="Tag"></param>
+        public void changeOverideDictionary(string sender, string Tag)
         {
-            EmailTagger tag = new EmailTagger();
+            string inputfilePath = @"C:\Users\skate\Source\Repos\executive-assistants\OutlookAddLibray\OverrideList.txt";
 
-            if (result.Equals("High Priority"))
+            /*if (Tag.Equals("remove"))
             {
-                /* Return the email as red to outlook and send a notification.*/
-
-                importantDic.Add(email, result);
-                tag.colortagged = "High Priority";
+                if (exceptions.ContainsKey(sender))
+                {
+                    exceptions.Remove(sender);
+                } 
+                return;
             }
-            else if (result.Equals("Low Priority"))
+            if (exceptions.ContainsKey(sender))
             {
-                /* Return the email as green to outlook and send a notification.*/
-
-                normalDic.Add(email, result);
-                tag.colortagged = "Low Priority";
-            }
+                exceptions[sender] = Tag;
+            } 
             else
+            { */
+            using (StreamWriter writer = File.AppendText(inputfilePath))
             {
-                /* Return the email as yellow to outlook and send a notification.*/
-                yellowDic.Add(email, result);
-                tag.colortagged = "Medium Priority";
+                //exceptions.Add(sender, Tag);
+                writer.WriteLine();
+                writer.Write(sender + "\t" + Tag);
             }
-
-            return tag.colortagged;
 
         }
-
         /// <summary>
-        /// Sorts through the information from the email looking for certain 
-        /// inforamtion. 
+        /// Share  with trina 
         /// </summary>
-        /// <param name="currentEmail"> The current email being scanned</param>
-        /// <returns></returns>
-        private string ScanInformationForDetails(string from, string subject, string body)
+        /// <param name="emailBody"></param>
+        /// <param name="tag"></param>
+        public void retrainData(string emailBody, string tag)
         {
-/*            string[] emailSpilt = currentEmail.Split(";");
-            string clientName = emailSpilt[0].Split("FROM:")[1];*/
-            Dictionary<string, int> wordWeights =  settings.GetCleintDictionary(from.Trim());
-            string completeEmail = subject + " " + body;
+            string inputfilePath = @"C:\Users\skate\Source\Repos\executive-assistants\OutlookAddLibray\testing-INFOtext.txt";
+            string outputfilePath = @"C:\Users\skate\Source\Repos\executive-assistants\OutlookAddLibray\MLModel1.mlnet";
+            emailBody = emailBody.Replace("\r", "");
+            emailBody = emailBody.Replace("\n", "");
 
-            string importance = scan(completeEmail, wordWeights);
-            
-            return importance;
+            string textToAppend = tag + "\t" + emailBody;
+
+            // Open the file in append mode
+            lock (this)
+            {
+                using (
+                    StreamWriter writer = File.AppendText(inputfilePath))
+                {
+                    // Write the new text to the end of the file
+                    writer.WriteLine();
+                    writer.Write(textToAppend);
+                }
+                MLModel1.Train(outputfilePath, inputfilePath, '\t', false);
+            }
         }
     }
     /// <summary>
@@ -205,6 +179,6 @@ namespace OutlookExecutable
     public class EmailTagger
     {
         //change this to a list. 
-        public string colortagged { get; set; }
-    }   
+        public string? colortagged { get; set; }
+    }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XGmd5gzRFjO86m8h3aGq+yvqoHrIHJ/oQanWXJz4wZM=",
+  "Hash": "uPchfxA3VrlX/ppL9plvgAzZRYIFxHg2LMpTbJ9HG54=",
   "Source": "EAServer",
   "BasePath": "_content/EAServer",
   "Mode": "Default",
@@ -372,6 +372,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Settings.js"
+    },
+    {
+      "Identity": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\EAServer\\wwwroot\\js\\testing.js",
+      "SourceId": "EAServer",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\EAServer\\wwwroot\\",
+      "BasePath": "_content/EAServer",
+      "RelativePath": "js/testing.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\testing.js"
     },
     {
       "Identity": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\EAServer\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

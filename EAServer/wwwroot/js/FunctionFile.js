@@ -1,4 +1,6 @@
 ﻿Office.initialize = function () {
+    console.log("Hello")
+  //  downloadEmails();
 };
 
 function addInformational() {
@@ -54,14 +56,18 @@ async function tagEmail() {
         const credential = result.credential;
         const accessToken = credential.accessToken;
         console.log(`Access token: ${accessToken}`);
+
         // Use the access token to call the Microsoft Graph API or other Microsoft APIs.
-        getAllUnread(accessToken);
+       getUnreadEmails(accessToken);
+      //  downloadEmails(accessToken)
     }).catch((error) => {
-        //fireBaseError = error;
         console.error(`Failed to authenticate user: ${error}`);
     });
 
-    function getAllUnread(authtoken) {
+    async function getUnreadEmails(authtoken) {
+
+        var counter = 0;
+
         fetch("https://graph.microsoft.com/v1.0/me/messages", {
             headers: {
                 Authorization: `Bearer ${authtoken}`
@@ -83,26 +89,6 @@ async function tagEmail() {
                         }
                     })
                         .then(res => {
-                            console.log(res.data);
-                            //signTags(res.data);
-                            console.log("request new tag");
-                            /*
-                            Office.context.mailbox.restApi("/me/messages/" + email.id + "/categories").post({ "categories": res.data }, function (asyncResult) {
-                                if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-                                    console.log(`Successfully assigned category ${res.data} to message with ID ${email.id}.`);
-                                } else {
-                                    console.log(`Failed to assign category '${res.data}' to message with ID '${email.id}'.Error message: ${ asyncResult.error.message }`);
-                                }
-                        });*/
-                            var tagColor;
-                            if (res.data == "High Priority")
-                                tagColor = "red"
-                            else if (res.data == "Medium Priority")
-                                tagColor = "yellow"
-                            else if (res.data == "Low Priority")
-                                tagColor = "green"
-                            else
-                                tagColor = "white"
 
                             const updateUrl = `https://graph.microsoft.com/v1.0/me/messages/${email.id}`;
                             const payload = {
@@ -117,6 +103,7 @@ async function tagEmail() {
                                 },
                                 body: JSON.stringify(payload)
                             }).then((response) => {
+                                counter= counter + 1;
                                 console.log("added tag");
                                 console.log(response);
                             }).catch((error) => {
@@ -130,12 +117,362 @@ async function tagEmail() {
             });
         });
     };
+
+ /*   if ("Notification" in window) {
+        // Request permission to show notifications
+        Notification.requestPermission().then(function (result) {
+            console.log("Notification permission:", result);
+            // Show a notification if permission is granted
+            if (result === "granted") {
+                var notification = new Notification("Executive Assistant", {
+                    body: "We have sucessfully tagged " + counter + "emails.",
+                  //  icon: "path/to/icon.png",
+                });
+            }
+        });
+    }*/
+}
+
+async function downloadEmails() {
+    const clientID = "cc19483a-abdc-4adc-8fa4-a90d3cade274";
+    const scope = "openid profile email Mail.Read Mail.ReadWrite Mail.ReadBasic MailboxSettings.ReadWrite";
+    const clientSecret = "UFj8Q~riS1gHu-_LkvwejjNOAEpTEynXZadzDamY";
+    const redirectURI = "https://localhost:7150/";
+    const authUrl = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=${clientID}&response_type=code&redirect_uri=${redirectURI}&scope=openid profile email Mail.Read Mail.ReadWrite Mail.ReadBasic MailboxSettings.ReadWrite`;
+    const dialogOptions = { height: 50, width: 50 };
+
+    console.log("preparing..");
+
+    return new Promise((resolve, reject) => {
+        Office.context.ui.displayDialogAsync(
+            "https://localhost:7150/Home/Temp",
+            { height: 50, width: 50 },
+            function (result) {
+                if (result.status === "succeeded") {
+                    console.log("YAYAY")
+                    const dialog = result.value;
+                    console.log("result.value", result.value);
+
+                        console.log('waiiting');
+                        dialog.addEventHandler(
+                            Office.EventType.DialogMessageReceived,
+                            function (arg) {
+                                const message = arg.message;
+                                console.log("message here here", message);
+                                if (message === "closeDialog") {
+                                    debugger
+                                    console.log("CLOSING");
+                                    dialog.close();
+                                    resolve(true);
+                                } else {
+                                    reject("Unexpected message received from dialog: " + message);
+                                }
+                            }
+                    );
+
+                    console.log("closing the dialog");
+                    dialog.close();
+
+                } else {
+                    reject("Failed to open dialog: " + result.error.message);
+                }
+            }
+        );
+    });
+
+/*    return new Promise((resolve, reject) => {
+        const dialog = Office.context.ui.displayDialogAsync(redirectURI, dialogOptions);
+
+        return new Promise((resolve, reject) => {
+            if (dialog) {
+                dialog.addEventHandler(Office.EventType.DialogMessageReceived, async (arg) => {
+                    console.log('getting the code');
+                    const authCode = getAuthCodeFromURL(arg.message);
+                    dialog.close();
+
+                    try {
+                        const token = await exchangeAuthCodeForToken(authCode);
+                        resolve(token);
+                    } catch (err) {
+                        reject(err);
+                    }
+                });
+            } else {
+                console.log('DEEEPRERESSION')
+            }
+        });
+    });*/
 }
 
 
-function downloadEmails() {
-    console.log("HHHELLO THERE FROM THE OHTER SIDE")
+async function authenticate() {
+    try {
+        const token = await getCode();
+        console.log(token);
+    } catch (err) {
+        console.error(err);
+    }
 }
+
+
+
+/*async function downloadEmails() {
+    *//*if (Office.context.platform === "Web") {
+
+        //This is web OAuth login
+
+        // Ensure the Firebase SDK has been initialized before continuing.
+        firebase.initializeApp({
+            apiKey: "AIzaSyDVBPzpvxoABeSMrz_MKhSuO-b6BZm8MgA",
+            authDomain: "executiveassistant2023-949a8.firebaseapp.com",
+            projectId: "executiveassistant2023-949a8",
+            storageBucket: "executiveassistant2023-949a8.appspot.com",
+            messagingSenderId: "612446520648",
+            appId: "1:612446520648:web:42d1e1176dc364f2f49f7d",
+            measurementId: "G-379Z4W3P41"
+        });
+
+        const provider = new firebase.auth.OAuthProvider('microsoft.com');
+        provider.setCustomParameters({
+            tenant: 'common'
+        });
+        provider.addScope('Mail.Read');
+        provider.addScope('Mail.ReadWrite');
+        provider.addScope('Mail.ReadBasic');
+        provider.addScope('MailboxSettings.ReadWrite');
+
+
+        //provider.addScope('User.Read');
+        provider.addScope('openid');
+
+        firebase.auth().signInWithPopup(provider).then((result) => {
+            const credential = result.credential;
+            const accessToken = credential.accessToken;
+            console.log(`Access token: ${accessToken}`);
+
+            // downloadEmailHelper(accessToken);
+            testing(accessToken)
+
+        }).catch((error) => {
+            console.error(`Failed to authenticate user: ${error}`);
+        });
+    }
+    else {*//*
+       //This is the desktop OAuth Login
+
+        const clientID = "cc19483a-abdc-4adc-8fa4-a90d3cade274";
+        const scope = "openid profile email Mail.Read Mail.ReadWrite Mail.ReadBasic MailboxSettings.ReadWrite";
+        const clientSecret = "UFj8Q~riS1gHu-_LkvwejjNOAEpTEynXZadzDamY";
+        const redirectURI = "https://localhost:7150/";
+
+
+        const authUrl = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=${clientID}&response_type=code&redirect_uri=${redirectURI}&scope=openid profile email Mail.Read Mail.ReadWrite Mail.ReadBasic MailboxSettings.ReadWrite`;
+
+      //  const authEndpoint = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize';
+
+        // Open the dialog window for authentication
+    Office.context.ui.displayDialogAsync(authUrl, { height: 50, width: 50 }, function (result) {
+        console.log(result.status);
+            if (result.status === Office.AsyncResultStatus.Failed) {
+                console.error(result.error.message);
+                return;
+            }
+
+          //  Office.context.ui.messageParent('success');
+
+
+        console.log("INSIDIE");
+    
+
+            // The dialog was opened successfully, so wait for it to close and retrieve the result
+            
+        const dialog = result.value;
+        console.log(getAuthCodeFromURL());
+            console.log("dialog ", dialog);
+            console.log(result);
+
+            console.log("I'm sad...");
+        });
+
+
+      *//* Office.context.ui.displayDialogAsync(
+            authUrl,
+            { height: 60, width: 40 },
+            function (result) {
+                if (result.status === Office.AsyncResultStatus.Succeeded) {
+                    // Get the authorization code from the dialog URL
+                    const authCode = result.value.split('?code=')[1];
+
+                    // Exchange the authorization code for an access token
+                    const tokenEndpoint = 'https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token';
+                    const requestBody = {
+                        client_id: clientID,
+                        scope: scope,
+                        code: authCode,
+                        redirect_uri: redirectURI,
+                        grant_type: 'authorization_code',
+                        client_secret: clientSecret,
+                    };
+
+                    fetch(tokenEndpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams(requestBody),
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            const accessToken = data.access_token;
+
+                            console.log("GOT THE ACCESS TOKEN");
+
+                            // Use the access token to make requests to the Microsoft Graph API
+                            // ...
+                        })
+                        .catch((error) => {
+                            console.error(`Failed to get access token: ${error}`);
+                        });
+                } else {
+                    console.error(`Failed to display login page: ${result.error.message}`);
+                }
+            }
+        );*//*
+
+   // }
+}*/
+
+function getAuthCodeFromURL() {
+    debugger
+    // Get the current URL
+    const url = new URL(window.location.href);
+
+    // Get the auth code from the URL query parameters
+    const authCode = url.searchParams.get('code');
+
+    return authCode;
+}
+
+async function exchangeAuthCodeForToken(authCode, redirectURI, clientID, clientSecret) {
+    const tokenEndpoint = 'https://login.microsoftonline.com/common/oauth2/v2.0/token';
+
+    // Make a POST request to the token endpoint with the auth code and other required parameters
+    const response = await fetch(tokenEndpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `grant_type=authorization_code&code=${authCode}&redirect_uri=${redirectURI}&client_id=${clientID}&client_secret=${clientSecret}`
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to exchange auth code for token: ${response.statusText}`);
+    }
+
+    // Parse the response JSON and extract the access token
+    const tokenResponse = await response.json();
+    const accessToken = tokenResponse.access_token;
+
+    return accessToken;
+}
+
+
+async function testing(accessToken) {
+    console.log("INSIDE TesTING")
+    const batchSize = 10;
+    let skip = 0;
+    let allEmails = [];
+
+    while (true) {
+        // Fetch the next batch of emails
+        const response = await fetch(`https://graph.microsoft.com/v1.0/me/messages?$select=id,subject,body&$top=${batchSize}&$skip=${skip}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+
+        // If the response is not successful, break the loop
+        if (!response.ok) {
+            console.error(`Failed to fetch emails: ${response.statusText}`);
+            break;
+        }
+
+        // Parse the JSON response and add the emails to the array
+        const data = await response.json();
+        allEmails.push(...data.value);
+
+        // If there are no more emails, break the loop
+        if (data.value.length < batchSize) {
+            break;
+        }
+
+        // Update the skip value for the next batch
+        skip += batchSize;
+    }
+
+    console.log("EMIALS", allEmails)
+}
+
+async function downloadEmailHelper(accessToken) {
+    //Start downloading the emails
+
+    const emailID = new Set();
+    // Fetch all emails
+    const emailsResponse = await fetch("https://graph.microsoft.com/v1.0/me/messages?$select=id,subject", {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+    });
+
+    const emailsData = await emailsResponse.json();
+    const emails = emailsData.value;
+    console.log("Line 164 - email data", emails)
+
+    //Used to store the emails that are going to be sent to the backend
+    const formData = new FormData();
+
+    // Download each email as MIME content
+    for (const email of emails) {
+        const id = email.id;
+
+        console.log("subject...", email.subject)
+
+        if (emailID.has(id)) {
+            continue;
+        }
+
+        if (email.subject.includes("880")) {
+            console.log("DUPLICATE")
+        }
+        const mimeResponse = await fetch(`https://graph.microsoft.com/v1.0/me/messages/${id}/$value`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        });
+
+        //Get the MIME Content and send it to the backend
+        const mimeContent = await mimeResponse.blob();
+      
+      //  formData.append('file', mimeContent, `${email.subject}.eml`);
+
+        // Save MIME content to file in user's document folder
+        const filename = `${email.subject}.eml`;
+        const downloadLink = document.createElement("a");
+        downloadLink.href = URL.createObjectURL(mimeContent);
+       // downloadLink.download = `file:///C:/Users/<username>/Documents/${filename}`;
+        downloadLink.click();
+
+        emailID.add(id)
+    }
+
+/*    axios.post("/Home/sendEmails", formData)
+        .then(response => {
+            
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.error(error);
+        });*/
+}
+
 /*async function getFrom() {
     //Get the from and append the client's name
     const msgFrom = Office.context.mailbox.item.from;

@@ -23,9 +23,9 @@
 	<SupportUrl DefaultValue="http://www.contoso.com" />
 	<!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
 	<AppDomains>
-		<AppDomain>AppDomain1</AppDomain>
-		<AppDomain>AppDomain2</AppDomain>
-		<AppDomain>AppDomain3</AppDomain>
+			<AppDomain>https://localhost:7150</AppDomain>
+		<AppDomain>https://login.windows.net</AppDomain>
+		<AppDomain>https://login.microsoftonline.com</AppDomain>
 	</AppDomains>
 	<!--End Basic Settings. -->
 
@@ -179,6 +179,7 @@
 				<bt:Url id="SettingTaskPaneUrl" DefaultValue="https://localhost:7150/Home/Settings"/>
 				<bt:Url id="DirectorySelectorUrl" DefaultValue="https://localhost:7150/Home/DirectorySelector"/>
 				<bt:Url id="RetagEmailTaskPaneUrl" DefaultValue="https://localhost:7150/Home/RetagEmail"/>
+				<bt:Url id="TempTaskPaneUrl" DefaultValue="https://localhost:7150/Home/Temp"/>
 			</bt:Urls>
 			<bt:ShortStrings>
 				<bt:String id="groupLabel" DefaultValue="Executive Assistant Add-In"/>
@@ -186,12 +187,12 @@
 				<bt:String id="tagEmailTitle" DefaultValue="Tag Email"/>
 				<bt:String id="downloadEmailTitle" DefaultValue="Download Email"/>
 				<bt:String id="retagEmailTitle" DefaultValue="Retag Emails"/>
-				<bt:String id="settingTitle" DefaultValue="Settings"/>
+				<bt:String id="settingTitle" DefaultValue="Assign Priority"/>
 				<bt:String id="directorySelectorTitle" DefaultValue="Download Emails"/>
 			</bt:ShortStrings>
 			<bt:LongStrings>
 				<bt:String id="paneReadSuperTipDescription" DefaultValue="Opens a pane displaying all available properties. This is an example of a button that opens a task pane."/>
-				<bt:String id="settingsDescription" DefaultValue="Opens a pane and allows the user to modify the important words and weights for each client."/>
+				<bt:String id="settingsDescription" DefaultValue="Do you want every email from one person to be marked as important not matter the content of the email? If so enter their email address here?"/>
 				<bt:String id="directorySelectorDescription" DefaultValue="Opens a pane and allows the user to download emails to their computer."/>
 				<bt:String id="infoDescription" DefaultValue="Instructions on how to use our add in."/>
 				<bt:String id="retagEmailDescription" DefaultValue="Opens a pane that allows the user to retag the emails"/>

@@ -81,6 +81,10 @@
       "PackagePath": "staticwebassets\\js\\Settings.js"
     },
     {
+      "Id": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\EAServer\\wwwroot\\js\\testing.js",
+      "PackagePath": "staticwebassets\\js\\testing.js"
+    },
+    {
       "Id": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\EAServer\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },

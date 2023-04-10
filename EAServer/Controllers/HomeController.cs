@@ -51,6 +51,11 @@ namespace EAServer.Controllers
             return View();
         }
 
+        public IActionResult Temp()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
@@ -61,6 +66,24 @@ namespace EAServer.Controllers
         {
             Classifier classifier = new Classifier();
             return Content(classifier.execute(from, subject, body));
+        }
+
+        [HttpPost("/Home/sendEmails")]
+        public IActionResult sendEmails()
+        {
+
+            var files = Request.Form.Files;
+            if (files == null || files.Count == 0)
+            {
+                return BadRequest("No files were uploaded.");
+            }
+            
+            FolderSystem folder = new FolderSystem();
+            foreach(var file in files)
+            {
+                
+            }
+            return Ok();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -3,7 +3,7 @@
 /// </summary>
 namespace OutlookExecutable
 {
-    class FolderSystem
+    public class FolderSystem
     {
         string documentFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public FolderSystem()
