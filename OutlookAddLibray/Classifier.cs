@@ -87,7 +87,7 @@ namespace OutlookExecutable
         public string execute(string from, string subject, string body)
         {
 
-            folderSystem.SaveToFolder(from, body, subject);
+           // folderSystem.SaveToFolder(from, body, subject);
             if (exceptions.Keys.Contains(from))
             {
                 return exceptions[from];

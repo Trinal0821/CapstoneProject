@@ -61,17 +61,26 @@ namespace EAServer.Controllers
         [HttpGet]
         public IActionResult getTag(string from, string subject, string body)
         {
-            return Content(classifier.execute(from, subject, body));
+            lock (classifier)
+            {
+                return Content(classifier.execute(from, subject, body));
+            }
         }
         [HttpGet]
         public void Retag(string body, string tag)
         {
-            classifier.retrainData(body, tag);
+            lock (classifier)
+            {
+                classifier.retrainData(body, tag);
+            }
         }
         [HttpGet]
         public void Override(string sender, string tag)
         {
-            classifier.changeOverideDictionary(sender, tag);
+            lock (classifier)
+            {
+                classifier.changeOverideDictionary(sender, tag);
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

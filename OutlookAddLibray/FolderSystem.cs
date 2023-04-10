@@ -27,19 +27,12 @@ namespace OutlookExecutable
             // string filePath = @"C:\Client_Information\Client_Email\" + clientName;
             string filePath = Path.Combine(Path.Combine(documentFolder, "Client_Correspondence"), clientName);
 
-            if (!Directory.Exists(filePath))
-            {
-                Directory.CreateDirectory(filePath);
-                Directory.CreateDirectory(Path.Combine(filePath, "Miscellaneous "));
-                string tempPath = filePath + @"\" + "WordWeightsAdditions.txt";
-                File.WriteAllText(tempPath, "");
-            }
-
             string subject = emailSubject.Trim();
 
             string[] spiltsubject = subject.Split(" ");
 
             string[] fileList = System.IO.Directory.GetDirectories(filePath);
+
             bool filefound = false;
             if (Int32.TryParse(spiltsubject[1], out int value))
             {
@@ -66,5 +59,4 @@ namespace OutlookExecutable
             File.WriteAllText(filePath, email);
         }
     }
-
 }

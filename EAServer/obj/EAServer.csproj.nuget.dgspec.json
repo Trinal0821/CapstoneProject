@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\EAServer\\EAServer.csproj": {}
+    "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\EAServer\\EAServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\EAServer\\EAServer.csproj": {
+    "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\EAServer\\EAServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\EAServer\\EAServer.csproj",
+        "projectUniqueName": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\EAServer\\EAServer.csproj",
         "projectName": "EAServer",
-        "projectPath": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\EAServer\\EAServer.csproj",
-        "packagesPath": "C:\\Users\\trina\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\EAServer\\obj\\",
+        "projectPath": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\EAServer\\EAServer.csproj",
+        "packagesPath": "C:\\Users\\skate\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\EAServer\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\trina\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\skate\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj": {
-                "projectPath": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj"
+              "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj": {
+                "projectPath": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj"
               }
             }
           }
@@ -72,21 +77,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj": {
+    "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj",
+        "projectUniqueName": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj",
         "projectName": "OutlookAddLibray",
-        "projectPath": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj",
-        "packagesPath": "C:\\Users\\trina\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\trina\\OneDrive\\Desktop\\executive-assistants\\executive-assistants\\OutlookAddLibray\\obj\\",
+        "projectPath": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj",
+        "packagesPath": "C:\\Users\\skate\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\trina\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\skate\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -94,6 +103,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -137,7 +147,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
