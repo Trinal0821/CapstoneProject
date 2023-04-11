@@ -87,32 +87,44 @@ namespace OutlookExecutable
         public string execute(string from, string subject, string body)
         {
 
-           // folderSystem.SaveToFolder(from, body, subject);
-            if (exceptions.Keys.Contains(from))
-            {
-                return exceptions[from];
-            }
+            string[] fromsSpilt = from.Split("%split%");
+            string[] subjectSpilt = from.Split("%split%");
+            string[] bodySpilt = from.Split("%split%");
+
+            if (fromsSpilt.Length != subjectSpilt.Length || subjectSpilt.Length != bodySpilt.Length)
+                return "Error";
 
             string classifiedEmail = "";
-            var sampleData = new MLModel1.ModelInput()
+            for (int index = 0;  index < fromsSpilt.Length; index++)
             {
-                Col1 = "@" + body
-            };
+                string currentFrom = fromsSpilt[index];
+                string currentSubject = subjectSpilt[index];
+                string currentBody = bodySpilt[index];
 
-            //Load model and predict output
-            var result = MLModel1.Predict(sampleData);
-            string tagg = result.PredictedLabel.ToLowerInvariant();
+                // folderSystem.SaveToFolder(currentFrom, currentBody, currentSubject);
+                if (exceptions.Keys.Contains(currentFrom))
+                {
+                    return exceptions[currentFrom];
+                }
+                var sampleData = new MLModel1.ModelInput()
+                {
+                    Col1 = "@" + currentBody
+                };
 
-            if (tagg.Equals("important"))
-                classifiedEmail = "High Priority";
-            else if (tagg.Equals("unimportant"))
-                classifiedEmail = "Low Priority";
-            else
-                classifiedEmail = "Medium Priority";
+                //Load model and predict output
+                var result = MLModel1.Predict(sampleData);
+                string tagg = result.PredictedLabel.ToLowerInvariant();
 
-            return classifiedEmail;
-            // }
+                if (tagg.Equals("important"))
+                    classifiedEmail += "High Priority";
+                else if (tagg.Equals("unimportant"))
+                    classifiedEmail += "Low Priority";
+                else
+                    classifiedEmail += "Medium Priority";
 
+                    classifiedEmail += "%spilt%";
+            }
+            return classifiedEmail.Substring(0,classifiedEmail.Length - 8);
         }
         /// <summary>
         /// Send to trina 
