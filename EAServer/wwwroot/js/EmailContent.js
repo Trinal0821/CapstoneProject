@@ -1,4 +1,4 @@
-﻿Office.onReady(() => { 
+﻿/*Office.onReady(() => { 
     // Ensure the Firebase SDK has been initialized before continuing.
         firebase.initializeApp({
             apiKey: "AIzaSyDVBPzpvxoABeSMrz_MKhSuO-b6BZm8MgA",
@@ -31,3 +31,4 @@
 
 
 
+*/

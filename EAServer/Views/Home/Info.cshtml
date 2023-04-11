@@ -19,17 +19,19 @@
     <!-- <script src="Scripts/Office/1/office.js" type="text/javascript"></script>  -->
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
-        <!-- Add more Firebase services if needed -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+    <!-- Add more Firebase services if needed -->
 
 
 
     <script src="~/js/MessageBanner.js" type="text/javascript"></script>
-    <script src="~/js/EmailContent.js?v3.0" type="module"></script>
+    <script src="~/js/EmailContent.js?v2.0" type="module"></script>
 
 
     <link href="~/css/Button.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     @*<link href="~/css/MessageBanner.css" rel="stylesheet" type="text/css" />*@
 
 
@@ -44,27 +46,42 @@
 </head>
 <body>
     <h1>Welcome to Executive Assistant!</h1>
-    <p>Thank you for downloading Executive Assistant! We believe that we can make law secretaries life easier with our add in by saving hundres of hours sorting through emails.
-      With our add in we will automatically sort through your emails, tag them and download them at a click of a button.
+
+    <img src="https://localhost:7150/Images/logo.jpg" class="img-fluid" alt="Executive Assistant logo">
+
+    <h3>Welcome</h3>
+    <p>
+        Thank you for downloading Executive Assistant! We believe that we can make law secretaries life easier with our add in by saving hundres of hours sorting through emails.
+        With our add in we will automatically sort through your emails, tag them and download them at a click of a button.
         Welp without futher adieu, here's how you can use our add in
     </p>
 
-    <h3>Important Words Settings</h3>
-    <p>Have a client or company you'd like to add? Well, click on the settings buttons. From here, you can choose to set the important words and their weight by either company name
-        or client name. If you'd like it by company name then select company and fill in the required fields. Otherwise choose client name and fill in the fields.
+    <h3>Tag Emails</h3>
+    <p>
+        Need to assign a priority for all of the emails at once? Please click on tag emails. Once you click this button our machine learning algorithm will assign the email with High
+        Priority, Medium Priority or Low Priority. Please look at the images on where you can find our add in. NOTE: Please note that this will also download the email to your documents folder
+        as well.
+
+        If we tagged the email with the wrong priority, please click on the retag emails button. More info on this can be found below.
     </p>
 
-    <h3>Downloading Emails</h3>
-    <p>Need to download emails? Just click on the Download Emails button and we will download everything in inbox to the destination that you specified. </p>
+    <h3>Assign Priority</h3>
+    <p>
+        Do you want to mark all of the emails from a certain sender with a certain priority. Then please click on the on the assign priority button. This will mark all of the emails from that specific
+        sender as important. For example, if the sender is Bob and you want all of the emails to be medium priority, then our machine learning will mark all of the emails from Bob as medium priority.
+    </p>
 
     <h3>Retagging Emails</h3>
-    <p>Did we tag the email incorrectly? If so, please click on the Retag Email button and select the right tag. Our AI system will learn from this mistake and will try to tag the other
+    <p>
+        Did we tag the email incorrectly? If so, please click on the Retag Email button and select the right tag. Our machine learning system will learn from this mistake and will try to tag the other
         emails correctly next time.
     </p>
 
     <h3>Questions? Concerns? Feedback?</h3>
-    <p>We love to hear about what you think of our add in and how we can improve. Feel free to email use at <b>ExecutiveAssistant2023@OutlookAddLibray.com</b>. Thank you 
-        again for download our add in!</p>
-    
+    <p>
+        We love to hear about what you think of our add in and how we can improve. Feel free to email use at <b>ExecutiveAssistant2023@OutlookAddLibray.com</b>. Thank you
+        again for download our add in!
+    </p>
+
 </body>
 </html>

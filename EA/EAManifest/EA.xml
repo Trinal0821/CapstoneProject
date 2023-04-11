@@ -18,12 +18,12 @@
 	<!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
 	<DisplayName DefaultValue="Executive Assistant" />
 	<Description DefaultValue="Executive Assistant"/>
-	<IconUrl DefaultValue="https://localhost:7150/Images/Icon64.png"/>
+	<IconUrl DefaultValue="https://localhost:7150/Images/logo.jpg"/>
 
 	<SupportUrl DefaultValue="http://www.contoso.com" />
 	<!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
 	<AppDomains>
-			<AppDomain>https://localhost:7150</AppDomain>
+		<AppDomain>https://localhost:7150</AppDomain>
 		<AppDomain>https://login.windows.net</AppDomain>
 		<AppDomain>https://login.microsoftonline.com</AppDomain>
 	</AppDomains>
@@ -81,9 +81,9 @@
 										<Description resid="infoDescription" />
 									</Supertip>
 									<Icon>
-										<bt:Image size="16" resid="icon16" />
-										<bt:Image size="32" resid="icon32" />
-										<bt:Image size="80" resid="icon80" />
+										<bt:Image size="16" resid="questionmark" />
+										<bt:Image size="32" resid="questionmark" />
+										<bt:Image size="80" resid="questionmark" />
 									</Icon>
 									<Action xsi:type="ShowTaskpane">
 										<SourceLocation resid="infoTaskPaneUrl" />
@@ -98,31 +98,15 @@
 										<Description resid="tagEmailDescription" />
 									</Supertip>
 									<Icon>
-										<bt:Image size="16" resid="icon16" />
-										<bt:Image size="32" resid="icon32" />
-										<bt:Image size="80" resid="icon80" />
+										<bt:Image size="16" resid="tagIcon" />
+										<bt:Image size="32" resid="tagIcon" />
+										<bt:Image size="80" resid="tagIcon" />
 									</Icon>
 									<Action xsi:type="ExecuteFunction">
 										<FunctionName>tagEmail</FunctionName>
 									</Action>
 								</Control>
 
-								<!-- Launch the add-in : without a taskpane-->
-								<Control xsi:type="Button" id="downloadEmailButton">
-									<Label resid="downloadEmailTitle" />
-									<Supertip>
-										<Title resid="downloadEmailTitle" />
-										<Description resid="downloadEmailDescription" />
-									</Supertip>
-									<Icon>
-										<bt:Image size="16" resid="icon16" />
-										<bt:Image size="32" resid="icon32" />
-										<bt:Image size="80" resid="icon80" />
-									</Icon>
-									<Action xsi:type="ExecuteFunction">
-										<FunctionName>downloadEmails</FunctionName>
-									</Action>
-								</Control>
 
 								<!-- Launch the add-in : task pane button -->
 								<Control xsi:type="Button" id="SettingOpenTaskPane">
@@ -132,9 +116,9 @@
 										<Description resid="settingsDescription" />
 									</Supertip>
 									<Icon>
-										<bt:Image size="16" resid="icon16" />
-										<bt:Image size="32" resid="icon32" />
-										<bt:Image size="80" resid="icon80" />
+										<bt:Image size="16" resid="assignPriorityIcon" />
+										<bt:Image size="32" resid="assignPriorityIcon" />
+										<bt:Image size="80" resid="assignPriorityIcon" />
 									</Icon>
 									<Action xsi:type="ShowTaskpane">
 										<SourceLocation resid="SettingTaskPaneUrl" />
@@ -149,9 +133,9 @@
 										<Description resid="retagEmailDescription" />
 									</Supertip>
 									<Icon>
-										<bt:Image size="16" resid="icon16" />
-										<bt:Image size="32" resid="icon32" />
-										<bt:Image size="80" resid="icon80" />
+										<bt:Image size="16" resid="retagIcon" />
+										<bt:Image size="32" resid="retagIcon" />
+										<bt:Image size="80" resid="retagIcon" />
 									</Icon>
 									<Action xsi:type="ShowTaskpane">
 										<SourceLocation resid="RetagEmailTaskPaneUrl" />
@@ -172,6 +156,10 @@
 				<bt:Image id="icon16" DefaultValue="https://localhost:7150/Images/Icon16.png"/>
 				<bt:Image id="icon32" DefaultValue="https://localhost:7150/Images/Icon32.png"/>
 				<bt:Image id="icon80" DefaultValue="https://localhost:7150/Images/Icon80.png"/>
+				<bt:Image id="questionmark" DefaultValue="https://localhost:7150/Images/questionmark.png"/>
+				<bt:Image id="retagIcon" DefaultValue="https://localhost:7150/Images/retagIcon.png"/>
+				<bt:Image id="tagIcon" DefaultValue="https://localhost:7150/Images/tagIcon.png"/>
+				<bt:Image id="assignPriorityIcon" DefaultValue="https://localhost:7150/Images/exclamation.png"/>
 			</bt:Images>
 			<bt:Urls>
 				<bt:Url id="functionFile" DefaultValue="https://localhost:7150/Home/FunctionFile"/>
