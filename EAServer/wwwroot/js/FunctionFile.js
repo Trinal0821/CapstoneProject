@@ -58,66 +58,88 @@ async function tagEmail() {
         console.log(`Access token: ${accessToken}`);
 
         // Use the access token to call the Microsoft Graph API or other Microsoft APIs.
-       getUnreadEmails(accessToken);
-      //  downloadEmails(accessToken)
+        getUnreadEmails(accessToken);
+        //  downloadEmails(accessToken)
     }).catch((error) => {
         console.error(`Failed to authenticate user: ${error}`);
     });
+}
 
-    async function getUnreadEmails(authtoken) {
+async function getUnreadEmails(authtoken) {
 
-        var counter = 0;
+    var counter = 0;
+    var fromString = "";
+    var fromArray = [];
+    var subjectString = "";
+    var subjectArray = [];
+    var bodyString = "";
+    var bodyArray = [];
+    var emails = null;
 
-        fetch("https://graph.microsoft.com/v1.0/me/messages", {
-            headers: {
-                Authorization: `Bearer ${authtoken}`
-            }
+    fetch("https://graph.microsoft.com/v1.0/me/messages?", {
+        headers: {
+            Authorization: `Bearer ${authtoken}`
         }
-        ).then((response) => {
-            console.log("return");
-            response.json().then((data) => {
-                const emails = data.value;
-                emails.forEach((email) => {
-                    console.log(email)
-
-                    axios.get("/Home/getTag", {
-                        params:
-                        {
-                            from: email.from.emailAddress.name,
-                            subject: email.subject,
-                            body: email.bodyPreview
-                        }
-                    })
-                        .then(res => {
-
-                            const updateUrl = `https://graph.microsoft.com/v1.0/me/messages/${email.id}`;
-                            const payload = {
-                                categories: [res.data]
-                            };
-                            fetch(updateUrl, {
-                                method: 'PATCH',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Authorization': `Bearer ${authtoken}`
-
-                                },
-                                body: JSON.stringify(payload)
-                            }).then((response) => {
-                                counter= counter + 1;
-                                console.log("added tag");
-                                console.log(response);
-                            }).catch((error) => {
-                                console.error(`Failed to update categories: ${error}`);
-                            });
-                        });
+    }
+    ).then((response) => {
+        console.log("return");
+        response.json().then((data) => {
+            emails = data.value;
+            emails.forEach((email) => {
+                console.log(email);
+                fromString = fromString + email.from.emailAddress.name + "%split%";
+                fromArray.push(email.from.emailAddress.name);
+                subjectString = subjectString + email.subject + "%split%";
+                subjectArray.push(email.subject);
+                bodyString = bodyString + email.bodyPreview + "%split%";
+                bodyArray.push(email.bodyPreview);
 
 
-
-                });
+                //EmailArray.push(email.from.emailAddress.name + "%split%" + email.subject + "%split%" + email.bodyPreview)
+                //sleep(5000)
+                //tagSingleEmail(email);
+                //new Promise(setTimeout(tagSingleEmail, 10000, email))
             });
-        });
-    };
+            console.log(fromString);
+            console.log(subjectString);
+            console.log(bodyString);
+            axios.get("/Home/getTag", {
+                params:
+                {
+                    from: fromString,
+                    subject: subjectString,
+                    body: bodyString
+                }
+            })
+                .then(res => {
+                    console.log(res)
+                    const resArray = res.data.split("%spilt%");
+                    for (let i = 0; i < resArray.length; i++) {
+                        const updateUrl = `https://graph.microsoft.com/v1.0/me/messages/${emails[i].id}`;
+                        console.log([resArray[i]]);
+                        const payload = {
+                            categories: [resArray[i]]
+                        };
+                        fetch(updateUrl, {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${authtoken}`
 
+                            },
+                            body: JSON.stringify(payload)
+                        }).then((response) => {
+                            //counter = counter + 1;
+                            console.log("added tag");
+                            console.log(response);
+                        }).catch((error) => {
+                            console.error(`Failed to update categories: ${error}`);
+                        })
+                    };
+                });
+        });
+    });
+};
  /*   if ("Notification" in window) {
         // Request permission to show notifications
         Notification.requestPermission().then(function (result) {
@@ -131,7 +153,7 @@ async function tagEmail() {
             }
         });
     }*/
-}
+
 
 async function downloadEmails() {
     const clientID = "cc19483a-abdc-4adc-8fa4-a90d3cade274";
