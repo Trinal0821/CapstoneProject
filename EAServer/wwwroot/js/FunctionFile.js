@@ -100,9 +100,9 @@ async function getUnreadEmails(authtoken) {
                 //tagSingleEmail(email);
                 //new Promise(setTimeout(tagSingleEmail, 10000, email))
             });
-            console.log(fromString);
-            console.log(subjectString);
-            console.log(bodyString);
+          //  console.log(fromString);
+          //  console.log(subjectString);
+           // console.log(bodyString);
             axios.get("/Home/getTag", {
                 params:
                 {

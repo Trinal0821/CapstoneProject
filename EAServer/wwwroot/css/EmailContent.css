@@ -1,3 +1,14 @@
-﻿#selectedClientName, #back, #selectedCompanyName, #addBtn {
-    display: none;
+﻿/*#low, #medium, #high {
+    vertical-align: middle;
+    align-content:flex-start;
+}
+*/
+
+.testing {
+    display: flex;
+    justify-content: center;
+}
+
+p, .form-check {
+    padding-top: 10px;
 }
