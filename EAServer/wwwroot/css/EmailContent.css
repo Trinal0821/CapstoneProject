@@ -4,7 +4,7 @@
 }
 */
 
-.bigContainer, h1, p, b {
+.bigContainer, h1, p {
     display: flex;
     justify-content: center;
 }
