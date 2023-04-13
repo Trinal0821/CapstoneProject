@@ -51,11 +51,11 @@ function Override() {
         var tagColor = "";
 
         removeCategories();
-        if (document.getElementById("senderlow").checked) {
+        if (document.getElementById("senderLow").checked) {
             AssignTags("Low Priority");
             tagColor = "Low Priority";
         }
-        else if (document.getElementById("sendermedium").checked) {
+        else if (document.getElementById("senderMedium").checked) {
             AssignTags("Medium Priority");
             tagColor = "Medium Priority";
         }

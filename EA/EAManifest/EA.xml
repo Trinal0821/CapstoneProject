@@ -172,8 +172,8 @@
 			<bt:ShortStrings>
 				<bt:String id="groupLabel" DefaultValue="Executive Assistant Add-In"/>
 				<bt:String id="infoTitle" DefaultValue="How to Use EA"/>
-				<bt:String id="tagEmailTitle" DefaultValue="Tag Email"/>
-				<bt:String id="downloadEmailTitle" DefaultValue="Download Email"/>
+				<bt:String id="tagEmailTitle" DefaultValue="Tag Emails"/>
+				<bt:String id="downloadEmailTitle" DefaultValue="Download Emails"/>
 				<bt:String id="retagEmailTitle" DefaultValue="Retag Emails"/>
 				<bt:String id="settingTitle" DefaultValue="Assign Priority"/>
 				<bt:String id="directorySelectorTitle" DefaultValue="Download Emails"/>

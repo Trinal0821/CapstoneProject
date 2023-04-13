@@ -13,7 +13,8 @@ namespace OutlookAddLibray
 {
     public partial class MLModel1
     {
-        public const string RetrainFilePath =  @"C:\Users\skate\source\repos\executive-assistants\MLClassifier\testing-INFOtext.txt";
+       // public static string RetrainFilePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\\OutlookAddLibray\\testing-INFOtext.txt"));
+
         public const char RetrainSeparatorChar = '	';
         public const bool RetrainHasHeader =  false;
 
@@ -24,7 +25,7 @@ namespace OutlookAddLibray
         /// <param name="inputDataFilePath">Path to the data file for training.</param>
         /// <param name="separatorChar">Separator character for delimited training file.</param>
         /// <param name="hasHeader">Boolean if training file has a header.</param>
-        public static void Train(string outputModelPath, string inputDataFilePath = RetrainFilePath, char separatorChar = RetrainSeparatorChar, bool hasHeader = RetrainHasHeader)
+        public static void Train(string outputModelPath, string inputDataFilePath, char separatorChar = RetrainSeparatorChar, bool hasHeader = RetrainHasHeader)
         {
             var mlContext = new MLContext();
 

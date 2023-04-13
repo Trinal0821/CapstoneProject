@@ -5,6 +5,22 @@
       "PackagePath": "staticwebassets\\EAServer.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\Images\\AssignPriority1.png",
+      "PackagePath": "staticwebassets\\Images\\AssignPriority1.png"
+    },
+    {
+      "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\Images\\AssignPriority2.png",
+      "PackagePath": "staticwebassets\\Images\\AssignPriority2.png"
+    },
+    {
+      "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\Images\\AssignPriority3.png",
+      "PackagePath": "staticwebassets\\Images\\AssignPriority3.png"
+    },
+    {
+      "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\Images\\AssignPriority4.png",
+      "PackagePath": "staticwebassets\\Images\\AssignPriority4.png"
+    },
+    {
       "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\Images\\Icon16.png",
       "PackagePath": "staticwebassets\\Images\\Icon16.png"
     },
@@ -19,6 +35,30 @@
     {
       "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\Images\\Icon80.png",
       "PackagePath": "staticwebassets\\Images\\Icon80.png"
+    },
+    {
+      "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\Images\\RetagEmails2.png",
+      "PackagePath": "staticwebassets\\Images\\RetagEmails2.png"
+    },
+    {
+      "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\Images\\RetagEmails3.png",
+      "PackagePath": "staticwebassets\\Images\\RetagEmails3.png"
+    },
+    {
+      "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\Images\\RetagEmails4.png",
+      "PackagePath": "staticwebassets\\Images\\RetagEmails4.png"
+    },
+    {
+      "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\Images\\TagEmails1.png",
+      "PackagePath": "staticwebassets\\Images\\TagEmails1.png"
+    },
+    {
+      "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\Images\\TagEmails2.png",
+      "PackagePath": "staticwebassets\\Images\\TagEmails2.png"
+    },
+    {
+      "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\Images\\TagEmails3.png",
+      "PackagePath": "staticwebassets\\Images\\TagEmails3.png"
     },
     {
       "Id": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\EAServer\\wwwroot\\Images\\exclamation.png",

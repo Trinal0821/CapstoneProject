@@ -4,11 +4,12 @@
 }
 */
 
-.testing {
+.bigContainer, h1, p, b {
     display: flex;
     justify-content: center;
 }
 
-p, .form-check {
+p, .form-check, b {
     padding-top: 10px;
 }
+
