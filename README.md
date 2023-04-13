@@ -15,8 +15,8 @@ From the Add-Ins dialog, click "my add-ins", scroll to the bottom and click the 
 Our server currently runs on local host so to open the server open the solution at locationOfClonedRepository/EA/EA.sln in visual studio. THe click the green start arrow at the top and it should open a localhost wepage. Now you are ready to use this Email classifier
 
 ## Authors and acknowledgment
-Saphora Bateman
-Trina Luong
-Andrew Gill
+Saphora Bateman,
+Trina Luong,
+Andrew Gill,
 Zachary Gundersen
 
