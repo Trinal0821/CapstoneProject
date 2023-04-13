@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.ML;
+﻿using Microsoft.ML;
 using OutlookAddLibray;
 using System;
 using System.Reflection.PortableExecutable;
@@ -153,11 +151,25 @@ namespace OutlookExecutable
             } 
             else
             { */
+            string newtag = "";
+            string list = "";
+            using (StreamReader reader = new StreamReader(inputfilePath))
+            {
+                list = reader.ReadToEnd();
+            }
             using (StreamWriter writer = File.AppendText(inputfilePath))
             {
-                //exceptions.Add(sender, Tag);
-                writer.WriteLine();
-                writer.Write(sender + "\t" + Tag);
+                if (Tag.Equals("High Priority"))
+                    newtag = "important";
+                else if (Tag.Equals("Low Priority"))
+                    newtag = "unimportant";
+                else
+                    newtag = "semi-important";
+                if (!list.Contains(sender + "\t" + newtag))
+                {
+                    writer.WriteLine();
+                    writer.Write(sender + "\t" + newtag);
+                }
             }
 
         }
