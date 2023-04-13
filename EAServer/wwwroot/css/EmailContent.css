@@ -9,7 +9,7 @@
     justify-content: center;
 }
 
-p, .form-check, b {
+.form-check{
     padding-top: 10px;
 }
 

@@ -88,43 +88,47 @@ namespace OutlookExecutable
         {
 
             string[] fromsSpilt = from.Split("%split%");
-            string[] subjectSpilt = from.Split("%split%");
-            string[] bodySpilt = from.Split("%split%");
+            string[] subjectSpilt = subject.Split("%split%");
+            string[] bodySpilt = body.Split("%split%");
 
             if (fromsSpilt.Length != subjectSpilt.Length || subjectSpilt.Length != bodySpilt.Length)
                 return "Error";
 
             string classifiedEmail = "";
-            for (int index = 0;  index < fromsSpilt.Length; index++)
+            for (int index = 0; index < fromsSpilt.Length; index++)
             {
                 string currentFrom = fromsSpilt[index];
                 string currentSubject = subjectSpilt[index];
                 string currentBody = bodySpilt[index];
 
                 // folderSystem.SaveToFolder(currentFrom, currentBody, currentSubject);
-                if (exceptions.Keys.Contains(currentFrom))
+                if (!exceptions.Keys.Contains(currentFrom))
                 {
-                    return exceptions[currentFrom];
+
+
+                    var sampleData = new MLModel1.ModelInput()
+                    {
+                        Col1 = "@" + currentBody
+                    };
+
+                    //Load model and predict output
+                    var result = MLModel1.Predict(sampleData);
+                    string tagg = result.PredictedLabel.ToLowerInvariant();
+
+                    if (tagg.Equals("important"))
+                        classifiedEmail += "High Priority";
+                    else if (tagg.Equals("unimportant"))
+                        classifiedEmail += "Low Priority";
+                    else
+                        classifiedEmail += "Medium Priority";
                 }
-                var sampleData = new MLModel1.ModelInput()
-                {
-                    Col1 = "@" + currentBody
-                };
-
-                //Load model and predict output
-                var result = MLModel1.Predict(sampleData);
-                string tagg = result.PredictedLabel.ToLowerInvariant();
-
-                if (tagg.Equals("important"))
-                    classifiedEmail += "High Priority";
-                else if (tagg.Equals("unimportant"))
-                    classifiedEmail += "Low Priority";
                 else
-                    classifiedEmail += "Medium Priority";
-
-                    classifiedEmail += "%spilt%";
+                {
+                    classifiedEmail += exceptions[currentFrom];
+                }
+                classifiedEmail += "%spilt%";
             }
-            return classifiedEmail.Substring(0,classifiedEmail.Length - 8);
+            return classifiedEmail.Substring(0, classifiedEmail.Length - 8);
         }
         /// <summary>
         /// Send to trina 

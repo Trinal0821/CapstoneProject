@@ -76,7 +76,7 @@ async function getUnreadEmails(authtoken) {
     var bodyArray = [];
     var emails = null;
 
-    fetch("https://graph.microsoft.com/v1.0/me/messages?", {
+    fetch("https://graph.microsoft.com/v1.0/me/mailFolders/inbox/messages?$top=10", {
         headers: {
             Authorization: `Bearer ${authtoken}`
         }
@@ -100,9 +100,9 @@ async function getUnreadEmails(authtoken) {
                 //tagSingleEmail(email);
                 //new Promise(setTimeout(tagSingleEmail, 10000, email))
             });
-          //  console.log(fromString);
-          //  console.log(subjectString);
-           // console.log(bodyString);
+            console.log(fromString);
+           console.log(subjectString);
+            console.log(bodyString);
             axios.get("/Home/getTag", {
                 params:
                 {
@@ -155,7 +155,7 @@ async function getUnreadEmails(authtoken) {
     }*/
 
 
-async function downloadEmails() {
+/*async function downloadEmails() {
     const clientID = "cc19483a-abdc-4adc-8fa4-a90d3cade274";
     const scope = "openid profile email Mail.Read Mail.ReadWrite Mail.ReadBasic MailboxSettings.ReadWrite";
     const clientSecret = "UFj8Q~riS1gHu-_LkvwejjNOAEpTEynXZadzDamY";
@@ -200,7 +200,7 @@ async function downloadEmails() {
                 }
             }
         );
-    });
+    });*/
 
 /*    return new Promise((resolve, reject) => {
         const dialog = Office.context.ui.displayDialogAsync(redirectURI, dialogOptions);
@@ -224,7 +224,7 @@ async function downloadEmails() {
             }
         });
     });*/
-}
+//}
 
 
 async function authenticate() {
@@ -238,8 +238,9 @@ async function authenticate() {
 
 
 
-/*async function downloadEmails() {
-    *//*if (Office.context.platform === "Web") {
+async function downloadEmails() {
+
+    console.log("JSJSJSDJDJ");
 
         //This is web OAuth login
 
@@ -272,52 +273,16 @@ async function authenticate() {
             const accessToken = credential.accessToken;
             console.log(`Access token: ${accessToken}`);
 
-            // downloadEmailHelper(accessToken);
-            testing(accessToken)
+            downloadEmailHelper(accessToken);
+           // testing(accessToken)
 
         }).catch((error) => {
             console.error(`Failed to authenticate user: ${error}`);
         });
-    }
-    else {*//*
-       //This is the desktop OAuth Login
-
-        const clientID = "cc19483a-abdc-4adc-8fa4-a90d3cade274";
-        const scope = "openid profile email Mail.Read Mail.ReadWrite Mail.ReadBasic MailboxSettings.ReadWrite";
-        const clientSecret = "UFj8Q~riS1gHu-_LkvwejjNOAEpTEynXZadzDamY";
-        const redirectURI = "https://localhost:7150/";
-
-
-        const authUrl = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=${clientID}&response_type=code&redirect_uri=${redirectURI}&scope=openid profile email Mail.Read Mail.ReadWrite Mail.ReadBasic MailboxSettings.ReadWrite`;
-
-      //  const authEndpoint = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize';
-
-        // Open the dialog window for authentication
-    Office.context.ui.displayDialogAsync(authUrl, { height: 50, width: 50 }, function (result) {
-        console.log(result.status);
-            if (result.status === Office.AsyncResultStatus.Failed) {
-                console.error(result.error.message);
-                return;
-            }
-
-          //  Office.context.ui.messageParent('success');
-
-
-        console.log("INSIDIE");
     
 
-            // The dialog was opened successfully, so wait for it to close and retrieve the result
-            
-        const dialog = result.value;
-        console.log(getAuthCodeFromURL());
-            console.log("dialog ", dialog);
-            console.log(result);
 
-            console.log("I'm sad...");
-        });
-
-
-      *//* Office.context.ui.displayDialogAsync(
+      /* Office.context.ui.displayDialogAsync(
             authUrl,
             { height: 60, width: 40 },
             function (result) {
@@ -357,10 +322,8 @@ async function authenticate() {
                     console.error(`Failed to display login page: ${result.error.message}`);
                 }
             }
-        );*//*
-
-   // }
-}*/
+        );*/
+}
 
 function getAuthCodeFromURL() {
     debugger
@@ -436,9 +399,9 @@ async function testing(accessToken) {
 async function downloadEmailHelper(accessToken) {
     //Start downloading the emails
 
-    const emailID = new Set();
+  //  const emailID = new Set();
     // Fetch all emails
-    const emailsResponse = await fetch("https://graph.microsoft.com/v1.0/me/messages?$select=id,subject", {
+    const emailsResponse = await fetch("https://graph.microsoft.com/v1.0/me/mailFolders/inbox/messages?$select=id,subject", {
         headers: {
             Authorization: `Bearer ${accessToken}`,
         },
@@ -457,13 +420,7 @@ async function downloadEmailHelper(accessToken) {
 
         console.log("subject...", email.subject)
 
-        if (emailID.has(id)) {
-            continue;
-        }
-
-        if (email.subject.includes("880")) {
-            console.log("DUPLICATE")
-        }
+  
         const mimeResponse = await fetch(`https://graph.microsoft.com/v1.0/me/messages/${id}/$value`, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -479,10 +436,9 @@ async function downloadEmailHelper(accessToken) {
         const filename = `${email.subject}.eml`;
         const downloadLink = document.createElement("a");
         downloadLink.href = URL.createObjectURL(mimeContent);
+        downloadLink.download = filename;
        // downloadLink.download = `file:///C:/Users/<username>/Documents/${filename}`;
         downloadLink.click();
-
-        emailID.add(id)
     }
 
 /*    axios.post("/Home/sendEmails", formData)

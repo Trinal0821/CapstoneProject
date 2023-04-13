@@ -107,6 +107,23 @@
 									</Action>
 								</Control>
 
+								<!-- Launch the add-in : without a taskpane-->
+								<Control xsi:type="Button" id="downloadEmailButton">
+									<Label resid="downloadEmailTitle" />
+									<Supertip>
+										<Title resid="downloadEmailTitle" />
+										<Description resid="tagEmailDescription" />
+									</Supertip>
+									<Icon>
+										<bt:Image size="16" resid="tagIcon" />
+										<bt:Image size="32" resid="tagIcon" />
+										<bt:Image size="80" resid="tagIcon" />
+									</Icon>
+									<Action xsi:type="ExecuteFunction">
+										<FunctionName>downloadEmails</FunctionName>
+									</Action>
+								</Control>
+
 
 								<!-- Launch the add-in : task pane button -->
 								<Control xsi:type="Button" id="SettingOpenTaskPane">
