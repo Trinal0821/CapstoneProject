@@ -98,8 +98,8 @@ namespace OutlookExecutable
                 string currentFrom = fromsSpilt[index];
                 string currentSubject = subjectSpilt[index];
                 string currentBody = bodySpilt[index];
-
-                // folderSystem.SaveToFolder(currentFrom, currentBody, currentSubject);
+                string tagg = "";
+                folderSystem.SaveToFolder(currentFrom, currentBody, currentSubject);
                 if (!exceptions.Keys.Contains(currentFrom))
                 {
 
@@ -111,19 +111,13 @@ namespace OutlookExecutable
 
                     //Load model and predict output
                     var result = MLModel1.Predict(sampleData);
-                    string tagg = result.PredictedLabel.ToLowerInvariant();
-
-                    if (tagg.Equals("important"))
-                        classifiedEmail += "High Priority";
-                    else if (tagg.Equals("unimportant"))
-                        classifiedEmail += "Low Priority";
-                    else
-                        classifiedEmail += "Medium Priority";
+                    tagg = result.PredictedLabel.ToLowerInvariant();
                 }
                 else
                 {
-                    classifiedEmail += exceptions[currentFrom];
+                    tagg += exceptions[currentFrom];
                 }
+                classifiedEmail += tagg;
                 classifiedEmail += "%spilt%";
             }
             return classifiedEmail.Substring(0, classifiedEmail.Length - 8);
@@ -159,12 +153,10 @@ namespace OutlookExecutable
             }
             using (StreamWriter writer = File.AppendText(inputfilePath))
             {
-                if (Tag.Equals("High Priority"))
-                    newtag = "important";
-                else if (Tag.Equals("Low Priority"))
-                    newtag = "unimportant";
+                if (Tag.Contains("remove"))
+                    newtag = "remove";
                 else
-                    newtag = "semi-important";
+                    newtag = Tag;
                 if (!list.Contains(sender + "\t" + newtag))
                 {
                     writer.WriteLine();

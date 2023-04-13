@@ -2,6 +2,31 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "LightGBM/2.3.1": {
+        "type": "package",
+        "build": {
+          "build/LightGBM.props": {},
+          "build/LightGBM.targets": {}
+        },
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/lib_lightgbm.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx-x64/native/lib_lightgbm.dylib": {
+            "assetType": "native",
+            "rid": "osx-x64"
+          },
+          "runtimes/win-x64/native/lib_lightgbm.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x64/native/lightgbm.exe": {
+            "assetType": "native",
+            "rid": "win-x64"
+          }
+        }
+      },
       "Microsoft.ML/2.0.1": {
         "type": "package",
         "dependencies": {
@@ -192,6 +217,24 @@
           "runtimes/win-x86/native/FastTreeNative.dll": {
             "assetType": "native",
             "rid": "win-x86"
+          }
+        }
+      },
+      "Microsoft.ML.LightGbm/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "LightGBM": "2.3.1",
+          "Microsoft.ML": "2.0.0",
+          "Microsoft.ML.FastTree": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.ML.LightGbm.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.ML.LightGbm.dll": {
+            "related": ".xml"
           }
         }
       },
@@ -389,6 +432,23 @@
     }
   },
   "libraries": {
+    "LightGBM/2.3.1": {
+      "sha512": "2YVf5McWa6PT00EJnVYTZLAvTQ2YArIWUmMJ3Fu46ZL1RdKnqCy1s+iUeWxvEuviaQ/cXt6M/EaWpVHnXGc9gg==",
+      "type": "package",
+      "path": "lightgbm/2.3.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/LightGBM.props",
+        "build/LightGBM.targets",
+        "lightgbm.2.3.1.nupkg.sha512",
+        "lightgbm.nuspec",
+        "runtimes/linux-x64/native/lib_lightgbm.so",
+        "runtimes/osx-x64/native/lib_lightgbm.dylib",
+        "runtimes/win-x64/native/lib_lightgbm.dll",
+        "runtimes/win-x64/native/lightgbm.exe"
+      ]
+    },
     "Microsoft.ML/2.0.1": {
       "sha512": "yD5kWZfisykwiGG66wJToSicY9MP847Grl8kLALQyqyiyQjr408ChdGW1JG7D0wHN7Zbs1KkCZvidi6pMFYR/A==",
       "type": "package",
@@ -492,6 +552,22 @@
         "runtimes/osx-x64/native/libFastTreeNative.dylib",
         "runtimes/win-x64/native/FastTreeNative.dll",
         "runtimes/win-x86/native/FastTreeNative.dll"
+      ]
+    },
+    "Microsoft.ML.LightGbm/2.0.0": {
+      "sha512": "iWOwVr53tNbv8cn9G2WrHjO4i1XHMUbSIUr3AS04l9IZ9svWJYJRzPEzx0SPj5e2voX8BbvTZEjGNzOGxzVVtg==",
+      "type": "package",
+      "path": "microsoft.ml.lightgbm/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netstandard2.0/Microsoft.ML.LightGbm.dll",
+        "lib/netstandard2.0/Microsoft.ML.LightGbm.xml",
+        "microsoft.ml.lightgbm.2.0.0.nupkg.sha512",
+        "microsoft.ml.lightgbm.nuspec",
+        "mlnetlogo.png"
       ]
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
@@ -1181,23 +1257,29 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.ML >= 2.0.1",
-      "Microsoft.ML.FastTree >= 2.0.1"
+      "Microsoft.ML.FastTree >= 2.0.1",
+      "Microsoft.ML.LightGbm >= 2.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\trina\\.nuget\\packages\\": {}
+    "C:\\Users\\skate\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj",
+      "projectUniqueName": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj",
       "projectName": "OutlookAddLibray",
-      "projectPath": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj",
-      "packagesPath": "C:\\Users\\trina\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\trina\\OneDrive\\Documents\\ExecutiveAssistant\\executive-assistants\\OutlookAddLibray\\obj\\",
+      "projectPath": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\OutlookAddLibray.csproj",
+      "packagesPath": "C:\\Users\\skate\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\skate\\Source\\Repos\\executive-assistants\\OutlookAddLibray\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\trina\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\skate\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1205,6 +1287,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1230,6 +1313,10 @@
           "Microsoft.ML.FastTree": {
             "target": "Package",
             "version": "[2.0.1, )"
+          },
+          "Microsoft.ML.LightGbm": {
+            "target": "Package",
+            "version": "[2.0.0, )"
           }
         },
         "imports": [
@@ -1248,7 +1335,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

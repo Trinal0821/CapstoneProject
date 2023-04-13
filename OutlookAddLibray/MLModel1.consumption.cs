@@ -17,11 +17,11 @@ namespace OutlookAddLibray
         {
             [LoadColumn(0)]
             [ColumnName(@"col0")]
-            public string ?Col0 { get; set; }
+            public string Col0 { get; set; }
 
             [LoadColumn(1)]
             [ColumnName(@"col1")]
-            public string ?Col1 { get; set; }
+            public string Col1 { get; set; }
 
         }
 
@@ -37,21 +37,21 @@ namespace OutlookAddLibray
             public uint Col0 { get; set; }
 
             [ColumnName(@"col1")]
-            public float[] ?Col1 { get; set; }
+            public float[] Col1 { get; set; }
 
             [ColumnName(@"Features")]
-            public float[] ?Features { get; set; }
+            public float[] Features { get; set; }
 
             [ColumnName(@"PredictedLabel")]
-            public string ?PredictedLabel { get; set; }
+            public string PredictedLabel { get; set; }
 
             [ColumnName(@"Score")]
-            public float[] ?Score { get; set; }
+            public float[] Score { get; set; }
 
         }
 
         #endregion
-
+        // might change check
         private static string MLNetModelPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\\OutlookAddLibray\\MLModel1.mlnet"));
 
         public static readonly Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(() => CreatePredictEngine(), true);

@@ -8,13 +8,8 @@ namespace OutlookExecutable
         string documentFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public FolderSystem()
         {
-            // string ClientEmail = @"C:\Client_Information\Client_Email";
-
-            string clientEmailDirectory = Path.Combine(documentFolder, "Client_Correspondence");
-            if (!Directory.Exists(clientEmailDirectory))
-            {
-                Directory.CreateDirectory(clientEmailDirectory);
-            }
+            string clientEmailDirectory = Path.Combine(documentFolder, "EA_Client_Correspondence");
+            CreateFolder(clientEmailDirectory);
         }
 
         /// <summary>
@@ -24,39 +19,52 @@ namespace OutlookExecutable
         /// <param name="email"></param>
         public void SaveToFolder(string clientName, string email, string emailSubject)
         {
-            // string filePath = @"C:\Client_Information\Client_Email\" + clientName;
-            string filePath = Path.Combine(Path.Combine(documentFolder, "Client_Correspondence"), clientName);
 
+            string filePath = Path.Combine(documentFolder, "EA_Client_Correspondence");
             string subject = emailSubject.Trim();
 
             string[] spiltsubject = subject.Split(" ");
 
             string[] fileList = System.IO.Directory.GetDirectories(filePath);
 
+            filePath = Path.Combine(filePath, clientName);
+            CreateFolder(filePath);
             bool filefound = false;
-            if (Int32.TryParse(spiltsubject[1], out int value) && spiltsubject.Length > 1)
+            if (spiltsubject.Length > 1)
             {
-                string sub = spiltsubject[0] + " " + spiltsubject[1];
-                foreach (string file in fileList)
+                if (Int32.TryParse(spiltsubject[1], out int value))
                 {
-                    if (file.Contains(sub))
+                    string sub = spiltsubject[0] + " " + spiltsubject[1];
+                    foreach (string file in fileList)
                     {
-                        filefound = true;
-                        break;
+                        if (file.Contains(sub))
+                        {
+                            filefound = true;
+                            break;
+                        }
                     }
-                }
-                filePath = Path.Combine(filePath, sub);
-                if (!filefound)
-                {
-                    Directory.CreateDirectory(filePath);
+                    filePath = Path.Combine(filePath, sub);
+                    CreateFolder(filePath);
                 }
             }
             else
             {
                 filePath = Path.Combine(filePath, "Miscellaneous");
+                CreateFolder(filePath);
             }
             filePath = filePath + @"\" + subject + ".txt";
             File.WriteAllText(filePath, email);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filePath"></param>
+        public static void CreateFolder(string filePath)
+        {
+            if (!Directory.Exists(filePath))
+            {
+                Directory.CreateDirectory(filePath);
+            }
         }
     }
 }

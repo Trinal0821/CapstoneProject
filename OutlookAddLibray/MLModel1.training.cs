@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.ML.Data;
-using Microsoft.ML.Trainers.FastTree;
+using Microsoft.ML.Trainers.LightGbm;
 using Microsoft.ML.Trainers;
 using Microsoft.ML;
 
@@ -13,8 +13,7 @@ namespace OutlookAddLibray
 {
     public partial class MLModel1
     {
-       // public static string RetrainFilePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\\OutlookAddLibray\\testing-INFOtext.txt"));
-
+        public const string RetrainFilePath =  @"C:\Users\skate\source\repos\executive-assistants\OutlookAddLibray\testing-INFOtext.txt";
         public const char RetrainSeparatorChar = '	';
         public const bool RetrainHasHeader =  false;
 
@@ -25,7 +24,7 @@ namespace OutlookAddLibray
         /// <param name="inputDataFilePath">Path to the data file for training.</param>
         /// <param name="separatorChar">Separator character for delimited training file.</param>
         /// <param name="hasHeader">Boolean if training file has a header.</param>
-        public static void Train(string outputModelPath, string inputDataFilePath, char separatorChar = RetrainSeparatorChar, bool hasHeader = RetrainHasHeader)
+        public static void Train(string outputModelPath, string inputDataFilePath = RetrainFilePath, char separatorChar = RetrainSeparatorChar, bool hasHeader = RetrainHasHeader)
         {
             var mlContext = new MLContext();
 
@@ -94,7 +93,7 @@ namespace OutlookAddLibray
             var pipeline = mlContext.Transforms.Text.FeaturizeText(inputColumnName:@"col1",outputColumnName:@"col1")      
                                     .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"col1"}))      
                                     .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName:@"col0",inputColumnName:@"col0",addKeyValueAnnotationsAsText:false))      
-                                    .Append(mlContext.MulticlassClassification.Trainers.OneVersusAll(binaryEstimator:mlContext.BinaryClassification.Trainers.FastTree(new FastTreeBinaryTrainer.Options(){NumberOfLeaves=4,MinimumExampleCountPerLeaf=13,NumberOfTrees=5,MaximumBinCountPerFeature=229,FeatureFraction=0.761925173731347,LearningRate=0.999999776672986,LabelColumnName=@"col0",FeatureColumnName=@"Features"}),labelColumnName: @"col0"))      
+                                    .Append(mlContext.MulticlassClassification.Trainers.LightGbm(new LightGbmMulticlassTrainer.Options(){NumberOfLeaves=4,NumberOfIterations=2955,MinimumExampleCountPerLeaf=20,LearningRate=0.727892527243604,LabelColumnName=@"col0",FeatureColumnName=@"Features",ExampleWeightColumnName=null,Booster=new GradientBooster.Options(){SubsampleFraction=0.999999776672986,FeatureFraction=0.99999999,L1Regularization=1.75126320944696E-09,L2Regularization=0.999999776672986},MaximumBinCountPerFeature=232}))      
                                     .Append(mlContext.Transforms.Conversion.MapKeyToValue(outputColumnName:@"PredictedLabel",inputColumnName:@"PredictedLabel"));
 
             return pipeline;

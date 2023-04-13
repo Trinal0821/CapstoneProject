@@ -82,3 +82,4 @@ C:\Users\trina\OneDrive\Desktop\executive-assistants\executive-assistants\Outloo
 C:\Users\trina\OneDrive\Desktop\executive-assistants\executive-assistants\OutlookAddLibray\obj\Debug\net6.0\OutlookAddLibray.pdb
 C:\Users\trina\OneDrive\Desktop\executive-assistants\executive-assistants\OutlookAddLibray\obj\Debug\net6.0\ref\OutlookAddLibray.dll
 C:\Users\skate\Source\Repos\executive-assistants\OutlookAddLibray\obj\Debug\net6.0\refint\OutlookAddLibray.dll
+C:\Users\skate\Source\Repos\executive-assistants\OutlookAddLibray\bin\Debug\net6.0\MLModel1.mlnet
