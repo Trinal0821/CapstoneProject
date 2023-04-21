@@ -16,22 +16,30 @@ Our server currently runs on local host so to open the server open the solution 
 
 
 ## Using the Add-on
-The see and used our addon first open and email then click the 3 dots in thr top right. Once in the menu you should see section labeled with “executive assistant” which is where all our content is stored.
+The see and used our addon first open and email then click the 3 dots in the top right.
+![tripple dots](./EAServer/wwwroot/Images/TagEmails2.png)
+Once in the menu you should see section labeled with “executive assistant” which is where all our content is stored.
 
 How to use EA<br>
 An in-app tutorial that explains how to ues each of the other options.
 
 Tag Emails<br>
-This will retrieve the top emails in your inbox, use NLP to categorize how important the email is and then tag the emails with that importance.
+This will retrieve the top emails in your inbox, use NLP to categorize how important the email is and then tag the emails with that importance.<br>
+![tag option](./EAServer/wwwroot/Images/TagEmails3.png)
+![tag example](./EAServer/wwwroot/Images/TagEmails1.png)
 
 Dowload emails<br>
 Downloads the top emails in your inbox to your documents folder.
 
 Assign priority<br>
-Allows the use to tell our add-on to ignore the NLP classification and classify all emails from that address as specified. 
+Allows the use to tell our add-on to ignore the NLP classification and classify all emails from that address as specified. <br>
+![assighn option](./EAServer/wwwroot/Images/AssignPriority3.png)
+![assighn example](./EAServer/wwwroot/Images/AssignPriority4.png)
 
 Retag Emails<br>
-If an email has been tagged incorrectly Click this option and you will be given an option to tell our NLP model what the email should have been categorized as. This will update the model for future emails
+If an email has been tagged incorrectly Click this option and you will be given an option to tell our NLP model what the email should have been categorized as. This will update the model for future emails.<br>
+![retag option](./EAServer/wwwroot/Images/RetagEmails3.png)
+![retag example](./EAServer/wwwroot/Images/RetagEmails4.png)
 
 
 
