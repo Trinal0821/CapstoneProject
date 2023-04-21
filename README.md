@@ -45,7 +45,7 @@ If an email has been tagged incorrectly Click this option and you will be given 
 
 
 ## Authors and acknowledgment
-Saphora Bateman,
+Sephora Bateman,
 Trina Luong,
 Andrew Gill,
 Zachary Gundersen
