@@ -14,6 +14,28 @@ From the Add-Ins dialog, click "my add-ins", scroll to the bottom and click the 
 
 Our server currently runs on local host so to open the server open the solution at locationOfClonedRepository/EA/EA.sln in visual studio. THe click the green start arrow at the top and it should open a localhost wepage. Now you are ready to use this Email classifier
 
+
+## Using the Add-on
+The see and used our addon first open and email then click the 3 dots in thr top right. Once in the menu you should see section labeled with “executive assistant” which is where all our content is stored.
+
+How to use EA<br>
+An in-app tutorial that explains how to ues each of the other options.
+
+Tag Emails<br>
+This will retrieve the top emails in your inbox, use NLP to categorize how important the email is and then tag the emails with that importance.
+
+Dowload emails<br>
+Downloads the top emails in your inbox to your documents folder.
+
+Assign priority<br>
+Allows the use to tell our add-on to ignore the NLP classification and classify all emails from that address as specified. 
+
+Retag Emails<br>
+If an email has been tagged incorrectly Click this option and you will be given an option to tell our NLP model what the email should have been categorized as. This will update the model for future emails
+
+
+
+
 ## Authors and acknowledgment
 Saphora Bateman,
 Trina Luong,
